@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/footer";
+import Hero from "@/components/hero";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +18,14 @@ export default function RootLayout({ children }) {
             <body
                 className={cn(
                     inter.className,
-                    "bg-gradient-to-b from-sky-100 to-blue-300 h-screen w-screen flex flex-col items-start"
+                    "bg-white h-screen w-screen flex flex-col items-start overflow-x-hidden"
                 )}
             >
                 <Navbar />
-                <main className="flex-grow container">{children}</main>
+                <main className="flex-grow container">
+                    <Hero/>
+                </main>
+                {children}
                 <Footer />
             </body>
         </html>
