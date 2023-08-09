@@ -30,7 +30,7 @@ const Navbar = () => {
     <div className="flex justify-between  p-4 bg-transparent w-full">
       <Link 
         href="/"
-        className="flex w-full items-center justify-center gap-4 mb-16 mt-6"
+        className="flex items-center justify-center gap-4 mb-16 mt-6"
       >
         <div className="relative w-16 h-8 ">
           <Image fill alt="Logo" src="/icon.webp" />
@@ -40,7 +40,7 @@ const Navbar = () => {
         </h1>
       </Link>
       <div className="flex gap-2 p-4">
-        <DropdownMenu>
+        <DropdownMenu className="">
           <DropdownMenuTrigger asChild>
             <Button variant="outline">Open</Button>
           </DropdownMenuTrigger>
@@ -63,6 +63,10 @@ const Navbar = () => {
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
+
+        <Button className="bg-blue-700 ml-8">
+            Contact us
+        </Button>
       </div>
     </div>
   );
