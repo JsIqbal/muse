@@ -3,10 +3,10 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="my-20 flex md:flex-row flex-col p-4 gap-16 w-full md:justify-between justify-center items-center">
-      <div className="flex flex-col gap-6 md:w-[45%] w-full h-full">
+    <div className="my-20 flex md:flex-row flex-col p-4 gap-x-16 gap-y-4 w-full md:justify-between justify-start items-center">
+      <div className="flex flex-col gap-6 md:w-[45%] w-full h-full justify-start">
         <p className="text-sky-400">One platform blah blah.</p>
-        <h2 className="text-3xl  text-slate-900 font-semibold">
+        <h2 className="text-3xl lg:text-4xl text-slate-900 font-semibold">
           Improve something Lorem ipsum dolor sit. mone hji kei king my wo
         </h2>
         <p className="text-muted-foreground">
@@ -15,8 +15,15 @@ const Hero = () => {
           magnam labore.!!
         </p>
       </div>
-      <div className="relative md:w-[55%] w-full h-full text-center align-middle">
-        <Image fill src="/hero-pic.png" alt="Image error"/>
+      <div className="relative md:w-[55%] w-full h-full">
+        
+        <Image
+          src="/hero-pic.png"
+          alt="Pic error"
+          width={400}
+          height={400}
+          className="w-full h-full lg:p-[12%] md:p-[2%] sm:p-[8%] "
+        />
       </div>
     </div>
   );
