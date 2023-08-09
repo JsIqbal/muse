@@ -60,14 +60,13 @@ const Navbar = () => {
                                 onValueChange={setPosition}
                             >
                                 <DropdownMenuRadioItem value="top">
-                                    <Link href="/muse">muse</Link>
+                                    <Link className="w-full" href="/muse">
+                                        muse
+                                    </Link>
                                 </DropdownMenuRadioItem>
                                 <DropdownMenuRadioItem value="bottom">
-                                    <Link href="/jet-pack">jet-pack</Link>
-                                </DropdownMenuRadioItem>
-                                <DropdownMenuRadioItem value="right">
-                                    <Link href="/blackbeltprivecy">
-                                        blackbeltprivecy
+                                    <Link className="w-full" href="/jet-pack">
+                                        jet-pack
                                     </Link>
                                 </DropdownMenuRadioItem>
                             </DropdownMenuRadioGroup>
