@@ -14,7 +14,6 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/ui/separator";
 
 import { Montserrat } from "next/font/google";
 import { useState } from "react";
@@ -28,7 +27,7 @@ const Navbar = () => {
     const [position, setPosition] = useState("top");
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 bg-gray-100 bg-opacity-93 xl:shadow-none shadow-lg">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-gray-100 bg-opacity-93 shadow-md">
             <div className="flex justify-between  p-4 container">
                 <Link
                     href="/"
