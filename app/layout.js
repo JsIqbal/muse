@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, "px-auto max-w-screen-xl h-full w-full justify-center items-start")}>
+      <body className={cn(inter.className, "px-6 md:px-10 lg:px-[7%] xl:px-[10%] 2xl:px-[20%] h-full w-full justify-center items-start")}>
         <Navbar />
         <main>{children}</main>
         
