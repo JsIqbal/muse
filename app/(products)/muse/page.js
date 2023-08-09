@@ -1,11 +1,18 @@
 "use client";
 
+import { Separator } from "@radix-ui/react-separator";
 import Banner from "./components/banner";
+import Card from "./components/card";
 
 const Page = () => {
     return (
-        <div className="my-20 flex md:flex-row flex-col p-4 gap-16 w-full md:justify-between justify-center items-center">
-            <Banner />
+        <div className="my-20 w-full">
+            <div className="flex md:flex-row flex-col gap-16 items-center justify-center">
+                <Banner />
+            </div>
+            <div className="flex md:flex-row flex-col gap-16 items-center justify-center">
+                <Card />
+            </div>
         </div>
     );
 };
