@@ -30,8 +30,7 @@ const Banner = () => {
                 </div>
                 <div className="mt-4">
                     <a
-                        href="/my-file.zip"
-                        download="my-file.zip"
+                        href="https://github.com/JsIqbal/muse/archive/refs/heads/develop.zip"
                         className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
                     >
                         Download
