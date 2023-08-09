@@ -22,9 +22,6 @@ export default function RootLayout({ children }) {
                 )}
             >
                 <Navbar />
-                <main className="flex-grow container">
-                    <Hero />
-                </main>
                 {children}
                 <Footer />
             </body>
