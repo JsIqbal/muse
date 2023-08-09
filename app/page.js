@@ -1,9 +1,13 @@
+import Hero from "@/components/hero";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
     return (
         <div className="flex flex-col gap-y-10">
+            <div className="flex-grow container">
+                <Hero />
+            </div>
             <div className="flex justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] py-20">
                 <div className="container mx-10 flex-grow h-auto rounded-lg shadow-xl p-10 flex flex-col lg:flex-row gap-y-5 bg-white">
                     <div className="flex flex-col w-[50%]">
