@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
 import Image from "next/image";
 
 const Banner = () => {
@@ -6,7 +8,15 @@ const Banner = () => {
         <>
             <div className="flex flex-col gap-6 md:w-[45%] w-full h-full">
                 <div class="text-left text-blue-600 font-semibold text-lg">
-                    M Muse
+                    <Badge
+                        className="border-2 border-emerald-500 rounded-full  text-emerald-500 text-lg font-bold"
+                        variant="outline"
+                    >
+                        M
+                    </Badge>
+                    <span className="text-2xl font-semibold text-gray-800">
+                        use
+                    </span>
                 </div>
                 <div class="mt-4">
                     <h1 class="text-3xl font-bold">
@@ -28,8 +38,9 @@ const Banner = () => {
                     <p class="text-gray-600">Brought to you by: musesoft</p>
                 </div>
             </div>
-            <div className="relative md:w-[55%] w-full h-full text-center align-middle">
+            <div className="relative md:w-[55%] w-full h-full text-center align-middle ">
                 <Image
+                    className="ml-auto"
                     height={500}
                     width={600}
                     alt="Logo"
