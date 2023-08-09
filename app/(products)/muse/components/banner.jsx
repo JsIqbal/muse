@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const Banner = () => {
     return (
@@ -28,7 +29,12 @@ const Banner = () => {
                 </div>
             </div>
             <div className="relative md:w-[55%] w-full h-full text-center align-middle">
-                Second Column Content Goes Here
+                <Image
+                    height={500}
+                    width={600}
+                    alt="Logo"
+                    src="/images/muse.png"
+                />
             </div>
         </>
     );
