@@ -22,7 +22,12 @@ const Navbar = () => {
             MUSE
           </h1>
         </Link>
-        
+        <div className='flex gap-2 p-4'>
+            <Link href="/product">
+                Products and Pricing
+            </Link>
+            
+        </div>
     </div>
   )
 }
