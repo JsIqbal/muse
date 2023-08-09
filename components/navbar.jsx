@@ -28,11 +28,11 @@ const Navbar = () => {
     const [position, setPosition] = useState("top");
 
     return (
-        <>
-            <div className="flex justify-between  p-4 bg-transparent container xl:shadow-none shadow-lg">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-gray-100 bg-opacity-93 xl:shadow-none shadow-lg">
+            <div className="flex justify-between  p-4 container">
                 <Link
                     href="/"
-                    className="flex items-center justify-center gap-4  "
+                    className="flex items-center justify-center gap-4"
                 >
                     <div className="relative w-16 h-8 ">
                         <Image fill alt="Logo" src="/icon.webp" />
@@ -49,7 +49,9 @@ const Navbar = () => {
                 <div className="flex gap-2 p-4">
                     <DropdownMenu className="">
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline">Products <span className="ml-1">&#9660;</span> </Button>
+                            <Button variant="outline">
+                                Products <span className="ml-1">&#9660;</span>{" "}
+                            </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-56">
                             <DropdownMenuLabel>Products</DropdownMenuLabel>
@@ -76,8 +78,7 @@ const Navbar = () => {
                     <Button className="bg-blue-700 ml-8">Contact us</Button>
                 </div>
             </div>
-            <Separator className="bg-black " />
-        </>
+        </div>
     );
 };
 
