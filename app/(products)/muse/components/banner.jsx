@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 import Image from "next/image";
@@ -30,9 +29,13 @@ const Banner = () => {
                     </h3>
                 </div>
                 <div className="mt-4">
-                    <Button className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+                    <a
+                        href="/my-file.zip"
+                        download="my-file.zip"
+                        className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                    >
                         Download
-                    </Button>
+                    </a>
                 </div>
                 <div className="mt-4">
                     <p className="text-gray-600">Brought to you by: musesoft</p>
