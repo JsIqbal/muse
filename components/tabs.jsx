@@ -1,18 +1,26 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const CommonTabs = () => {
+const CommonTabs = ({ tabsData }) => {
+    const { tabList, tabContent } = tabsData;
+
     return (
-        <Tabs defaultValue="account" className="w-[400px]">
+        <Tabs defaultValue={tabList[0].value} className="w-[400px]">
             <TabsList>
-                <TabsTrigger value="account">Account</TabsTrigger>
-                <TabsTrigger value="password">Password</TabsTrigger>
+                {tabList.map((tab) => (
+                    <TabsTrigger key={tab.value} value={tab.value}>
+                        {tab.label}
+                    </TabsTrigger>
+                ))}
             </TabsList>
-            <TabsContent value="account">
-                Make changes to your account here.
-            </TabsContent>
-            <TabsContent value="password">
-                Change your password here.
-            </TabsContent>
+            {tabList.map((tab) => (
+                <TabsContent key={tab.value} value={tab.value}>
+                    {
+                        tabContent.find(
+                            (content) => content.value === tab.value
+                        )?.text
+                    }
+                </TabsContent>
+            ))}
         </Tabs>
     );
 };
