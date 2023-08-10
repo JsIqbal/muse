@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Hero = () => {
     return (
-        <div className="my-32 flex md:flex-row flex-col gap-x-16 gap-y-4 w-full md:justify-between justify-start items-center">
+        <div className="mt-32 mb-16 flex md:flex-row flex-col gap-x-16 gap-y-4 w-full md:justify-between justify-start items-center">
             <div className="flex flex-col gap-6 md:w-[45%] w-full h-full justify-start">
                 <p className="text-sky-400">One platform blah blah.</p>
                 <h2 className="text-3xl lg:text-4xl text-slate-900 font-semibold">
