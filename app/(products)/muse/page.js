@@ -2,6 +2,7 @@
 
 import Banner from "./components/banner";
 import MuseCard from "./components/card";
+import MuseTab from "./components/tab";
 
 const Page = () => {
     return (
@@ -11,6 +12,9 @@ const Page = () => {
             </div>
             <div className="flex md:flex-row flex-col gap-16 items-center justify-center">
                 <MuseCard />
+            </div>
+            <div className="flex md:flex-row flex-col gap-16 items-center justify-center">
+                <MuseTab />
             </div>
         </div>
     );
