@@ -66,6 +66,10 @@
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 @layer base {
     * {
         @apply border-border;
@@ -74,6 +78,16 @@
         @apply bg-background text-foreground;
     }
 }
+
+
+/* For curvey edge in div */
+.curvey-top {
+    --mask:
+      radial-gradient(114.04px at 50% 153.00px,#000 99%,#0000 101%) calc(50% - 102px) 0/204px 100%,
+      radial-gradient(114.04px at 50% -102px,#0000 99%,#000 101%) 50% 51px/204px 100% repeat-x;
+    -webkit-mask: var(--mask);
+            mask: var(--mask);
+  }
 
 .custom-top {
     margin-top: 160px !important;
