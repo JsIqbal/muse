@@ -2,11 +2,38 @@
 
 import Hero from "@/components/hero";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  // just for template
+  const testimonials = [
+    {
+      name: 'John Doe',
+      role: 'Software Engineer',
+      review: 'I have been using these software products for a while now, and I must say they have significantly improved my development workflow. The automation capabilities are outstanding, and the Eclipse-based IDE is a real game-changer. Highly recommended!',
+    },
+    {
+      name: 'Jane Smith',
+      role: 'Developer',
+      review: 'As a developer, I\'m always looking for tools that can boost my productivity. These software products have exceeded my expectations. The Middleware Universal Scripting idE is a masterpiece, making server management a breeze. The JET Pack with OpenJDK versions is a cherry on top!',
+    },
+    {
+      name: 'Sam Johnson',
+      role: 'Student',
+      review: 'Being a student aspiring to become a developer, these products have been invaluable in my learning journey. The JET Pack has helped me explore different Java versions, and the Middleware Universal Scripting idE has given me hands-on experience with server automation. Truly impressive!',
+    },
+  ];
+
+
   return (
     <div className="flex flex-col gap-y-10">
       <div className="flex-grow container">
@@ -19,7 +46,7 @@ export default function Home() {
             const section = document.querySelector("#move");
             section.scrollIntoView({ behavior: "smooth" });
           }}
-          className="hidden lg:block bg-sky-600 font-semibold relative bottom-10"
+          className="hidden lg:block bg-blue-500 font-semibold relative bottom-10 shadow-xl"
         >
           Learn More
         </Button>
@@ -136,7 +163,7 @@ export default function Home() {
                 <div className="text-lg text-gray-700">
                   <p className="mt-4 flex gap-x-4">
                     <Link href="/">
-                      <Button className="bg-blue-600">Download now</Button>
+                      <Button className="bg-blue-500">Download now</Button>
                     </Link>
                     <Link href="/muse">
                       <Button variant="outline">
@@ -276,7 +303,7 @@ export default function Home() {
                 <div className="text-lg text-gray-700">
                   <p className="mt-4 flex gap-x-4">
                     <Link href="/">
-                      <Button className="bg-blue-600">Download now</Button>
+                      <Button className="bg-blue-500">Download now</Button>
                     </Link>
                     <Link href="/jet-pack">
                       <Button variant="outline">
@@ -305,7 +332,24 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-screen  bg-white"></div>
+      <div className="w-screen  bg-white container space-y-8 pt-16 pb-20 justify-center">
+        <h1 className="text-3xl xl:text-4xl font-semibold text-center">
+          What our customers say about us
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index}>
+              <CardHeader>
+                <CardTitle>{testimonial.name}</CardTitle>
+                <CardDescription>{testimonial.role}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>{testimonial.review}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
