@@ -3,17 +3,28 @@ import CommonTabs from "@/components/tabs";
 const MuseTab = () => {
     const tabsData = {
         tabList: [
-            { value: "account", label: "Account" },
-            { value: "password", label: "Password" },
+            { value: "overview", label: "overview" },
+            { value: "features", label: "features" },
+            { value: "benefits", label: "benefits" },
         ],
         tabContent: [
-            { value: "account", text: "Make changes to your account here." },
-            { value: "password", text: "Change your password here." },
+            {
+                value: "overview",
+                text: "overview content is going to show here.",
+            },
+            {
+                value: "features",
+                text: "features content is going to show here.",
+            },
+            {
+                value: "benefits",
+                text: "benefits content is going to show here.",
+            },
         ],
     };
 
     return (
-        <div className="w-full mt-16 bg-gray-100 bg-opacity-93">
+        <div className="w-full my-20 bg-gray-100 bg-opacity-93">
             <CommonTabs tabsData={tabsData} />
         </div>
     );
