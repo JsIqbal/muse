@@ -20,8 +20,6 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 import { Montserrat } from "next/font/google";
 import { useState } from "react";
