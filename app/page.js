@@ -14,25 +14,37 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
-  // just for template
-  const testimonials = [
-    {
-      name: 'John Doe',
-      role: 'Software Engineer',
-      review: 'I have been using these software products for a while now, and I must say they have significantly improved my development workflow. The automation capabilities are outstanding, and the Eclipse-based IDE is a real game-changer. Highly recommended!',
-    },
-    {
-      name: 'Jane Smith',
-      role: 'Developer',
-      review: 'As a developer, I\'m always looking for tools that can boost my productivity. These software products have exceeded my expectations. The Middleware Universal Scripting idE is a masterpiece, making server management a breeze. The JET Pack with OpenJDK versions is a cherry on top!',
-    },
-    {
-      name: 'Sam Johnson',
-      role: 'Student',
-      review: 'Being a student aspiring to become a developer, these products have been invaluable in my learning journey. The JET Pack has helped me explore different Java versions, and the Middleware Universal Scripting idE has given me hands-on experience with server automation. Truly impressive!',
-    },
-  ];
+  function downloadMuse() {
+    return null;
+  }
 
+  function downloadJETPack() {
+    return null;
+  }
+
+  // just for template
+  const testimonials = () => {
+    return [
+      {
+        name: "John Doe",
+        role: "Software Engineer",
+        review:
+          "I have been using these software products for a while now, and I must say they have significantly improved my development workflow. The automation capabilities are outstanding, and the Eclipse-based IDE is a real game-changer. Highly recommended!",
+      },
+      {
+        name: "Jane Smith",
+        role: "Developer",
+        review:
+          "As a developer, I'm always looking for tools that can boost my productivity. These software products have exceeded my expectations. The Middleware Universal Scripting idE is a masterpiece, making server management a breeze. The JET Pack with OpenJDK versions is a cherry on top!",
+      },
+      {
+        name: "Sam Johnson",
+        role: "Student",
+        review:
+          "Being a student aspiring to become a developer, these products have been invaluable in my learning journey. The JET Pack has helped me explore different Java versions, and the Middleware Universal Scripting idE has given me hands-on experience with server automation. Truly impressive!",
+      },
+    ];
+  };
 
   return (
     <div className="flex flex-col gap-y-10">
@@ -46,10 +58,26 @@ export default function Home() {
             const section = document.querySelector("#move");
             section.scrollIntoView({ behavior: "smooth" });
           }}
-          className="hidden lg:block bg-blue-500 font-semibold relative bottom-10 shadow-xl"
+          className="hidden lg:block bg-blue-500 font-semibold relative bottom-10 shadow-xl text-center"
         >
           Learn More
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            className="lucide lucide-arrow-down text-white relative top-4 left-6"
+          >
+            <path d="M12 5v14" />
+            <path d="m19 12-7 7-7-7" />
+          </svg>
         </Button>
+
         <div className="container flex-grow h-auto rounded-lg shadow-xl p-10 bg-white">
           <h2 className="text-2xl font-bold mb-4">About Us</h2>
           <p className="text-gray-700">
@@ -162,9 +190,10 @@ export default function Home() {
 
                 <div className="text-lg text-gray-700">
                   <p className="mt-4 flex gap-x-4">
-                    <Link href="/">
-                      <Button className="bg-blue-500">Download now</Button>
-                    </Link>
+                    <Button className="bg-blue-500" onClick={downloadMuse}>
+                      Download now
+                    </Button>
+
                     <Link href="/muse">
                       <Button variant="outline">
                         Learn More{" "}
@@ -302,9 +331,10 @@ export default function Home() {
 
                 <div className="text-lg text-gray-700">
                   <p className="mt-4 flex gap-x-4">
-                    <Link href="/">
-                      <Button className="bg-blue-500">Download now</Button>
-                    </Link>
+                    <Button className="bg-blue-500" onClick={downloadJETPack}>
+                      Download now
+                    </Button>
+
                     <Link href="/jet-pack">
                       <Button variant="outline">
                         Learn More{" "}
@@ -332,12 +362,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-screen  bg-white container space-y-8 pt-16 pb-20 justify-center">
-        <h1 className="text-3xl xl:text-4xl font-semibold text-center">
+      <div className="w-screen  bg-white container space-y-20 pt-16 pb-20 justify-center">
+        <h1 className="text-3xl xl:text-4xl text-muted-foreground  text-center">
           What our customers say about us
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {testimonials.map((testimonial, index) => (
+          {testimonials().map((testimonial, index) => (
             <Card key={index}>
               <CardHeader>
                 <CardTitle>{testimonial.name}</CardTitle>
