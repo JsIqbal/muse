@@ -1,0 +1,13 @@
+{
+    "name": "muse-client-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start-server": "cd server && go run main.go",
+        "start-client": "cd client && npm run dev"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
