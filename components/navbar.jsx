@@ -48,8 +48,8 @@ const Navbar = () => {
                 <div className="flex gap-2 p-4">
                     <DropdownMenu className="">
                         <DropdownMenuTrigger asChild>
-                            <Button variant="outline">
-                                Products <span className="ml-1">&#9660;</span>{" "}
+                            <Button variant="outline" className="shadow-lg">
+                                Products <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="ml-3 mt- lucide lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent className="w-56">
@@ -73,7 +73,7 @@ const Navbar = () => {
                         </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <Button className="bg-blue-700 ml-8">Contact us</Button>
+                    <Button className="bg-blue-700 ml-8 ">Contact us</Button>
                 </div>
             </div>
         </div>
