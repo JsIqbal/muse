@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 
 import Image from "next/image";
 
@@ -8,7 +9,7 @@ const Banner = () => {
             <div className="flex flex-col gap-6 md:w-[45%] w-full h-full">
                 <div className="text-left text-blue-600 font-semibold text-lg">
                     <Badge
-                        className="border-2 border-emerald-500 rounded-full  text-emerald-500 text-lg font-bold"
+                        className="border-2 border-emerald-500 rounded-full text-emerald-500 text-lg font-bold"
                         variant="outline"
                     >
                         M
@@ -22,12 +23,18 @@ const Banner = () => {
                         Muse: Middleware Universal Scripting idE
                     </h1>
                 </div>
-                <div className="mt-2">
-                    <h3 className="text-lg text-gray-700">
-                        DevOps Automate: WebSphere; WebLogic; JBoss; Glassfish;
-                        Tomcat; Linux.
+                <div className="mt-4">
+                    <h3 className="text-xl font-semibold text-gray-800 ">
+                        Streamlined DevOps Automation
+                    </h3>
+                    <Separator />
+                    <h3 className="text-lg text-gray-700 mt-4">
+                        <span className="font-semibold ">DevOps Automate:</span>{" "}
+                        WebSphere | WebLogic | JBoss | Glassfish | Tomcat |
+                        Linux.
                     </h3>
                 </div>
+
                 <div className="mt-4">
                     <a
                         href="https://github.com/JsIqbal/muse/archive/refs/heads/develop.zip"
@@ -40,6 +47,7 @@ const Banner = () => {
                     <p className="text-gray-600">Brought to you by: musesoft</p>
                 </div>
             </div>
+
             <div className="relative md:w-[55%] w-full h-full text-center align-middle ">
                 <Image
                     className="ml-auto"
