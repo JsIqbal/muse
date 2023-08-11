@@ -55,7 +55,7 @@ const Hero = () => {
             </div>
             <div className="relative md:w-[55%] w-full h-full">
                 <Image
-                    src="/hero-pic.png"
+                    src="/images/hero-pic.png"
                     alt="Pic error"
                     width={600}
                     height={600}
