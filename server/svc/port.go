@@ -7,6 +7,13 @@ type StudentRepo interface {
 	DeleteStudent(id string) *Student
 }
 
+type UserRepo interface {
+	CreateUser(std *User)
+}
+
+type DashboardRepo interface {
+	GetDashboardImages() []*Dashboard
+}
 
 type Service interface {
 	GetStudent(id string) *Student
@@ -15,8 +22,7 @@ type Service interface {
 	DeleteStudent(id string) *Student
 
 	GetDashboardImages() []*Dashboard
+
+	CreateUser(std *User)
 }
 
-type DashboardRepo interface {
-	GetDashboardImages() []*Dashboard
-}
