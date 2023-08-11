@@ -11,6 +11,10 @@ type UserRepo interface {
 	CreateUser(std *User)
 }
 
+type AdminRepo interface {
+	LoginAdmin(std *Admin)
+}
+
 type DashboardRepo interface {
 	GetDashboardImages() []*Dashboard
 }
