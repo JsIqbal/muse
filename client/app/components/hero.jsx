@@ -21,7 +21,7 @@ const Hero = () => {
     };
 
     return (
-        <div className="mt-32 mb-16 flex md:flex-row flex-col gap-x-16 gap-y-4 w-full md:justify-between justify-start items-center">
+        <div className="flex-grow container mt-44 mb-6 flex md:flex-row flex-col gap-x-16 gap-y-4 w-full md:justify-between justify-start items-center">
             <div className="flex flex-col gap-6 md:w-[45%] w-full h-full justify-start">
                 <p className="text-sky-500">
                     Empowering Developers with Unparalleled Tools!
