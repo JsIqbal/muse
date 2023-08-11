@@ -6,6 +6,10 @@ import Link from "next/link";
 
 
 const Product1 = () => {
+  // Will be added to cart
+  function downloadMuse() {
+    return null;
+  }
 
   return (
     <div className="w-screen  bg-white">
