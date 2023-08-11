@@ -31,6 +31,8 @@ func (s *Server) setupRouter() {
 
 	s.router = router
 
+	router.POST("/api/admins", s.login)
+
 	router.POST("/api/users", s.createUser)
 
 	router.GET("/api/test", test)
