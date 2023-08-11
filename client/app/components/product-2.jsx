@@ -6,14 +6,14 @@ const Product2 = () => {
   function downloadJETPack() {
     return null;
   }
-  
+
   return (
     <div className="w-screen  bg-[#F2F6F9]">
       <div className="flex lg:flex-row flex-col justify-center items-center py-10 px-6 md:px-10 lg:px-[7%] xl:px-[10%] 2xl:px-[20%] flex-grow">
         <div className="lg:w-[50%] w-max md:p-[7%] p-[9%]">
           <div className="relative rounded-md shadow-lg">
             <Image
-              src="/dummy-pic-1.PNG"
+              src="/images/dummy-pic-1.PNG"
               width={450}
               height={450}
               alt="demo picture"
