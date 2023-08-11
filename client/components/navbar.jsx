@@ -37,7 +37,7 @@ const Navbar = () => {
       <div className="flex justify-between  p-4 container">
         <Link href="/" className="flex items-center justify-center gap-4">
           <div className="relative w-16 h-8 ">
-            <Image fill alt="Logo" src="/icon.webp" />
+            <Image fill alt="Logo" src="/icons/muse-icon.png" />
           </div>
           <h1 className={cn("text-3xl text-blue-600", montsserrat.className)}>
             Nubinet

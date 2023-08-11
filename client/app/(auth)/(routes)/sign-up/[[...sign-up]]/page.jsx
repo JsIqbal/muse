@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 
 export default function Page() {
 
-  const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth({ params });
   const router = useRouter();
 
   if (isSignedIn) {
     return router.push("/");
   } else {
-    return <SignUp />;
+    return <SignUp  afterSignInUrl={params["redirectUrl"] ?? "/"}/>;
   }
 }
