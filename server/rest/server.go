@@ -32,6 +32,7 @@ func (s *Server) setupRouter() {
 	s.router = router
 
 	router.POST("/api/admins", s.login)
+	router.POST("/api/admin", s.createAdmin)
 
 	router.POST("/api/users", s.createUser)
 
