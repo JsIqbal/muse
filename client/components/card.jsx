@@ -19,9 +19,7 @@ const CommonCard = ({ className, title, desc, cardFooter, element }) => {
                 </CardDescription>
             </CardHeader>
             <CardContent>{element ? element : <p>Card Content</p>}</CardContent>
-            <CardFooter>
-                {cardFooter ? cardFooter : <p>Card Footer</p>}
-            </CardFooter>
+            {cardFooter && <CardFooter>{cardFooter}</CardFooter>}
         </Card>
     );
 };
