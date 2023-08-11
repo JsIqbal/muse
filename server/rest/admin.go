@@ -25,7 +25,23 @@ func (s *Server) login(ctx *gin.Context) {
 
 	fmt.Printf("Username: %s\nPassword: %s\n", user.Username, user.Password)
 	
-	// s.svc.CreateUser(&user)
+	s.svc.LoginAdmin(&user)
 
-	ctx.JSON(http.StatusOK, gin.H{"message": "Recieved successfully"})
+	ctx.JSON(http.StatusOK, gin.H{"message": "Logged in successfully"})
+}
+
+func (s *Server) createAdmin(ctx *gin.Context) {
+	var admin svc.Admin
+
+	// Read and parse request body
+	err := ctx.ShouldBindJSON(&admin)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON data"})
+		return
+	}
+
+	// Use the admin object for creation logic
+	s.svc.CreateAdmin(&admin)
+
+	ctx.JSON(http.StatusOK, gin.H{"message": "Admin created successfully"})
 }
