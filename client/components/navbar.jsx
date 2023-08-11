@@ -29,10 +29,6 @@ const montsserrat = Montserrat({
 });
 
 const Navbar = () => {
-  const { addListener } = useClerk();
-
-  // Add a listener for the signUpAttemptSucceeded event
-  addListener((e) => console.log(e));
   const { isSignedIn } = useAuth();
   const [position, setPosition] = useState("top");
 
