@@ -32,6 +32,7 @@ func (s *Server) setupRouter() {
 	s.router = router
 
 	router.GET("/api/test", test)
+	router.GET("/api/dashboard/images", s.getDashboardImages)
 	router.POST("/api/students", s.createStudent)
 	router.GET("/api/students/:id", s.getStudent)
 	router.PATCH("/api/students/:id", s.updateStudent)
