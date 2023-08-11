@@ -16,7 +16,8 @@ func serveRest() {
 	stdRepo := repo.NewStudentRepo(db)
 	userRepo := repo.NewUserRepo(db)
 	dashRepo := repo.NewDashboardRepo(db)
-	svc := svc.NewService(stdRepo, dashRepo, userRepo)
+	admnRepo := repo.NewAdminRepo(db)
+	svc := svc.NewService(stdRepo, dashRepo, userRepo, admnRepo)
 
 	server, err := rest.NewServer(svc, appConfig)
 

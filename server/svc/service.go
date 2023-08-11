@@ -4,13 +4,15 @@ type service struct {
 	studentRepo   StudentRepo
 	dashboardRepo DashboardRepo
 	userRepo UserRepo
+	adminRepo AdminRepo
 }
 
-func NewService(studentRepo StudentRepo, dashboardRepo DashboardRepo, userRepo UserRepo) Service {
+func NewService(studentRepo StudentRepo, dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminRepo) Service {
 	return &service{
 		studentRepo:   studentRepo,
 		dashboardRepo: dashboardRepo,
 		userRepo: userRepo,
+		adminRepo: adminRepo,
 	}
 }
 
@@ -37,4 +39,8 @@ func (s *service) GetDashboardImages() []*Dashboard {
 
 func (s *service) CreateUser(user *User) {
 	s.userRepo.CreateUser(user)
+}
+
+func (s *service) LoginAdmin(admn *Admin) {
+	s.adminRepo.LoginAdmin(admn)
 }
