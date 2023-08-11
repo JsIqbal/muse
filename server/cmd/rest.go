@@ -14,7 +14,8 @@ func serveRest() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", appConfig.DBUser, appConfig.DBPass, appConfig.DBHost, appConfig.DBPort, appConfig.DBName)
 	db := database.NewDatabase(dsn)
 	stdRepo := repo.NewStudentRepo(db)
-	svc := svc.NewService(stdRepo)
+	dashRepo := repo.NewDashboardRepo(db)
+	svc := svc.NewService(stdRepo, dashRepo)
 
 	server, err := rest.NewServer(svc, appConfig)
 
