@@ -3,12 +3,14 @@ package svc
 type service struct {
 	studentRepo   StudentRepo
 	dashboardRepo DashboardRepo
+	userRepo UserRepo
 }
 
-func NewService(studentRepo StudentRepo, dashboardRepo DashboardRepo) Service {
+func NewService(studentRepo StudentRepo, dashboardRepo DashboardRepo, userRepo UserRepo) Service {
 	return &service{
 		studentRepo:   studentRepo,
 		dashboardRepo: dashboardRepo,
+		userRepo: userRepo,
 	}
 }
 
@@ -32,3 +34,7 @@ func (s *service) GetDashboardImages() []*Dashboard {
 	return s.dashboardRepo.GetDashboardImages()
 }
 
+
+func (s *service) CreateUser(user *User) {
+	s.userRepo.CreateUser(user)
+}
