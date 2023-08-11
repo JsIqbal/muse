@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Product2 = () => {
+  // Will be added to cart
   function downloadJETPack() {
     return null;
   }
