@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"go-rest/config"
 	"go-rest/svc"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 
-	"go-rest/rest/admin" 
+	"go-rest/rest/admin"
 	"go-rest/rest/dashboard"
 	"go-rest/rest/user"
+	"go-rest/rest/test"
 )
 
 type Server struct {
@@ -38,17 +38,9 @@ func (s *Server) setupRouter() {
 	admin.SetupAdminRoutes(router.Group("/api"), s.svc)
 	dashboard.SetupDashboardRoutes(router.Group("/api"), s.svc)
 	user.SetupUserRoutes(router.Group("/api"), s.svc)
-
-
-	router.GET("/api/test", test)
-
-	
+	test.SetupTestRoutes(router.Group("/api"), s.svc)
 }
 
 func (s *Server) Start() error {
 	return s.router.Run(fmt.Sprintf("%s:%s", s.appConfig.Host, s.appConfig.Port))
-}
-
-func test(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, "Hello world")
 }
