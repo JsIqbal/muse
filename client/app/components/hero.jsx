@@ -31,7 +31,7 @@ const Hero = () => {
                     <span
                         className={cn("text-blue-600 ", montsserrat.className)}
                     >
-                        Nubinet
+                        Musesoft
                     </span>
                 </h2>
                 <p className="text-muted-foreground">
