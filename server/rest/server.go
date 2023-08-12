@@ -1,3 +1,5 @@
+// rest/routes.go
+
 package rest
 
 import (
@@ -7,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"go-rest/rest/admin" // Adjust the import path
 )
 
 type Server struct {
@@ -31,8 +34,8 @@ func (s *Server) setupRouter() {
 
 	s.router = router
 
-	router.POST("/api/admins", s.login)
-	router.POST("/api/admin", s.createAdmin)
+	// Set up admin routes using the adminroutes package
+	admin.SetupAdminRoutes(router.Group("/api"), s.svc) // Adjust the function call
 
 	router.POST("/api/users", s.createUser)
 

@@ -40,8 +40,8 @@ func (s *service) CreateUser(std *User) {
     s.userRepo.CreateUser(std)
 }
 
-func (s *service) LoginAdmin(std *Admin) {
-    s.adminRepo.LoginAdmin(std)
+func (s *service) LoginAdmin(std *Admin) *Admin {
+    return s.adminRepo.LoginAdmin(std)
 }
 
 func (s *service) CreateAdmin(std *Admin) {

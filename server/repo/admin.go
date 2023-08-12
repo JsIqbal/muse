@@ -21,22 +21,25 @@ func NewAdminRepo(db *gorm.DB) AdminRepo {
 	}
 }
 
-func (r *adminRepo) LoginAdmin(admin *svc.Admin) {
+func (r *adminRepo) LoginAdmin(admin *svc.Admin) *svc.Admin {
 	var user svc.Admin
 	result := r.db.Where("username = ?", admin.Username).First(&user)
 
 	if result.Error != nil {
 		fmt.Println("Error while fetching user:", result.Error)
-		return
+		return nil
 	}
 
 	// Match the provided password with the stored password
 	if user.Password == admin.Password {
 		fmt.Println("Login Succeeded")
+		return &user // Return the authenticated admin
 	} else {
 		fmt.Println("Login Failed")
+		return nil
 	}
 }
+
 
 
 

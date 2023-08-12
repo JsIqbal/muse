@@ -12,7 +12,7 @@ type UserRepo interface {
 }
 
 type AdminRepo interface {
-	LoginAdmin(std *Admin)
+	LoginAdmin(std *Admin) *Admin
 	CreateAdmin(std *Admin)
 }
 
@@ -30,7 +30,7 @@ type Service interface {
 
 	CreateUser(std *User)
 
-	LoginAdmin(std *Admin)
+	LoginAdmin(std *Admin) *Admin
 	CreateAdmin(std *Admin)
 }
 
