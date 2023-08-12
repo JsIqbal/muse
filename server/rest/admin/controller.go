@@ -1,30 +1,27 @@
 package admin
 
-
 import (
-	"encoding/json"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"go-rest/svc"
 )
+
 
 func loginAdmin(service svc.Service) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var admin svc.Admin
 
-		// Read and parse request body
-		body, err := ctx.GetRawData()
-		if err != nil {
-			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read request body"})
+		// Retrieve validated data from context
+		loginSchema, exists := ctx.Get("loginSchema")
+		if !exists {
+			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve login data from context"})
 			return
 		}
+		schema := loginSchema.(LoginSchema)
 
-		err = json.Unmarshal(body, &admin)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON data"})
-			return
-		}
+		// Use the validated data
+		admin.Username = schema.Username
+		admin.Password = schema.Password
 
 		authenticatedAdmin := service.LoginAdmin(&admin)
 
@@ -38,12 +35,21 @@ func loginAdmin(service svc.Service) gin.HandlerFunc {
 
 func createAdmin(service svc.Service) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var admin svc.Admin
-
-		// Read and parse request body
-		if err := ctx.ShouldBindJSON(&admin); err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON data"})
+		schema, exists := ctx.Get("createAdminSchema")
+		if !exists {
+			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Schema not found in context"})
 			return
+		}
+
+		adminSchema, ok := schema.(CreateAdminSchema)
+		if !ok {
+			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid schema in context"})
+			return
+		}
+
+		admin := svc.Admin{
+			Username: adminSchema.Username,
+			Password: adminSchema.Password,
 		}
 
 		service.CreateAdmin(&admin)

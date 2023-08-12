@@ -8,9 +8,7 @@ import (
 func SetupAdminRoutes(router *gin.RouterGroup, service svc.Service) {
 	adminGroup := router.Group("/admins")
 	{
-		adminGroup.POST("/login", loginAdmin(service))
-		adminGroup.POST("/create", createAdmin(service))
+		adminGroup.POST("/login", ValidateLoginSchema(), loginAdmin(service))
+		adminGroup.POST("/create",ValidateCreateAdminSchema(), createAdmin(service))
 	}
 }
-
-
