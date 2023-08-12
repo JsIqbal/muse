@@ -39,9 +39,11 @@ const Product2 = () => {
                             Diagnostics:
                         </h1>
                         <p className="text-lg">
-                            Elevate your Java development with JETPack.
-                            Streamline workflow, identify bottlenecks, and
-                            optimize performance. Experience Java at its best.
+                        JET Pack offers essential tools for Java developers,
+                        encompassing OpenSource JDKs from Java 13 to 19. It
+                        includes Visual VM, JConsole, and MissionControl,
+                        providing powerful diagnostic capabilities to profile
+                        and optimize your code.
                         </p>
 
                         <div className="mt-8 space-y-6">

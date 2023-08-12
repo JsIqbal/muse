@@ -2,7 +2,7 @@
 
 import Banner from "./components/banner";
 import MuseCard from "./components/card";
-import MuseTab from "./components/tab";
+import MuseTab from "../components/museTabs";
 
 const Page = () => {
     return (
