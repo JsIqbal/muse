@@ -1,15 +1,18 @@
-package rest
+package user
 
 import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"go-rest/svc"
+
 	"fmt"
 	"encoding/json"
-	"net/http"
-	"go-rest/svc"
-	"github.com/gin-gonic/gin"
 )
 
-func (s *Server) createUser(ctx *gin.Context) {
-	var user svc.User
+func getDashboardImages(service svc.Service) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		var user svc.User
 
 	body, err := ctx.GetRawData()
 	if err != nil {
@@ -25,7 +28,8 @@ func (s *Server) createUser(ctx *gin.Context) {
 
 	fmt.Printf("Username: %s\nPassword: %s\n", user.Username, user.Password)
 	
-	s.svc.CreateUser(&user)
+	service.CreateUser(&user)
 
 	ctx.JSON(http.StatusOK, gin.H{"message": "User created successfully"})
+	}
 }
