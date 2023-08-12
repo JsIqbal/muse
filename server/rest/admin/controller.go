@@ -34,26 +34,33 @@ func loginAdmin(service svc.Service) gin.HandlerFunc {
 }
 
 func createAdmin(service svc.Service) gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		schema, exists := ctx.Get("createAdminSchema")
-		if !exists {
-			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Schema not found in context"})
-			return
-		}
+    return func(ctx *gin.Context) {
+        schema, exists := ctx.Get("createAdminSchema")
+        if !exists {
+            ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Schema not found in context"})
+            return
+        }
 
-		adminSchema, ok := schema.(CreateAdminSchema)
-		if !ok {
-			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid schema in context"})
-			return
-		}
+        adminSchema, ok := schema.(CreateAdminSchema)
+        if !ok {
+            ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid schema in context"})
+            return
+        }
 
-		admin := svc.Admin{
-			Username: adminSchema.Username,
-			Password: adminSchema.Password,
-		}
+        // Check if admin with the same username exists
+        existingAdmin := service.GetAdminByUsername(adminSchema.Username) // Pass the username string
+        if existingAdmin != nil {
+            ctx.JSON(http.StatusBadRequest, gin.H{"error": "Admin with the same username already exists"})
+            return
+        }
 
-		service.CreateAdmin(&admin)
+        admin := svc.Admin{
+            Username: adminSchema.Username,
+            Password: adminSchema.Password,
+        }
 
-		ctx.JSON(http.StatusOK, gin.H{"message": "Admin created successfully"})
-	}
+        service.CreateAdmin(&admin)
+
+        ctx.JSON(http.StatusOK, gin.H{"message": "Admin created successfully"})
+    }
 }

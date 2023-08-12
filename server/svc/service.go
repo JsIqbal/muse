@@ -14,7 +14,6 @@ func NewService(dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminR
     }
 }
 
-
 func (s *service) GetDashboardImages() []*Dashboard {
     return s.dashboardRepo.GetDashboardImages()
 }
@@ -29,4 +28,8 @@ func (s *service) LoginAdmin(std *Admin) *Admin {
 
 func (s *service) CreateAdmin(std *Admin) {
     s.adminRepo.CreateAdmin(std)
+}
+
+func (s *service) GetAdminByUsername(username string) *Admin {
+    return s.adminRepo.GetAdminByUsername(username)
 }
