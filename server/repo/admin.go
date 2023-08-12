@@ -30,18 +30,14 @@ func (r *adminRepo) LoginAdmin(admin *svc.Admin) *svc.Admin {
 		return nil
 	}
 
-	// Match the provided password with the stored password
 	if user.Password == admin.Password {
 		fmt.Println("Login Succeeded")
-		return &user // Return the authenticated admin
+		return &user
 	} else {
 		fmt.Println("Login Failed")
 		return nil
 	}
 }
-
-
-
 
 func (r *adminRepo) CreateAdmin(admin *svc.Admin) {
 	result := r.db.Create(admin)
