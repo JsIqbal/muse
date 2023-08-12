@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
     return (
         <div className="mt-auto text-center bg-gray-800 text-white py-2 w-full">
