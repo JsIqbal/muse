@@ -8,6 +8,6 @@ import (
 func SetupUserRoutes(router *gin.RouterGroup, service svc.Service) {
 	userGroup := router.Group("/users")
 	{
-		userGroup.POST("/create", getDashboardImages(service))
+		userGroup.POST("/create", createUser(service))
 	}
 }
