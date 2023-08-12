@@ -7,7 +7,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"go-rest/rest/admin" // Adjust the import path
+
+	"go-rest/rest/admin" 
+	"go-rest/rest/dashboard"
+	"go-rest/rest/user"
 )
 
 type Server struct {
@@ -32,14 +35,14 @@ func (s *Server) setupRouter() {
 
 	s.router = router
 
-	// Set up admin routes using the adminroutes package
-	admin.SetupAdminRoutes(router.Group("/api"), s.svc) // Adjust the function call
+	admin.SetupAdminRoutes(router.Group("/api"), s.svc)
+	dashboard.SetupDashboardRoutes(router.Group("/api"), s.svc)
+	user.SetupUserRoutes(router.Group("/api"), s.svc)
 
-	router.POST("/api/users", s.createUser)
 
 	router.GET("/api/test", test)
 
-	router.GET("/api/dashboard/images", s.getDashboardImages)
+	
 }
 
 func (s *Server) Start() error {
