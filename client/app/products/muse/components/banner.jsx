@@ -20,7 +20,7 @@ const Banner = () => {
                 </div>
                 <div className="mt-4">
                     <h1 className="text-3xl font-bold">
-                        Muse: Middleware Universal Scripting idE
+                        Muse: Middleware Universal <br/> Scripting idE
                     </h1>
                 </div>
                 <div className="mt-4">

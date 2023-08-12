@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import MuseTabs from "./museTabs";
 
 const Product1 = () => {
+    const [showMore, setShowMore] = useState(false)
     const cart = useCart();
     const data = {
         id: "prod_OQqVfPPkSOgzHj",
@@ -16,21 +19,23 @@ const Product1 = () => {
     // Will be added to cart
     function onAddToCart() {
         cart.addItem(data);
-        console.log(cart.items);
     }
 
     return (
-        <div className="w-screen  bg-white">
-            <div className="flex lg:flex-row flex-col justify-center items-center py-10 px-6 md:px-10 lg:px-[7%] xl:px-[10%] 2xl:px-[20%] flex-grow">
+        <div className="w-screen  bg-white flex flex-col">
+            <div className="flex lg:flex-row flex-col justify-center items-center container">
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
                     <div className="flex flex-col gap-y-4">
                         <h1 className="text-3xl font-extrabold text-gray-900">
                             Muse: Middleware Universal <br /> Scripting idE
                         </h1>
                         <p className="text-lg">
-                            Automate Middleware Management with Python/Jython.
-                            Target WebSphere, WebLogic, JBoss, Glassfish, and
-                            Tomcat over JMX and Linux SSH.
+                            Muse empowers you to automate WebSphere, WebLogic,
+                            JBoss, Glassfish, and Tomcat Middleware Estates over
+                            JMX using Python / Jython. With its user-friendly
+                            Eclipse-based Jython Development IDE, you can
+                            streamline your workflow and simplify server
+                            management.
                         </p>
 
                         <div className="mt-8 space-y-6">
@@ -95,26 +100,24 @@ const Product1 = () => {
                                         Add to cart
                                     </Button>
 
-                                    <Link href="/muse">
-                                        <Button variant="outline">
-                                            Learn More{" "}
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                className="lucide lucide-arrow-right ml-3"
-                                            >
-                                                <path d="M5 12h14" />
-                                                <path d="m12 5 7 7-7 7" />
-                                            </svg>
-                                        </Button>
-                                    </Link>
+                                    <Button variant="outline" onClick={() => setShowMore(!showMore)}>
+                                        Learn More{" "}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            className="lucide lucide-arrow-right ml-3"
+                                        >
+                                            <path d="M5 12h14" />
+                                            <path d="m12 5 7 7-7 7" />
+                                        </svg>
+                                    </Button>
                                 </p>
                             </div>
                         </div>
@@ -131,6 +134,9 @@ const Product1 = () => {
                         />
                     </div>
                 </div>
+            </div>
+            <div className={cn("transition-all duration-700 container ", showMore ? "h-[44rem]" : "h-0 invisible")}>
+                <MuseTabs/>
             </div>
         </div>
     );

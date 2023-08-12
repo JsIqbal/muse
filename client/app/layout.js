@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
             "bg-white h-screen w-screen flex flex-col items-start overflow-x-hidden"
           )}
         >
-          <ToastProvider/>
+          
           <Navbar />
           {children}
           <Footer />
