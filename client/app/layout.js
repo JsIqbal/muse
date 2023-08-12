@@ -10,7 +10,7 @@ import { ToastProvider } from "@/providers/toast-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Nubinet",
+  title: "Musesoft",
   description: "A Developer Software Products Webstore",
 };
 

@@ -40,7 +40,7 @@ const Navbar = () => {
             <Image fill alt="Logo" src="/icons/muse-icon.png" />
           </div>
           <h1 className={cn("text-3xl text-blue-600", montsserrat.className)}>
-            Nubinet
+            Musesoft
           </h1>
         </Link>
         <div className="flex gap-x-6 p-4">
