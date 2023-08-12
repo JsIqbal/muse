@@ -6,9 +6,11 @@ type UserRepo interface {
 }
 
 type AdminRepo interface {
-	LoginAdmin(std *Admin) *Admin
-	CreateAdmin(std *Admin)
+    LoginAdmin(std *Admin) *Admin
+    CreateAdmin(std *Admin)
+    GetAdminByUsername(username string) *Admin // Accepts a string argument
 }
+
 
 type DashboardRepo interface {
 	GetDashboardImages() []*Dashboard
@@ -21,5 +23,6 @@ type Service interface {
 
 	LoginAdmin(std *Admin) *Admin
 	CreateAdmin(std *Admin)
+	GetAdminByUsername(username string) *Admin
 }
 

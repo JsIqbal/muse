@@ -30,7 +30,13 @@ func (r *adminRepo) LoginAdmin(admin *svc.Admin) *svc.Admin {
 		return nil
 	}
 
-	if user.Password == admin.Password {
+	storedPassword := user.Password
+	providedPassword := admin.Password
+
+	fmt.Println("Stored Password:", storedPassword)
+	fmt.Println("Provided Password:", providedPassword)
+
+	if storedPassword == providedPassword {
 		fmt.Println("Login Succeeded")
 		return &user
 	} else {
@@ -39,10 +45,24 @@ func (r *adminRepo) LoginAdmin(admin *svc.Admin) *svc.Admin {
 	}
 }
 
+
 func (r *adminRepo) CreateAdmin(admin *svc.Admin) {
 	result := r.db.Create(admin)
 
 	if result.Error != nil {
 		fmt.Println("Error while creating admin:", result.Error)
 	}
+}
+
+
+func (r *adminRepo) GetAdminByUsername(username string) *svc.Admin {
+    var user svc.Admin
+    result := r.db.Where("username = ?", username).First(&user)
+
+    if result.Error != nil {
+        fmt.Println("Error while fetching admin:", result.Error)
+        return nil
+    }
+
+    return &user
 }
