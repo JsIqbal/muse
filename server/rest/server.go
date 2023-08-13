@@ -9,8 +9,8 @@ import (
 
 	"go-rest/rest/admin"
 	"go-rest/rest/dashboard"
-	"go-rest/rest/user"
 	"go-rest/rest/test"
+	"go-rest/rest/user"
 )
 
 type Server struct {

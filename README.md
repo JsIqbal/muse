@@ -1,8 +1,8 @@
 Instructions from root directory:
 
 ```bash
-    npm run start-client
-    npm run start-server
+    npm run client
+    npm run server
 ```
 
 1. **Main Folder (Your Project's Home):** This is like the base of your project. It's where everything starts. Imagine it as the entrance to a big playground.
