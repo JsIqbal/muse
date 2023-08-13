@@ -1,7 +1,7 @@
 import CommonTabs from "@/components/tabs";
 import Overview from "./muse-overview";
 import Features from "./muse-features";
-import Benefit from "./muse-benefit";
+import Benefit from "./muse-benefits";
 
 const MuseTabs = () => {
     const tabsData = {

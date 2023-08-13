@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import useCart from "@/hooks/use-cart";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import JETPackTabs from "./JETPack components/jetPackTabs";
 
 const Product2 = () => {
+    const [showMore, setShowMore] = useState(false);
     const cart = useCart();
     const data = {
         id: "prod_OQqfX0s5HDDSZI",
@@ -21,9 +24,9 @@ const Product2 = () => {
 
     return (
         <div className="w-screen  bg-[#F2F6F9]">
-            <div className="flex lg:flex-row flex-col justify-center items-center py-10 px-6 md:px-10 lg:px-[7%] xl:px-[10%] 2xl:px-[20%] flex-grow">
+            <div className="flex lg:flex-row flex-col justify-between items-center container">
                 <div className="lg:w-[50%] w-max md:p-[7%] p-[9%]">
-                    <div className="relative rounded-md shadow-lg">
+                    <div className="relative rounded-md">
                         <Image
                             src="/images/dummy-pic-1.PNG"
                             width={450}
@@ -39,11 +42,11 @@ const Product2 = () => {
                             Diagnostics:
                         </h1>
                         <p className="text-lg">
-                        JET Pack offers essential tools for Java developers,
-                        encompassing OpenSource JDKs from Java 13 to 19. It
-                        includes Visual VM, JConsole, and MissionControl,
-                        providing powerful diagnostic capabilities to profile
-                        and optimize your code.
+                            JET Pack offers essential tools for Java developers,
+                            encompassing OpenSource JDKs from Java 13 to 19. It
+                            includes Visual VM, JConsole, and MissionControl,
+                            providing powerful diagnostic capabilities to
+                            profile and optimize your code.
                         </p>
 
                         <div className="mt-8 space-y-6">
@@ -134,31 +137,57 @@ const Product2 = () => {
                                         Add to cart
                                     </Button>
 
-                                    <Link href="/jet-pack">
-                                        <Button variant="outline">
-                                            Learn More{" "}
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                width="24"
-                                                height="24"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                className="lucide lucide-arrow-right ml-3"
-                                            >
-                                                <path d="M5 12h14" />
-                                                <path d="m12 5 7 7-7 7" />
-                                            </svg>
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        variant="outline"
+                                        onClick={() => {
+                                            setShowMore(!showMore);
+
+                                            if (!showMore) {
+                                                const section =
+                                                    document.querySelector(
+                                                        "#jetPackMoreInfo"
+                                                    );
+                                                section.scrollIntoView({
+                                                    behavior: "smooth",
+                                                });
+                                            }
+                                        }}
+                                    >
+                                        Learn More{" "}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            className={cn(
+                                                "lucide lucide-arrow-right ml-3 transition-all duration-300",
+                                                showMore && "rotate-90"
+                                            )}
+                                        >
+                                            <path d="M5 12h14" />
+                                            <path d="m12 5 7 7-7 7" />
+                                        </svg>
+                                    </Button>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div
+                id="jetPackMoreInfo"
+                className={cn(
+                    "transition-all duration-700 container delay-75",
+                    showMore ? "h-[44rem]" : "h-0 invisible none"
+                )}
+            >
+                <JETPackTabs />
             </div>
         </div>
     );

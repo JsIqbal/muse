@@ -5,10 +5,10 @@ import useCart from "@/hooks/use-cart";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
-import MuseTabs from "./museTabs";
+import MuseTabs from "./muse components/museTabs";
 
 const Product1 = () => {
-    const [showMore, setShowMore] = useState(false)
+    const [showMore, setShowMore] = useState(false);
     const cart = useCart();
     const data = {
         id: "prod_OQqVfPPkSOgzHj",
@@ -22,8 +22,8 @@ const Product1 = () => {
     }
 
     return (
-        <div className="w-screen  bg-white flex flex-col">
-            <div className="flex lg:flex-row flex-col justify-center items-center container">
+        <div className="w-screen  bg-white flex flex-col" id="museContent">
+            <div className="flex lg:flex-row flex-col justify-between items-center container">
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
                     <div className="flex flex-col gap-y-4">
                         <h1 className="text-3xl font-extrabold text-gray-900">
@@ -100,8 +100,22 @@ const Product1 = () => {
                                         Add to cart
                                     </Button>
 
-                                    <Button variant="outline" onClick={() => setShowMore(!showMore)}>
-                                        Learn More{" "}
+                                    <Button
+                                        variant="outline"
+                                        onClick={() => {
+                                            setShowMore(!showMore);
+                                            const section =
+                                                document.querySelector(
+                                                    "#museMoreInfo"
+                                                );
+                                            if (!showMore) {
+                                                section.scrollIntoView({
+                                                    behavior: "smooth",
+                                                });
+                                            }
+                                        }}
+                                    >
+                                        Details{" "}
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -112,7 +126,10 @@ const Product1 = () => {
                                             stroke-width="2"
                                             stroke-linecap="round"
                                             stroke-linejoin="round"
-                                            className="lucide lucide-arrow-right ml-3"
+                                            className={cn(
+                                                "lucide lucide-arrow-right ml-3 transition-all duration-300",
+                                                showMore && "rotate-90"
+                                            )}
                                         >
                                             <path d="M5 12h14" />
                                             <path d="m12 5 7 7-7 7" />
@@ -125,7 +142,7 @@ const Product1 = () => {
                 </div>
 
                 <div className="lg:w-[50%] w-max md:p-[7%] p-[9%]">
-                    <div className="relative rounded-md shadow-lg">
+                    <div className="relative rounded-md">
                         <Image
                             src="/images/dummy-pic-1.PNG"
                             width={450}
@@ -135,8 +152,14 @@ const Product1 = () => {
                     </div>
                 </div>
             </div>
-            <div className={cn("transition-all duration-700 container ", showMore ? "h-[44rem]" : "h-0 invisible")}>
-                <MuseTabs/>
+            <div
+                id="museMoreInfo"
+                className={cn(
+                    "transition-all duration-700 container ",
+                    showMore ? "h-[44rem]" : "h-0 invisible"
+                )}
+            >
+                <MuseTabs />
             </div>
         </div>
     );
