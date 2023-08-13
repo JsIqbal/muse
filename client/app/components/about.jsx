@@ -70,7 +70,7 @@ const About = () => {
                             width={64}
                             height={64}
                             alt="Logo"
-                            src="/icons/jetPack-icon.png"
+                            src="/icons/jetpack-icon.png"
                         />
                     </div>
                     <h1 className="text-2xl font-semibold text-center">
