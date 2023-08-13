@@ -1,35 +1,25 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
+import { ArrowDown, ArrowRight } from "@/node_modules/lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const About = () => {
     return (
         <div className="curvey-top  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] pt-20 pb-20 ">
-            <div className="flex flex-col  gap-y-2 justify-center items-center">
+            <div className="hidden lg:flex flex-col  gap-y-2 justify-center items-center">
                 <Button
                     id="move"
                     onClick={() => {
                         const section = document.querySelector("#move");
                         section.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="hidden lg:block bg-blue-500 font-semibold shadow-xl text-center text-lg h-10"
+                    className=" bg-blue-500 font-semibold shadow-xl text-center text-lg h-10"
                 >
                     About us
                 </Button>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    className="lucide lucide-arrow-down text-white"
-                >
-                    <path d="M12 5v14" />
-                    <path d="m19 12-7 7-7-7" />
-                </svg>
+                <ArrowDown />
             </div>
 
             <div className="container flex-grow h-auto rounded-lg shadow-xl p-10 bg-white">
@@ -58,42 +48,36 @@ const About = () => {
                 <h1 className="text-3xl text-slate-900 font-bold">
                     Our Products
                 </h1>
-                <div className="border  rounded-lg p-4 w-[70%] bg-white hover:scale-[101%] transition-all duration-150 shadow-lg">
-                    <div className="flex gap-x-4 items-center">
-                        <div className="relative w-16 h-16 ">
-                            <Image fill alt="Logo" src="/icons/muse-icon.png" />
-                        </div>
-                        <h1 className="text-2xl font-semibold text-center">
-                            Muse - Middleware Universal Scripting idE
-                        </h1>
+
+                <Link href="/products" className="rounded-lg p-4 lg:w-[88%] w-full bg-white hover:scale-[100.6%] transition-all duration-150 shadow-lg flex gap-x-4 items-center">
+                    <div className="relative">
+                        <Image
+                            width={64}
+                            height={64}
+                            alt="Logo"
+                            src="/icons/muse-icon.png"
+                        />
                     </div>
-                </div>
-                <div className="border  rounded-lg p-4 w-[70%] bg-white hover:scale-[101%] transition-all duration-150 shadow-lg">
-                    <div className="flex gap-x-4 items-center">
-                        <div className="relative w-16 h-16 ">
-                            <Image
-                                fill
-                                alt="Logo"
-                                src="/icons/jetPack-icon.png"
-                            />
-                        </div>
-                        <h1 className="text-2xl font-semibold text-center">
-                            JETPack - Empowering Java Development environment
-                        </h1>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            className="lucide lucide-arrow-right ml-3 transition-all duration-300 text-black"
-                        ></svg>
+                    <h1 className="text-2xl font-semibold text-center">
+                        Muse - Middleware Universal Scripting idE
+                    </h1>
+                    <ArrowRight className="ml-auto" />
+                </Link>
+
+                <Link href="/products" className="rounded-lg p-4 lg:w-[88%] w-full bg-white hover:scale-[100.6%] transition-all duration-150 shadow-lg flex gap-x-4 items-center">
+                    <div className="relative">
+                        <Image
+                            width={64}
+                            height={64}
+                            alt="Logo"
+                            src="/icons/jetPack-icon.png"
+                        />
                     </div>
-                </div>
+                    <h1 className="text-2xl font-semibold text-center">
+                        JETPack - Empowering Java Development environment
+                    </h1>
+                    <ArrowRight className="ml-auto" />
+                </Link>
             </div>
         </div>
     );
