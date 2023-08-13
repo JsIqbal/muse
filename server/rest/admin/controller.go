@@ -6,7 +6,6 @@ import (
 	"go-rest/svc"
 )
 
-
 func loginAdmin(service svc.Service) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		var admin svc.Admin
@@ -64,3 +63,4 @@ func createAdmin(service svc.Service) gin.HandlerFunc {
         ctx.JSON(http.StatusOK, gin.H{"message": "Admin created successfully"})
     }
 }
+
