@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import { Montserrat } from "next/font/google";
-import { useState } from "react";
 import EmailForm from "./email-sending-form";
 import { ClerkLoaded, ClerkLoading, UserButton, useAuth } from "@clerk/nextjs";
 import { Skeleton } from "./ui/skeleton";
@@ -22,7 +21,6 @@ const montsserrat = Montserrat({
 
 const Navbar = () => {
     const { isSignedIn } = useAuth();
-    const [position, setPosition] = useState("top");
 
     return (
         <div className="fixed top-0 left-0 right-0 z-50 bg-gray-100 bg-opacity-93 shadow-md border-b-[1] border-slate-500">

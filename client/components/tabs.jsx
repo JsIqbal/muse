@@ -5,7 +5,7 @@ const CommonTabs = ({ tabsData }) => {
     const { tabList, tabContent } = tabsData;
 
     return (
-        <Tabs defaultValue={tabList[0].value} className="w-full">
+        <Tabs defaultValue={tabList[0].value} className="w-full shadow-lg rounded-lg">
             <TabsList>
                 {tabList.map((tab) => (
                     <TabsTrigger key={tab.value} value={tab.value}>
