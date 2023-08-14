@@ -8,6 +8,8 @@ import {
     CardHeader,
     CardTitle,
 } from "../../components/ui/card";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const montsserrat = Montserrat({
     weight: "700",
@@ -43,13 +45,22 @@ const Hero = () => {
                     <CardHeader>
                         <CardTitle>Total downloads:</CardTitle>
                     </CardHeader>
-                    <CardContent className="flex gap-x-4">
+                    <CardContent className="flex gap-x-4 items-center">
                         <h1 className="text-2xl font-semibold">
                             {totalDownloads()}
                         </h1>
                         <p className="text-muted-foreground text-xl text-blue-400">
                             And counting
                         </p>
+                        <Link href="/products">
+                            {" "}
+                            <Button
+                                varient="outline"
+                                className="  rounded-full font-semibold bg-gradient-to-r from-blue-500 to-indigo-700 shadow-xl border-2 border-white"
+                            >
+                                Download Now
+                            </Button>
+                        </Link>
                     </CardContent>
                 </Card>
             </div>

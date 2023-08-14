@@ -3,14 +3,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import toast from "react-hot-toast";
-import { DialogClose } from "@radix-ui/react-dialog";
+
 
 // Define the schema for the form data
 const schema = z.object({
     email: z.string().email().nonempty(),
-    subject: z.string().nonempty(),
-    message: z.string().nonempty(),
+    subject: z.string().min(4),
+    message: z.string().min(10),
 });
+
 
 // Define the component for the form
 const EmailForm = () => {
@@ -24,20 +25,51 @@ const EmailForm = () => {
     });
 
     // Define the onSubmit function
-    const onSubmit = (data) => {
-        // Save or console.log the data
-        console.log(data);
+    // Define the onSubmit function
+const onSubmit = async (data) => {
+    // Save or console.log the data
+    console.log(data);
+    // Display a loading toast
+    toast.loading("Sending email...");
+    // Define the API URL
+    const API_URL = `${process.env.API_URL}/api/email`;
+    // Define the options for the fetch request
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    // Try to send the data to the API with fetch
+    try {
+      // Await for the response
+      const response = await fetch(API_URL, options);
+      // Check if the response is ok
+      if (response.ok) {
+        toast.dismiss();
         // Display a success toast
         toast.success("Email sent successfully!");
-    };
+      } else {
+        // Throw an error with the status text
+        throw new Error(response.statusText);
+      }
+    } catch (error) {
+        toast.dismiss();
+      // Display an error toast
+      toast.error(`An error occurred: ${error.message}`);
+    } 
+
+    
+  };
 
     // Return the JSX for the form
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="w-96 p-8 bg-white rounded-lg space-y-6"
+            className=" bg-white rounded-lg space-y-6"
         >
-            <h1 className="text-2xl font-bold text-center mb-4">Contact us</h1>
+            <h1 className="text-3xl font-bold text-center mb-4">Contact us</h1>
             <div>
                 <label
                     htmlFor="email"
@@ -46,7 +78,6 @@ const EmailForm = () => {
                     Your Email
                 </label>
                 <input
-                    type="email"
                     id="email"
                     {...register("email")}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -65,7 +96,6 @@ const EmailForm = () => {
                     Subject
                 </label>
                 <input
-                    type="text"
                     id="subject"
                     {...register("subject")}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -96,14 +126,12 @@ const EmailForm = () => {
                 )}
             </div>
             <div className="flex justify-center">
-                <DialogClose>
-                    <button
-                        type="submit"
-                        className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700"
-                    >
-                        Send Email
-                    </button>
-                </DialogClose>
+                <button
+                    type="submit"
+                    className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded hover:bg-indigo-700"
+                >
+                    Send Email
+                </button>
             </div>
         </form>
     );
