@@ -36,12 +36,14 @@
 
 package svc
 
+
 type service struct {
     dashboardRepo DashboardRepo
     userRepo      UserRepo
     adminRepo     AdminRepo
-    productRepo     ProductRepo
+    productRepo   ProductRepo
 }
+
 
 func NewService(dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminRepo, productRepo     ProductRepo) Service {
     return &service{
@@ -78,4 +80,9 @@ func (s *service) GetUserByEmail(email string) *User {
 
 func (s *service) GetUserByID(userID string) *User {
     return s.userRepo.GetUserByID(userID)
+}
+
+
+func (s *service) GetProducts() []*Product {
+    return s.productRepo.GetProducts()
 }

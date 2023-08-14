@@ -14,3 +14,12 @@ func NewProductRepo(db *gorm.DB) svc.ProductRepo {
 		db: db,
 	}
 }
+
+func (r *productRepo) GetProducts() []*svc.Product {
+	var products []*svc.Product
+	if err := r.db.Find(&products).Error; err != nil {
+		// Handle the error, e.g., log it and return an empty slice
+		return nil
+	}
+	return products
+}

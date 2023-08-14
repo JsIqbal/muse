@@ -75,3 +75,12 @@ func createUser(service svc.Service) gin.HandlerFunc {
 
 
 
+func getProducts(service svc.Service) gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		// Get all products from the service
+		products := service.GetProducts()
+
+		// Return the products as JSON response
+		ctx.JSON(http.StatusOK, products)
+	}
+}
