@@ -11,25 +11,36 @@ import (
 )
 
 func createUser(service svc.Service) gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		var user svc.User
+    return func(ctx *gin.Context) {
+        var user svc.User
 
-		body, err := ctx.GetRawData()
-		if err != nil {
-			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read request body"})
-			return
-		}
+        body, err := ctx.GetRawData()
+        if err != nil {
+            ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to read request body"})
+            return
+        }
 
-		err = json.Unmarshal(body, &user)
-		if err != nil {
-			ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON data"})
-			return
-		}
+        err = json.Unmarshal(body, &user)
+        if err != nil {
+            ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON data"})
+            return
+        }
 
-		fmt.Printf("Username: %s", user.Email)
-		
-		service.CreateUser(&user)
+        existingUser := service.GetUserByEmail(user.Email)
+        if existingUser != nil {
+            ctx.JSON(http.StatusConflict, gin.H{"error": "User with the same email already exists"})
+            return
+        }
 
-		ctx.JSON(http.StatusOK, gin.H{"message": "User created successfully"})
-	}
+        fmt.Printf("Username: %s", user.Email)
+
+        service.CreateUser(&user)
+
+        ctx.JSON(http.StatusOK, gin.H{"message": "User created successfully"})
+    }
 }
+
+
+
+
+

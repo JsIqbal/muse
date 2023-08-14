@@ -28,3 +28,16 @@ func (r *userRepo) CreateUser(user *svc.User) {
 		fmt.Println("Error while creating user:", result.Error)
 	}
 }
+
+
+func (r *userRepo) GetUserByEmail(email string) *svc.User {
+    var user svc.User
+    result := r.db.Where("email = ?", email).First(&user)
+
+    if result.Error != nil {
+        fmt.Println("Error while fetching admin:", result.Error)
+        return nil
+    }
+
+    return &user
+}
