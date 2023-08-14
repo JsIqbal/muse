@@ -7,6 +7,10 @@ type UserRepo interface {
 	GetUserByEmail(email string) *User
 }
 
+type ProductRepo interface {
+
+}
+
 type AdminRepo interface {
     LoginAdmin(std *Admin) *Admin
     CreateAdmin(std *Admin)

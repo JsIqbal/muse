@@ -1,12 +1,48 @@
+// package cmd
+
+// import (
+// 	"fmt"
+// 	"go-rest/config"
+// 	"go-rest/database"
+// 	"go-rest/repo"
+// 	"go-rest/rest"
+// 	"go-rest/svc"
+// )
+
+// func serveRest() {
+// 	appConfig := config.GetApp()
+// 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", appConfig.DBUser, appConfig.DBPass, appConfig.DBHost, appConfig.DBPort, appConfig.DBName)
+// 	db := database.NewDatabase(dsn)
+// 	userRepo := repo.NewUserRepo(db)
+// 	dashRepo := repo.NewDashboardRepo(db)
+// 	admnRepo := repo.NewAdminRepo(db)
+// 	prodRepo := repo.NewProductRepo(db)
+// 	svc := svc.NewService(dashRepo, userRepo, admnRepo, prodRepo)
+
+// 	server, err := rest.NewServer(svc, appConfig)
+
+// 	if err != nil {
+// 		panic(err)
+// 	}
+
+// 	err = server.Start()
+
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// }
 package cmd
 
 import (
 	"fmt"
 	"go-rest/config"
 	"go-rest/database"
+	// "go-rest/models"
 	"go-rest/repo"
 	"go-rest/rest"
 	"go-rest/svc"
+	"github.com/google/uuid"
+	"gorm.io/gorm"
 )
 
 func serveRest() {
@@ -16,17 +52,40 @@ func serveRest() {
 	userRepo := repo.NewUserRepo(db)
 	dashRepo := repo.NewDashboardRepo(db)
 	admnRepo := repo.NewAdminRepo(db)
-	svc := svc.NewService(dashRepo, userRepo, admnRepo)
+	prodRepo := repo.NewProductRepo(db)
+	svc := svc.NewService(dashRepo, userRepo, admnRepo, prodRepo)
+
+	// Create default products
+	createDefaultProducts(db)
 
 	server, err := rest.NewServer(svc, appConfig)
-
 	if err != nil {
 		panic(err)
 	}
 
 	err = server.Start()
-
 	if err != nil {
 		panic(err)
+	}
+}
+
+func createDefaultProducts(db *gorm.DB) {
+	defaultProducts := []svc.Product{
+		{
+			ProductID:          uuid.New(),
+			ProductName:        "Muse",
+			ProductDesc: "This is the Muse product",
+			ProductPrice:       100.0,
+		},
+		{
+			ProductID:          uuid.New(),
+			ProductName:        "Jetpack",
+			ProductDesc: "This is the Jetpack product",
+			ProductPrice:       150.0,
+		},
+	}
+
+	for _, p := range defaultProducts {
+		db.Create(&p)
 	}
 }
