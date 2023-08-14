@@ -74,7 +74,18 @@ func createUser(service svc.Service) gin.HandlerFunc {
 }
 
 
-
+type Product struct {
+	ProductID     string  `json:"product_id"`
+	ProductName   string  `json:"product_name"`
+	ProductDesc   string  `json:"product_desc"`
+	ProductPrice  float64 `json:"product_price"`
+}
+// @Summary Get products
+// @Description Get a list of all products
+// @Tags products
+// @Produce json
+// @Success 200 {array} Product
+// @Router /api/users/products [get]
 func getProducts(service svc.Service) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		// Get all products from the service
@@ -82,5 +93,49 @@ func getProducts(service svc.Service) gin.HandlerFunc {
 
 		// Return the products as JSON response
 		ctx.JSON(http.StatusOK, products)
+	}
+}
+
+
+type PurchaseRequest struct {
+	UserID     string   `json:"user_id"`
+	ProductIDs []string `json:"product_ids"`
+}
+
+// Define the SuccessResponse struct
+type SuccessResponse struct {
+	Message string `json:"message"`
+}
+
+// Define the ErrorResponse struct
+type ErrorResponse struct {
+	Message string `json:"message"`
+}
+// @Summary Create a purchase
+// @Description Create a purchase record for a user
+// @Tags purchases
+// @Accept json
+// @Produce json
+// @Param request body PurchaseRequest true "Purchase Request Body"
+// @Success 200 {object} SuccessResponse
+// @Failure 400 {object} ErrorResponse
+// @Router /api/users/purchase [post]
+func purchase(service svc.Service) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var request PurchaseRequest
+		if err := c.ShouldBindJSON(&request); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
+			return
+		}
+
+		for _, productID := range request.ProductIDs {
+			err := service.CreatePurchase(request.UserID, productID)
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create purchase"})
+				return
+			}
+		}
+
+		c.JSON(http.StatusOK, gin.H{"message": "Purchases successfully created"})
 	}
 }
