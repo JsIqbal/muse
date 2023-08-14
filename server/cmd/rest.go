@@ -1,43 +1,9 @@
-// package cmd
-
-// import (
-// 	"fmt"
-// 	"go-rest/config"
-// 	"go-rest/database"
-// 	"go-rest/repo"
-// 	"go-rest/rest"
-// 	"go-rest/svc"
-// )
-
-// func serveRest() {
-// 	appConfig := config.GetApp()
-// 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", appConfig.DBUser, appConfig.DBPass, appConfig.DBHost, appConfig.DBPort, appConfig.DBName)
-// 	db := database.NewDatabase(dsn)
-// 	userRepo := repo.NewUserRepo(db)
-// 	dashRepo := repo.NewDashboardRepo(db)
-// 	admnRepo := repo.NewAdminRepo(db)
-// 	prodRepo := repo.NewProductRepo(db)
-// 	svc := svc.NewService(dashRepo, userRepo, admnRepo, prodRepo)
-
-// 	server, err := rest.NewServer(svc, appConfig)
-
-// 	if err != nil {
-// 		panic(err)
-// 	}
-
-// 	err = server.Start()
-
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// }
 package cmd
 
 import (
 	"fmt"
 	"go-rest/config"
 	"go-rest/database"
-	// "go-rest/models"
 	"go-rest/repo"
 	"go-rest/rest"
 	"go-rest/svc"
@@ -53,12 +19,13 @@ func serveRest() {
 	dashRepo := repo.NewDashboardRepo(db)
 	admnRepo := repo.NewAdminRepo(db)
 	prodRepo := repo.NewProductRepo(db)
-	svc := svc.NewService(dashRepo, userRepo, admnRepo, prodRepo)
+	purchaseRepo := repo.NewPurchaseRepo(db)
+	svc := svc.NewService(dashRepo, userRepo, admnRepo, prodRepo, purchaseRepo)
 
-	// Create default products
 	createDefaultProducts(db)
 
 	server, err := rest.NewServer(svc, appConfig)
+
 	if err != nil {
 		panic(err)
 	}

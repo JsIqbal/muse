@@ -10,5 +10,7 @@ func SetupUserRoutes(router *gin.RouterGroup, service svc.Service) {
 	{
 		userGroup.POST("/create", createUser(service))
 		userGroup.GET("/products", getProducts(service))
+		userGroup.POST("/purchase", purchase(service))
 	}
 }
+

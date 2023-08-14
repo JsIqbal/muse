@@ -1,6 +1,5 @@
 package svc
 
-
 type UserRepo interface {
 	CreateUser(std *User)
 	GetUserByID(userID string) *User
@@ -8,58 +7,32 @@ type UserRepo interface {
 }
 
 type ProductRepo interface {
-    GetProducts() []*Product
+	GetProducts() []*Product
+	GetProductByID(productID string) (*Product, error)
+}
+
+type PurchaseRepo interface {
+	CreatePurchase(purchase *Purchase) error
 }
 
 type Service interface {
-    GetDashboardImages() []*Dashboard
-
-    CreateUser(std *User)
-    GetUserByID(userID string) *User
-    GetUserByEmail(email string) *User
-
-    GetProducts() []*Product // Add this line to include GetProducts in the interface
-
-    LoginAdmin(std *Admin) *Admin
-    CreateAdmin(std *Admin)
-    GetAdminByUsername(username string) *Admin
+	GetDashboardImages() []*Dashboard
+	CreateUser(std *User)
+	GetUserByID(userID string) *User
+	GetUserByEmail(email string) *User
+	GetProducts() []*Product
+	CreatePurchase(userID string, productID string) error
+	LoginAdmin(std *Admin) *Admin
+	CreateAdmin(std *Admin)
+	GetAdminByUsername(username string) *Admin
 }
 
 type AdminRepo interface {
-    LoginAdmin(std *Admin) *Admin
-    CreateAdmin(std *Admin)
-    GetAdminByUsername(username string) *Admin // Accepts a string argument
+	LoginAdmin(std *Admin) *Admin
+	CreateAdmin(std *Admin)
+	GetAdminByUsername(username string) *Admin
 }
-
 
 type DashboardRepo interface {
 	GetDashboardImages() []*Dashboard
 }
-
-
-
-
-// type Service interface {
-//     GetDashboardImages() []*Dashboard
-
-//     CreateUser(std *User) // Add this line to include CreateUser in the interface
-//     GetUserByID(userID string) *User
-//     GetUserByEmail(email string) *User
-
-//     LoginAdmin(std *Admin) *Admin
-//     CreateAdmin(std *Admin)
-//     GetAdminByUsername(username string) *Admin
-// }
-
-
-
-// type Service interface {
-// 	GetDashboardImages() []*Dashboard
-
-// 	CreateUser(std *User)
-// 	GetUserByEmail(email string) *User
-
-// 	LoginAdmin(std *Admin) *Admin
-// 	CreateAdmin(std *Admin)
-// 	GetAdminByUsername(username string) *Admin
-// }
