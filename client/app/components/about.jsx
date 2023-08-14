@@ -23,7 +23,7 @@ const About = () => {
             </div>
 
             <div className="container flex-grow h-auto rounded-lg shadow-xl p-10 bg-white">
-                <h1 className="text-3xl font-bold mb-4">About Us</h1>
+                <h1 className="text-3xl font-semibold mb-4">About Us</h1>
                 <p className="text-gray-700">
                     Welcome to Musesoft! We are a team of passionate and
                     experienced developers who offer a diverse range of
