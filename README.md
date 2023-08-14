@@ -96,6 +96,31 @@ ngrok config add-authtoken YOUR_AUTH_TOKEN
 
 4. execute : ngrok http YOUR_LOCAL_PORT
 
+    - start ngrok task:
+
+        - ```cmd
+          ngrok http <PORT>
+          ngrok http 3004
+          ```
+
+        ```
+
+        ```
+
+    - kill ngrok task:
+        - find task list using :
+        ```cmd
+        tasklist | find "ngrok"
+        ```
+        - kill task :
+        ```cmd
+        taskkill /F /PID <pid>
+        ```
+        - kill all task :
+        ```cmd
+        taskkill /F /IM ngrok.exe
+        ```
+
 ---
 
 ## DB Architecture
