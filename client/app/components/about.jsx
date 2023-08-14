@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const About = () => {
     return (
-        <div className="curvey-top  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] pt-20 pb-20 ">
+        <div className="curvey-top-bottom  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] py-20 pb-20 ">
             <div className="hidden lg:flex flex-col  gap-y-2 justify-center items-center">
                 <Button
                     id="move"

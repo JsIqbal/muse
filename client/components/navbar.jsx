@@ -55,7 +55,7 @@ const Navbar = () => {
                                 Contact us
                             </Button>
                         </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
+                        <DialogContent className="container">
                             <EmailForm />
                         </DialogContent>
                     </Dialog>
