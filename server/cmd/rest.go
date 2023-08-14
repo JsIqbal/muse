@@ -75,13 +75,13 @@ func createDefaultProducts(db *gorm.DB) {
 			ProductID:          uuid.New(),
 			ProductName:        "Muse",
 			ProductDesc: "This is the Muse product",
-			ProductPrice:       100.0,
+			ProductPrice:       20,
 		},
 		{
 			ProductID:          uuid.New(),
 			ProductName:        "Jetpack",
 			ProductDesc: "This is the Jetpack product",
-			ProductPrice:       150.0,
+			ProductPrice:       20,
 		},
 	}
 

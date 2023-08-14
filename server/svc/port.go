@@ -8,7 +8,21 @@ type UserRepo interface {
 }
 
 type ProductRepo interface {
+    GetProducts() []*Product
+}
 
+type Service interface {
+    GetDashboardImages() []*Dashboard
+
+    CreateUser(std *User)
+    GetUserByID(userID string) *User
+    GetUserByEmail(email string) *User
+
+    GetProducts() []*Product // Add this line to include GetProducts in the interface
+
+    LoginAdmin(std *Admin) *Admin
+    CreateAdmin(std *Admin)
+    GetAdminByUsername(username string) *Admin
 }
 
 type AdminRepo interface {
@@ -25,17 +39,17 @@ type DashboardRepo interface {
 
 
 
-type Service interface {
-    GetDashboardImages() []*Dashboard
+// type Service interface {
+//     GetDashboardImages() []*Dashboard
 
-    CreateUser(std *User) // Add this line to include CreateUser in the interface
-    GetUserByID(userID string) *User
-    GetUserByEmail(email string) *User
+//     CreateUser(std *User) // Add this line to include CreateUser in the interface
+//     GetUserByID(userID string) *User
+//     GetUserByEmail(email string) *User
 
-    LoginAdmin(std *Admin) *Admin
-    CreateAdmin(std *Admin)
-    GetAdminByUsername(username string) *Admin
-}
+//     LoginAdmin(std *Admin) *Admin
+//     CreateAdmin(std *Admin)
+//     GetAdminByUsername(username string) *Admin
+// }
 
 
 
