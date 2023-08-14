@@ -3,6 +3,7 @@ package svc
 
 type UserRepo interface {
 	CreateUser(std *User)
+	GetUserByEmail(email string) *User
 }
 
 type AdminRepo interface {
@@ -20,6 +21,7 @@ type Service interface {
 	GetDashboardImages() []*Dashboard
 
 	CreateUser(std *User)
+	GetUserByEmail(email string) *User
 
 	LoginAdmin(std *Admin) *Admin
 	CreateAdmin(std *Admin)

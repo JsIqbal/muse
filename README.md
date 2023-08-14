@@ -85,3 +85,22 @@ To run the application, execute `go run main.go`.
 -   Make sure to handle error cases and validations properly in your code.
 -   Use proper package and function naming conventions for clarity and consistency.
 -   Feel free to add more details as the architecture evolves.
+
+# NGROK Docs:
+
+1. ngrok web login
+2. download ngrok and run it
+3. get the authToken from ngrok web account & run :
+
+ngrok config add-authtoken YOUR_AUTH_TOKEN
+
+4. execute : ngrok http YOUR_LOCAL_PORT
+
+---
+
+## DB Architecture
+
+-   There will be 3 tables
+-   A user table: user_id, email
+-   A product table: product_id, product_name, product_description, product_price
+-   A user product table naming user_prod: user_id, product_id
