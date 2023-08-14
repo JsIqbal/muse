@@ -40,13 +40,15 @@ type service struct {
     dashboardRepo DashboardRepo
     userRepo      UserRepo
     adminRepo     AdminRepo
+    productRepo     ProductRepo
 }
 
-func NewService(dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminRepo) Service {
+func NewService(dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminRepo, productRepo     ProductRepo) Service {
     return &service{
         dashboardRepo: dashboardRepo,
         userRepo:      userRepo,
         adminRepo:     adminRepo,
+		productRepo:     productRepo,
     }
 }
 
