@@ -129,3 +129,74 @@ ngrok config add-authtoken YOUR_AUTH_TOKEN
 -   A user table: user_id, email
 -   A product table: product_id, product_name, product_description, product_price
 -   A user product table naming user_prod: user_id, product_id
+
+## Swagger Documentation:
+
+-   go to the bin folder of GO path and :
+    ```bash
+    go install github.com/swaggo/swag@latest
+    ```
+-   execute swag init
+-   donload swagger from : https://github.com/swagger-api/swagger-ui
+-   take the index.html file outside the dist folder and keep inside docs directory
+-   This is the setup file for the index.html file:
+
+    ````html
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <title>Swagger UI</title>
+            <link
+                rel="stylesheet"
+                type="text/css"
+                href="./dist/swagger-ui.css"
+            />
+            <link
+                rel="icon"
+                type="image/png"
+                href="./dist/favicon-32x32.png"
+                sizes="32x32"
+            />
+            <link
+                rel="icon"
+                type="image/png"
+                href="./dist/favicon-16x16.png"
+                sizes="16x16"
+            />
+        </head>
+
+        <body>
+            <div id="swagger-ui"></div>
+            <script src="./dist/swagger-ui-bundle.js" charset="UTF-8"></script>
+            <script
+                src="./dist/swagger-ui-standalone-preset.js"
+                charset="UTF-8"
+            ></script>
+            <script>
+                const ui = SwaggerUIBundle({
+                    url: "./swagger.json", // Path to swagger.json or swagger.yaml
+                    dom_id: "#swagger-ui",
+                    deepLinking: true,
+                    presets: [
+                        SwaggerUIBundle.presets.apis,
+                        SwaggerUIStandalonePreset,
+                    ],
+                    layout: "StandaloneLayout",
+                });
+            </script>
+        </body>
+    </html>
+    ```
+    ````
+
+-   Go to the server.go file and initialize the router for the documentation like this:
+
+    ```code
+    router.Static("/docs", "./docs")
+    ```
+
+-   write the documentations for the controllers and after each documentation execute comand:
+    ```bash
+    swag init
+    ```
