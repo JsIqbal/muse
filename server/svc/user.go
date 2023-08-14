@@ -1,8 +1,20 @@
+// package svc
+
+// import "gorm.io/gorm"
+
+// type User struct {
+// 	gorm.Model
+// 	Email  string `json:"username"`
+// }
+
 package svc
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type User struct {
 	gorm.Model
-	Email  string `json:"username"`
+	ID    string `json:"user_id"`
+	Email string `json:"email"`
 }

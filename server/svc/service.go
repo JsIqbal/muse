@@ -73,3 +73,7 @@ func (s *service) GetAdminByUsername(username string) *Admin {
 func (s *service) GetUserByEmail(email string) *User {
     return s.userRepo.GetUserByEmail(email)
 }
+
+func (s *service) GetUserByID(userID string) *User {
+    return s.userRepo.GetUserByID(userID)
+}
