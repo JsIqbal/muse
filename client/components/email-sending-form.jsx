@@ -32,7 +32,7 @@ const onSubmit = async (data) => {
     // Display a loading toast
     toast.loading("Sending email...");
     // Define the API URL
-    const API_URL = `${process.env.API_URL}/api/email`;
+    const API_URL = `${process.env.API_URL}/api/users/mail`;
     // Define the options for the fetch request
     const options = {
       method: "POST",
