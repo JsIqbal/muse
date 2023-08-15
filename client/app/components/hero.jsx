@@ -45,18 +45,20 @@ const Hero = () => {
                     <CardHeader>
                         <CardTitle>Total downloads:</CardTitle>
                     </CardHeader>
-                    <CardContent className="flex gap-x-4 items-center">
-                        <h1 className="text-2xl font-semibold">
+
+                    <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 items-center">
+                        <h1 className="text-2xl font-semibold col-span-2">
                             {totalDownloads()}
+                            <span className="text-muted-foreground text-xl text-blue-400 col-span-1 ml-3">
+                                And counting
+                            </span>
                         </h1>
-                        <p className="text-muted-foreground text-xl text-blue-400">
-                            And counting
-                        </p>
-                        <Link href="/products">
+
+                        <Link href="/products" className="col-span-1">
                             {" "}
                             <Button
                                 varient="outline"
-                                className="  rounded-full font-semibold bg-gradient-to-r from-blue-500 to-indigo-700 shadow-xl border-2 border-white"
+                                className=" h-max rounded-full font-semibold bg-gradient-to-r from-blue-500 to-indigo-700 shadow-xl border-2 border-white"
                             >
                                 Download Now
                             </Button>
