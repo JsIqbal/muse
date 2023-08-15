@@ -27,7 +27,10 @@ const useCart = create(
             },
             removeAll: () => set({ items: [] }),
             totalPrice: () => {
-                return get().items.reduce((acc, cur) => acc + cur.price.dollar, 0);
+                return get().items.reduce(
+                    (acc, cur) => acc + cur.price.dollar,
+                    0
+                );
             },
         }),
         {

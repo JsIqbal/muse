@@ -11,15 +11,15 @@ import { useRouter } from "next/navigation";
 
 const CartPage = () => {
     const cart = useCart();
-    const auth = useAuth()
-    const router = useRouter()
+    const auth = useAuth();
+    const router = useRouter();
 
     function checkout() {
         if (cart.items.length === 0) return null;
         if (auth.isSignedIn) {
             // Handle checkout
         } else {
-            router.push(`/sign-up`)
+            router.push(`/sign-up`);
         }
     }
 
