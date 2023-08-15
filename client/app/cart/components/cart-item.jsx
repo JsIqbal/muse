@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -6,10 +6,13 @@ import useCart from "@/hooks/use-cart";
 import Image from "next/image";
 
 const CartItem = ({ item }) => {
-    const cart = useCart()
+    const cart = useCart();
 
     return (
-        <div key={item.id} className="flex flex-col items-center w-full gap-y-4">
+        <div
+            key={item.id}
+            className="flex flex-col items-center w-full gap-y-4"
+        >
             <div className="flex w-full justify-between  items-center py-4">
                 <div className="flex items-center gap-x-4">
                     <div className="relative h-full aspect-square">
@@ -26,7 +29,6 @@ const CartItem = ({ item }) => {
                         className="text-blue-700  hover:text-blue-900"
                         onClick={() => {
                             cart.removeItem(item.id);
-
                         }}
                     >
                         Remove

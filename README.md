@@ -136,7 +136,7 @@ ngrok config add-authtoken YOUR_AUTH_TOKEN
     ```bash
     go install github.com/swaggo/swag@latest
     ```
--   execute swag init
+-   execute swag init inside the server or your backend project
 -   donload swagger from : https://github.com/swagger-api/swagger-ui
 -   take the index.html file outside the dist folder and keep inside docs directory
 -   This is the setup file for the index.html file:
