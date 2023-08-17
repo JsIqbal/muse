@@ -6,6 +6,7 @@ const useCart = create(
     persist(
         (set, get) => ({
             items: [],
+            blink: false,
             addItem: (data) => {
                 const currentItems = get().items;
                 const existingItem = currentItems.find(
@@ -18,11 +19,13 @@ const useCart = create(
 
                 set({ items: [...get().items, data] });
                 toast.success("Item added to cart.");
+                get().toggleBlink();
             },
             removeItem: (id) => {
                 set({
                     items: [...get().items.filter((item) => item.id !== id)],
                 });
+
                 toast.success("Item removed from cart.");
             },
             removeAll: () => set({ items: [] }),
@@ -31,6 +34,15 @@ const useCart = create(
                     (acc, cur) => acc + cur.price.dollar,
                     0
                 );
+            },
+            setCartBlinking: (bool) => {
+                set({blink: bool})
+            },
+            toggleBlink: () => {
+                set({ blink: true });
+                setTimeout(() => {
+                    set({ blink: false });
+                }, 30000);
             },
         }),
         {
