@@ -36,6 +36,8 @@ const useCart = create(
         {
             name: "cart-storage",
             storage: createJSONStorage(() => localStorage),
+            // Skip hydration on the server-side
+            skipHydration: typeof window === "undefined",
         }
     )
 );

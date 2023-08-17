@@ -14,7 +14,7 @@ const Product1 = () => {
         id: "prod_OQqVfPPkSOgzHj",
         name: "Muse",
         price: { id: "price_1NdyopHyjaNCI3rEeEKN4r1L", dollar: 20 },
-        image: "https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfNVR5THV6UWVQMG9zdUlkS3g5MW9JQ2FZ00NAoHmUpY",
+        images: ["https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfNVR5THV6UWVQMG9zdUlkS3g5MW9JQ2FZ00NAoHmUpY"],
     };
     // Will be added to cart
     function onAddToCart() {

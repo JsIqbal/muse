@@ -1,21 +1,24 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ArrowDown, ArrowRight } from "@/node_modules/lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const About = () => {
+    const [buttonCliked, setButtonCLicked] = useState(false)
     return (
         <div className="curvey-top-bottom  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] py-20 pb-20 ">
             <div className="hidden lg:flex flex-col  gap-y-2 justify-center items-center">
                 <Button
                     id="move"
                     onClick={() => {
-                        const section = document.querySelector("#move");
-                        section.scrollIntoView({ behavior: "smooth" });
+                        document.querySelector("#move").scrollIntoView({ behavior: "smooth" });
+                        setButtonCLicked(true)
                     }}
-                    className=" bg-blue-500 font-semibold shadow-xl text-center text-lg h-10"
+                    className={cn(" bg-blue-500 font-semibold shadow-xl text-center text-lg h-10", !buttonCliked && "animate-pulse")}
                 >
                     About us
                 </Button>
