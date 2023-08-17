@@ -42,16 +42,16 @@ const Navbar = () => {
                     </h1>
                 </Link>
 
-                <div className="flex gap-x-4">
+                <div className="flex gap-x-4 ">
                     <Link href="/products">
-                        <Button variant="outline" className="shadow-lg w-max">
+                        <Button variant="outline" className="w-max font-semibold text-slate-900">
                             Our Products
                         </Button>
                     </Link>
 
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button className=" shadow-xl" variant="outline">
+                            <Button className="font-semibold text-slate-900" variant="outline">
                                 Contact us
                             </Button>
                         </DialogTrigger>

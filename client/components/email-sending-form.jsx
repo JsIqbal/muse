@@ -28,7 +28,7 @@ const EmailForm = () => {
     // Define the onSubmit function
 const onSubmit = async (data) => {
     // Save or console.log the data
-    console.log(data);
+
     // Display a loading toast
     toast.loading("Sending email...");
     // Define the API URL

@@ -9,18 +9,14 @@ const CartItem = ({ item }) => {
     const cart = useCart();
 
     return (
-        <div
-            key={item.id}
-            className="flex flex-col items-center w-full gap-y-4"
-        >
+        <div className="flex flex-col items-center w-full gap-y-4">
             <div className="flex w-full justify-between  items-center py-4">
                 <div className="flex items-center gap-x-4">
-                    <div className="relative h-full aspect-square">
-                        <Image src={item.image} fill alt={item.name} />
+                    <div className="relative h-16 w-16 aspect-square">
+                        <Image src={item.images[0]} fill alt={item.name} />
                     </div>
-                    <div>
-                        <p className="text-xl">{item.name}</p>
-                    </div>
+
+                    <p className="text-xl font-semibold">{item.name}</p>
                 </div>
                 <div className="flex flex-col justify-between itmes-start font-semibold h-full gap-y-6">
                     <p className="text-end">${item.price.dollar}</p>

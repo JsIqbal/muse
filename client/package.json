@@ -36,5 +36,8 @@
         "tailwindcss-animate": "^1.0.6",
         "zod": "^3.21.4",
         "zustand": "^4.4.1"
+    },
+    "devDependencies": {
+        "tailwindcss-animatecss": "^3.0.4"
     }
 }

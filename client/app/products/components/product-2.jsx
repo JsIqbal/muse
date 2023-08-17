@@ -14,12 +14,12 @@ const Product2 = () => {
         id: "prod_OQqfX0s5HDDSZI",
         name: "JETPack",
         price: { id: "price_1NdyyYHyjaNCI3rE85pm3uK6", dollar: 20 },
-        image: "https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfdjlFWkZaWmVBRU93b2VUTTN2dVNxRk0x00fWNkumMi",
+        images: ["https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfdjlFWkZaWmVBRU93b2VUTTN2dVNxRk0x00fWNkumMi"],
     };
     // Will be added to cart
     function onAddToCart() {
         cart.addItem(data);
-        console.log(cart.items);
+  
     }
 
     return (
@@ -153,7 +153,7 @@ const Product2 = () => {
                                             }
                                         }}
                                     >
-                                        Learn More{" "}
+                                        Details
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -184,7 +184,7 @@ const Product2 = () => {
                 id="jetPackMoreInfo"
                 className={cn(
                     "transition-all duration-700 container delay-75",
-                    showMore ? "h-[44rem]" : "h-0 invisible none"
+                    showMore ? " opacity-100" : " opacity-0"
                 )}
             >
                 <JETPackTabs />
