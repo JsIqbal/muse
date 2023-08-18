@@ -1,7 +1,6 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import useCart from "@/hooks/use-cart";
 import Link from "next/link";
 
 import CartItem from "./components/cart-item";
@@ -9,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import useCart from "@/hooks/use-cart";
 
 const CartPage = () => {
     const user = useUser();
@@ -61,7 +61,6 @@ const CartPage = () => {
         } else {
             router.push(`/sign-up`);
         }
-    
     }
 
     return (

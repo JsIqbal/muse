@@ -11,7 +11,7 @@ const About = () => {
     const [buttonCliked, setButtonCLicked] = useState(false)
     return (
         <div className="curvey-top-bottom  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] py-20 pb-20 ">
-            <div className={cn("hidden lg:flex flex-col  gap-y-2 justify-center items-center", !buttonCliked && "animate-bounce")} style={{ animationDuration: "1s" }}>
+            <div className={cn("hidden lg:flex flex-col  gap-y-2 justify-center items-center", !buttonCliked && " animate-bounce")} style={{ animationDuration: "1s" }}>
                 <Button
                     id="move"
                     onClick={() => {
