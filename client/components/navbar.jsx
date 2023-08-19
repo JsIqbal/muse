@@ -30,7 +30,7 @@ const Navbar = () => {
                     className="flex items-center justify-center gap-4"
                 >
                     <div className="relative w-16 h-8 ">
-                        <Image fill alt="Logo" src="/icons/muse-icon.png" />
+                        <Image fill alt="Logo" src="/icons/Muse-icon.png" />
                     </div>
                     <h1
                         className={cn(

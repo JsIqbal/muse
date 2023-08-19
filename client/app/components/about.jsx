@@ -59,7 +59,7 @@ const About = () => {
                             width={64}
                             height={64}
                             alt="Logo"
-                            src="/icons/muse-icon.png"
+                            src="/icons/Muse-icon.png"
                         />
                     </div>
                     <h1 className="text-2xl font-semibold text-center">
@@ -74,7 +74,7 @@ const About = () => {
                             width={64}
                             height={64}
                             alt="Logo"
-                            src="/icons/jetpack-icon.png"
+                            src="/icons/JETPack-icon.png"
                         />
                     </div>
                     <h1 className="text-2xl font-semibold text-center">
