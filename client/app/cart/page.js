@@ -71,7 +71,7 @@ const CartPage = () => {
                 </h1>
                 <Separator className="my-6" />
                 <div className="flex flex-col w-full gap-y-4 overflow-auto">
-                    {cart.items.length !== 0 ? (
+                    {cart.items.length !== 0  ? (
                         cart.items.map((item) => {
                             return <CartItem item={item} key={item.id} />;
                         })

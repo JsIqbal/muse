@@ -14,11 +14,11 @@ const CartItem = ({ item }) => {
             <div className="flex w-full justify-between  items-center py-4">
                 <div className="flex items-center gap-x-4">
                     <div className="relative h-16 w-16 aspect-square">
-                        {item?.images[0] ? (
-                            <Image src={item?.images[0]} fill alt={item.name} />
-                        ) : (
-                            <Skeleton className="w-full h-full rounded-full" />
-                        )}
+                        <Image
+                            src={`/icons/${item.name}-icon.png`}
+                            fill
+                            alt={item.name}
+                        />
                     </div>
 
                     <p className="text-xl font-semibold">{item.name}</p>
