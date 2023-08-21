@@ -2,20 +2,20 @@
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 import useCart from "@/hooks/use-cart";
 import Image from "next/image";
+import Link from "next/link";
 
 const CartItem = ({ item }) => {
     const cart = useCart();
 
     return (
         <div className="flex flex-col items-center w-full gap-y-4">
-            <div className="flex w-full justify-between  items-center py-4">
+            <Link href="/products" className="flex w-full justify-between  items-center p-4 hover:bg-slate-100 rounded-md hover:shadow-lg border">
                 <div className="flex items-center gap-x-4">
                     <div className="relative h-16 w-16 aspect-square">
                         <Image
-                            src={`/icons/${item.name}-icon.png`}
+                            src={`/icons/${item.name.toLowerCase()}-icon.png`}
                             fill
                             alt={item.name}
                         />
@@ -35,7 +35,7 @@ const CartItem = ({ item }) => {
                         Remove
                     </Button>
                 </div>
-            </div>
+            </Link>
             <Separator />
         </div>
     );
