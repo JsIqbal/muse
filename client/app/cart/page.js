@@ -93,7 +93,7 @@ const CartPage = () => {
                 <div className="flex justify-between w-full items-start my-10 text-xl font-semibold">
                     <div>
                         <h1>Subtotal: </h1>
-                        <p className="text-muted-foreground font-thin">
+                        <p className="text-muted-foreground font-normal">
                             *Shipping and taxes will be calculated at checkout.
                         </p>
                     </div>

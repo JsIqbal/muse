@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
                 <body
                     className={cn(
                         inter.className,
-                        "bg-white h-screen w-screen flex flex-col items-start overflow-x-hidden"
+                        "bg-white h-screen min-w-screen  max-w-screen  flex flex-col items-start overflow-x-hidden"
                     )}
                 >
                     <ToastProvider />
