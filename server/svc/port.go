@@ -4,6 +4,8 @@ type UserRepo interface {
 	CreateUser(std *User)
 	GetUserByID(userID string) *User
 	GetUserByEmail(email string) *User
+
+	Get() []*User
 }
 
 type ProductRepo interface {
@@ -17,22 +19,26 @@ type PurchaseRepo interface {
 
 type Service interface {
 	GetDashboardImages() []*Dashboard
+
 	CreateUser(std *User)
 	GetUserByID(userID string) *User
 	GetUserByEmail(email string) *User
+
 	GetProducts() []*Product
 	CreatePurchase(userID string, productID string) error
+
 	LoginAdmin(std *Admin) *Admin
 	CreateAdmin(std *Admin)
-	GetAdminByUsername(username string) *Admin
+	FindAdminByUsername(username string) *Admin
+	GetAllUsers() []*User
 }
 
 type AdminRepo interface {
-	LoginAdmin(std *Admin) *Admin
-	CreateAdmin(std *Admin)
-	GetAdminByUsername(username string) *Admin
+	Login(std *Admin) *Admin
+	Create(std *Admin)
+	Find(username string) *Admin
 }
 
 type DashboardRepo interface {
-	GetDashboardImages() []*Dashboard
+	Get() []*Dashboard
 }

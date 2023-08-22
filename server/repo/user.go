@@ -3,6 +3,7 @@ package repo
 import (
 	"fmt"
 	"go-rest/svc"
+
 	"gorm.io/gorm"
 )
 
@@ -46,4 +47,19 @@ func (r *userRepo) GetUserByID(userID string) *svc.User {
 	}
 
 	return &user
+}
+
+func (r *userRepo) Get() []*svc.User {
+	// Declare a slice of pointers to svc.User
+	var users []*svc.User
+
+	// Find all records in the user table and append them to the slice
+	result := r.db.Find(&users)
+	if result.Error != nil {
+		fmt.Println("Error while fetching all users:", result.Error)
+		return nil
+	}
+
+	// Return the slice of users
+	return users
 }

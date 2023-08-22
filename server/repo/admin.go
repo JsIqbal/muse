@@ -21,7 +21,7 @@ func NewAdminRepo(db *gorm.DB) AdminRepo {
 	}
 }
 
-func (r *adminRepo) LoginAdmin(admin *svc.Admin) *svc.Admin {
+func (r *adminRepo) Login(admin *svc.Admin) *svc.Admin {
 	var user svc.Admin
 	result := r.db.Where("username = ?", admin.Username).First(&user)
 
@@ -45,8 +45,7 @@ func (r *adminRepo) LoginAdmin(admin *svc.Admin) *svc.Admin {
 	}
 }
 
-
-func (r *adminRepo) CreateAdmin(admin *svc.Admin) {
+func (r *adminRepo) Create(admin *svc.Admin) {
 	result := r.db.Create(admin)
 
 	if result.Error != nil {
@@ -54,15 +53,14 @@ func (r *adminRepo) CreateAdmin(admin *svc.Admin) {
 	}
 }
 
+func (r *adminRepo) Find(username string) *svc.Admin {
+	var user svc.Admin
+	result := r.db.Where("username = ?", username).First(&user)
 
-func (r *adminRepo) GetAdminByUsername(username string) *svc.Admin {
-    var user svc.Admin
-    result := r.db.Where("username = ?", username).First(&user)
+	if result.Error != nil {
+		fmt.Println("Error while fetching admin:", result.Error)
+		return nil
+	}
 
-    if result.Error != nil {
-        fmt.Println("Error while fetching admin:", result.Error)
-        return nil
-    }
-
-    return &user
+	return &user
 }
