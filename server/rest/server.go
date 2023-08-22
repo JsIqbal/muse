@@ -32,6 +32,7 @@ func NewServer(svc svc.Service, appConfig *config.Application) (*Server, error) 
 
 func (s *Server) setupRouter() {
 	router := gin.Default()
+	router.Use(corsMiddleware)
 	router.Static("/docs", "./docs") // swagger docs initialization
 
 	s.router = router

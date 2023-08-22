@@ -3,25 +3,17 @@ package user
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"go-rest/svc"
 
-	"fmt"
+	"github.com/gin-gonic/gin"
+
 	"encoding/json"
+	"fmt"
 )
 
 func createUser(service svc.Service) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		var eventData struct {
-			Data struct {
-				ID            string `json:"id"`
-				EmailAddresses []struct {
-					EmailAddress string `json:"email_address"`
-				} `json:"email_addresses"`
-			} `json:"data"`
-			// You can add more fields here based on the request body
-			// For example: birthday, created_at, etc.
-		}
+		var eventData EventData
 
 		body, err := ctx.GetRawData()
 		if err != nil {
@@ -73,13 +65,6 @@ func createUser(service svc.Service) gin.HandlerFunc {
 	}
 }
 
-
-type Product struct {
-	ProductID     string  `json:"product_id"`
-	ProductName   string  `json:"product_name"`
-	ProductDesc   string  `json:"product_desc"`
-	ProductPrice  float64 `json:"product_price"`
-}
 // @Summary Get products
 // @Description Get a list of all products
 // @Tags products
@@ -96,21 +81,6 @@ func getProducts(service svc.Service) gin.HandlerFunc {
 	}
 }
 
-
-type PurchaseRequest struct {
-	UserID     string   `json:"user_id"`
-	ProductIDs []string `json:"product_ids"`
-}
-
-// Define the SuccessResponse struct
-type SuccessResponse struct {
-	Message string `json:"message"`
-}
-
-// Define the ErrorResponse struct
-type ErrorResponse struct {
-	Message string `json:"message"`
-}
 // @Summary Create a purchase
 // @Description Create a purchase record for a user
 // @Tags purchases

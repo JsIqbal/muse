@@ -8,9 +8,8 @@ import (
 )
 
 type DashboardRepo interface {
-    GetDashboardImages() []*svc.Dashboard
+	Get() []*svc.Dashboard
 }
-
 
 type dashboardRepo struct {
 	db *gorm.DB
@@ -22,7 +21,7 @@ func NewDashboardRepo(db *gorm.DB) DashboardRepo {
 	}
 }
 
-func (r *dashboardRepo) GetDashboardImages() []*svc.Dashboard {
+func (r *dashboardRepo) Get() []*svc.Dashboard {
 	var dashboards []*svc.Dashboard
 	result := r.db.Find(&dashboards)
 
