@@ -209,6 +209,29 @@
                 }
             }
         },
+        "/api/users/logout": {
+            "post": {
+                "description": "Log out the user by removing the token cookie from the browser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "admin"
+                ],
+                "summary": "Log out the admin",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/rest.SuccessResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/users/products": {
             "get": {
                 "description": "Get a list of all products",
