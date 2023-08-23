@@ -83,12 +83,14 @@ func (s *Server) createUser(ctx *gin.Context) {
 // @Success 200 {array} Product
 // @Router /api/users/products [get]
 func (s *Server) getProducts(ctx *gin.Context) {
-		// Get all products from the service
-		products := s.svc.GetProducts()
+    // Get all products from the service
+    products := s.svc.GetProducts()
 
-		// Return the products as JSON response
-		ctx.JSON(http.StatusOK, products)
+    // Return the products as JSON response
+    ctx.JSON(http.StatusOK, products)
 }
+
+
 
 // @Summary Create a purchase
 // @Description Create a purchase record for a user
