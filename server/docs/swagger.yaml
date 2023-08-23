@@ -203,6 +203,21 @@ paths:
       summary: Create a new user
       tags:
       - user
+  /api/users/logout:
+    post:
+      consumes:
+      - application/json
+      description: Log out the user by removing the token cookie from the browser
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rest.SuccessResponse'
+      summary: Log out the admin
+      tags:
+      - admin
   /api/users/products:
     get:
       description: Get a list of all products

@@ -1,5 +1,17 @@
 Instructions from root directory:
 
+install all go dependencies:
+
+```bash
+go get ./...
+```
+
+update all go dependencies:
+
+```bash
+go get -u ./...
+```
+
 ```bash
     npm run client
     npm run server

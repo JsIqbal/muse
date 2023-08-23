@@ -41,20 +41,26 @@ func (s *Server) setupRouter() {
 
 	s.router.Static("/docs", "./docs")
 
+	
 	// healtch check
 	s.router.GET("/api/test", s.test)
-
+	
 	// public routes
-
-	s.router.POST("/api/admins/login", s.loginAdmin)
-	s.router.POST("/api/admins/create", s.createAdmin)
-	s.router.GET("/api/admins/users", s.users)
-
-	// dashboardGroup.GET("/images", getDashboardImages(service))
-
+	
 	s.router.POST("/api/users/create", s.createUser)
 	s.router.GET("/api/users/products", s.getProducts)
 	s.router.POST("/api/users/purchase", s.purchase)
+	
+	s.router.POST("/api/admins/login", s.loginAdmin)
+	s.router.POST("/api/admins/create", s.createAdmin)
+
+	// protected routes
+	authRoutes := s.router.Group("/").Use(s.authMiddleware())
+	authRoutes.GET("/api/admins/users", s.users)
+	authRoutes.POST("/api/users/logout", s.logout)
+
+	// dashboardGroup.GET("/images", getDashboardImages(service))
+
 }
 
 func (s *Server) Start() error {
