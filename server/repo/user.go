@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"errors"
 	"fmt"
 	"go-rest/svc"
 
@@ -25,29 +26,34 @@ func (r *userRepo) CreateUser(user *svc.User) {
 	}
 }
 
-func (r *userRepo) GetUserByEmail(email string) *svc.User {
+func (r *userRepo) GetUserByEmail(email string) (*svc.User, error) {
 	var user svc.User
 	result := r.db.Where("email = ?", email).First(&user)
 
 	if result.Error != nil {
-		fmt.Println("Error while fetching user:", result.Error)
-		return nil
+		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, result.Error
 	}
 
-	return &user
+	return &user, nil
 }
 
-func (r *userRepo) GetUserByID(userID string) *svc.User {
+func (r *userRepo) GetUserByID(userID string) (*svc.User, error) {
 	var user svc.User
 	result := r.db.Where("id = ?", userID).First(&user)
 
 	if result.Error != nil {
-		fmt.Println("Error while fetching user by ID:", result.Error)
-		return nil
+		if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+			return nil, nil
+		}
+		return nil, result.Error
 	}
 
-	return &user
+	return &user, nil
 }
+
 
 func (r *userRepo) Get() []*svc.User {
 	// Declare a slice of pointers to svc.User

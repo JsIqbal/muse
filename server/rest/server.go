@@ -3,26 +3,26 @@ package rest
 import (
 	"fmt"
 	"go-rest/config"
+	"go-rest/logger"
 	"go-rest/svc"
 
 	"github.com/gin-gonic/gin"
-
-	"go-rest/rest/admin"
-	"go-rest/rest/dashboard"
-	"go-rest/rest/test"
-	"go-rest/rest/user"
 )
 
 type Server struct {
 	router    *gin.Engine
 	svc       svc.Service
 	appConfig *config.Application
+	jwt       *config.Token
+	salt      *config.Salt
 }
 
-func NewServer(svc svc.Service, appConfig *config.Application) (*Server, error) {
+func NewServer(svc svc.Service, appConfig *config.Application, salt *config.Salt, jwt *config.Token) (*Server, error) {
 	server := &Server{
 		svc:       svc,
 		appConfig: appConfig,
+		salt:      salt,
+		jwt:       jwt,
 	}
 
 	server.setupRouter()
@@ -31,16 +31,30 @@ func NewServer(svc svc.Service, appConfig *config.Application) (*Server, error) 
 }
 
 func (s *Server) setupRouter() {
-	router := gin.Default()
-	router.Use(corsMiddleware)
-	router.Static("/docs", "./docs") // swagger docs initialization
+	s.router = gin.Default() // Initialize the router here
 
-	s.router = router
+	// CORS middleware
+	s.router.Use(corsMiddleware)
 
-	admin.SetupAdminRoutes(router.Group("/api"), s.svc)
-	dashboard.SetupDashboardRoutes(router.Group("/api"), s.svc)
-	user.SetupUserRoutes(router.Group("/api"), s.svc)
-	test.SetupTestRoutes(router.Group("/api"), s.svc)
+	// log middleware
+	s.router.Use(logger.ModifyContext)
+
+	s.router.Static("/docs", "./docs")
+
+	// healtch check
+	s.router.GET("/api/test", s.test)
+
+	// public routes
+
+	s.router.POST("/api/admins/login", s.loginAdmin)
+	s.router.POST("/api/admins/create", s.createAdmin)
+	s.router.GET("/api/admins/users", s.users)
+
+	// dashboardGroup.GET("/images", getDashboardImages(service))
+
+	s.router.POST("/api/users/create", s.createUser)
+	s.router.GET("/api/users/products", s.getProducts)
+	s.router.POST("/api/users/purchase", s.purchase)
 }
 
 func (s *Server) Start() error {

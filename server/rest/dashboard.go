@@ -1,10 +1,11 @@
-package dashboard
+package rest
 
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"go-rest/svc"
+
+	"github.com/gin-gonic/gin"
 )
 
 func getDashboardImages(service svc.Service) gin.HandlerFunc {

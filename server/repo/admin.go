@@ -7,15 +7,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type AdminRepo interface {
-	svc.AdminRepo
-}
-
 type adminRepo struct {
 	db *gorm.DB
 }
 
-func NewAdminRepo(db *gorm.DB) AdminRepo {
+func NewAdminRepo(db *gorm.DB) svc.AdminRepo {
 	return &adminRepo{
 		db: db,
 	}
@@ -45,22 +41,27 @@ func (r *adminRepo) Login(admin *svc.Admin) *svc.Admin {
 	}
 }
 
-func (r *adminRepo) Create(admin *svc.Admin) {
+func (r *adminRepo) Create(admin *svc.Admin) error {
 	result := r.db.Create(admin)
 
 	if result.Error != nil {
 		fmt.Println("Error while creating admin:", result.Error)
+		return result.Error
 	}
+
+	return nil
 }
 
-func (r *adminRepo) Find(username string) *svc.Admin {
-	var user svc.Admin
-	result := r.db.Where("username = ?", username).First(&user)
+
+func (r *adminRepo) Find(username string) (*svc.Admin, error) {
+	var admin svc.Admin
+	result := r.db.Where("username = ?", username).First(&admin)
 
 	if result.Error != nil {
 		fmt.Println("Error while fetching admin:", result.Error)
-		return nil
+		return nil, result.Error
 	}
 
-	return &user
+	return &admin, nil
 }
+
