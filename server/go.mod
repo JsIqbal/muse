@@ -3,11 +3,17 @@ module go-rest
 go 1.20
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.1
+	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/google/uuid v1.3.1
 	github.com/joho/godotenv v1.5.1
 	github.com/spf13/viper v1.16.0
+	github.com/swaggo/swag v1.16.1
+	golang.org/x/crypto v0.12.0
+	google.golang.org/grpc v1.57.0
 	gorm.io/driver/mysql v1.5.1
-	gorm.io/gorm v1.25.2
+	gorm.io/gorm v1.25.4
 )
 
 require (
@@ -19,7 +25,6 @@ require (
 	github.com/chenzhuoyu/iasm v0.9.0 // indirect
 	github.com/clerkinc/clerk-sdk-go v1.48.1 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -30,11 +35,9 @@ require (
 	github.com/go-openapi/swag v0.22.4 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.15.0 // indirect
-	github.com/go-redis/redis v6.15.9+incompatible // indirect
-	github.com/go-sql-driver/mysql v1.7.0 // indirect
+	github.com/go-playground/validator/v10 v10.15.1 // indirect
+	github.com/go-sql-driver/mysql v1.7.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
-	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
@@ -55,21 +58,18 @@ require (
 	github.com/spf13/cast v1.5.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/subosito/gotenv v1.4.2 // indirect
+	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/swaggo/files v1.0.1 // indirect
 	github.com/swaggo/gin-swagger v1.6.0 // indirect
-	github.com/swaggo/swag v1.16.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
 	github.com/urfave/cli/v2 v2.25.7 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
 	golang.org/x/arch v0.4.0 // indirect
-	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 	golang.org/x/tools v0.12.0 // indirect
-	google.golang.org/grpc v1.57.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

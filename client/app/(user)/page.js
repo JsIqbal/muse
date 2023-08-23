@@ -1,9 +1,7 @@
 "use client";
 
-import Hero from "@/app/components/hero";
+import Hero from "./components/hero";
 import About from "./components/about";
-import Product1 from "./products/components/product-1";
-import Product2 from "./products/components/product-2";
 import Testimonials from "./components/testimonials";
 
 export default function Home() {
