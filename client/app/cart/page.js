@@ -41,7 +41,7 @@ const CartPage = () => {
                 let data;
                 try {
                     // Await for the response and check if it is ok
-                    let res = await fetch("/api/stripe", options);
+                    let res = await fetch("/api/stripe/createSession", options);
                     if (res.ok) {
                         // Parse the response as json and return it
                         data = await res.json();
@@ -114,7 +114,7 @@ const CartPage = () => {
                     ) : sureCheckout ? (
                         "Confirm Purchase"
                     ) : (
-                        "Checkout Now"
+                        "Download Now"
                     )}
                 </Button>
             </div>
