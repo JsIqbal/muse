@@ -2,14 +2,10 @@ import Image from "next/image";
 
 import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from "../../components/ui/card";
+ 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const montsserrat = Montserrat({
     weight: "700",
