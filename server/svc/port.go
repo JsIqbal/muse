@@ -39,6 +39,7 @@ type Service interface {
 	CreateAdmin(std *Admin) error
 	FindAdminByUsername(username string) (*Admin, error)
 	GetAllUsers() []*User
+	
 }
 
 type AdminRepo interface {
