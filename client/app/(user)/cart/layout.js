@@ -12,7 +12,7 @@ const CartLayout = ({ children }) => {
     return (
         <>
             {isHydrated ? (
-                <div className="w-full h-full">{children}</div>
+                <div className="w-full h-max">{children}</div>
             ) : (
                 <div className="w-full h-full flex justify-center items-center">
                     <span
