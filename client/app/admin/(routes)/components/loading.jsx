@@ -1,4 +1,4 @@
-const DashboardLoading = () => {
+const LoadingSpinner = () => {
     return (
         <div className="w-full h-full flex justify-center items-center">
             <span
@@ -9,4 +9,4 @@ const DashboardLoading = () => {
     );
 };
 
-export default DashboardLoading;
+export default LoadingSpinner;

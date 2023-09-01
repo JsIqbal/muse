@@ -15,19 +15,19 @@ const routes = [
   {
     label: "Dashboard",
     icon: LayoutDashboard,
-    href: "/dashboard",
+    href: "/admin",
     color: "text-purple-500",
   },
   {
     label: "Users",
     icon: Users2Icon,
-    href: "/admin/dashboard/users",
+    href: "/admin/users",
     color: "text-blue-500",
   },
   {
     label: "Purchases",
     icon: BadgeDollarSign,
-    href: "/admin/dashboard/purchases",
+    href: "/admin/purchases",
     color: "text-green-500",
   },
 ];
@@ -35,9 +35,9 @@ const routes = [
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="space-y-4 py-2 flex flex-col h-full bg-[#111827] text-white">
+    <div className="space-y-4 py-2 flex flex-col h-full bg-[#111827] text-white transition-all duration-200">
       <div className="px-2 flex flex-col justify-start items-start flex-1">
-        <Link href="/dashboard" className="flex w-full items-center justify-center gap-4 mb-16 mt-6">
+        <Link href="/" className="flex w-full items-center justify-center gap-4 mb-16 mt-6">
           <div className="relative w-16 h-8 ">
             <Image fill alt="Logo" src="/icons/muse-icon.png" />
           </div>

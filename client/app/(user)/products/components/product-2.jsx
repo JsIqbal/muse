@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import JETPackTabs from "./JETPack components/jetPackTabs";
+import { Separator } from "@/components/ui/separator";
 
 const Product2 = () => {
     const [showMore, setShowMore] = useState(false);
@@ -23,9 +24,9 @@ const Product2 = () => {
     }
 
     return (
-        <div className="w-screen  bg-[#F2F6F9]">
+        <div className="w-screen py-8 2xl:px-0 px-8 bg-[#F2F6F9]">
             <div className="flex lg:flex-row flex-col justify-between items-center container">
-                <div className="lg:w-[50%] w-max md:p-[7%] p-[9%]">
+                <div className="lg:w-[50%] flex justify-start w-max md:py-[7%] py-[9%]">
                     <div className="relative rounded-md">
                         <Image
                             src="/images/dummy-pic-1.PNG"
@@ -179,7 +180,7 @@ const Product2 = () => {
                     </div>
                 </div>
             </div>
-
+            <Separator className="h-1.5"/>
             <div
                 id="jetPackMoreInfo"
                 className={cn(

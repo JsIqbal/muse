@@ -11,7 +11,7 @@ const CartItem = ({ item }) => {
 
     return (
         <div className="flex flex-col items-center w-full gap-y-4">
-            <Link href="/products" className="flex w-full justify-between  items-center p-4 hover:bg-slate-100 rounded-md hover:shadow-lg border">
+            <Link href="/products" className="flex w-full justify-between items-center p-4  transition-all duration-150 rounded-md hover:shadow-lg border">
                 <div className="flex items-center gap-x-4">
                     <div className="relative h-16 w-16 aspect-square">
                         <Image
