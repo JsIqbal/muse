@@ -8,31 +8,34 @@ import { toast } from "react-hot-toast";
 const AdminPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const router = useRouter()
+    const router = useRouter();
 
-    const handleLogin = async (event) => {
-        event.preventDefault();
+    async function handleLogin(e) {
+        console.log("Anything")
+        console.log(e)
+        e.preventDefault();
 
-        const response = await fetch(`http://localhost:3004/api/admins/login`, {
+        if (!username || !password) return
+
+        const response = await fetch(`${process.env.SERVER_URL}/api/admins/login`, {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({ password, username })
-          });
+            body: JSON.stringify({ password, username }),
+        });
 
-          if (response.status === 200) {
-            
-            const  {data} = await response.json();
-            console.log(data)
-            
+        if (response.status === 200) {
+            const { data } = await response.json();
+            console.log(data);
+
             localStorage.setItem("adminToken", data.token);
-            toast.success("Sccessfully logged in")
-            
-            router.push("/admin/dashboard");
-          } else {
-            toast.error("Could not not login.")
-          }
+            toast.success("Sccessfully logged in");
+
+            router.push("/admin");
+        } else {
+            toast.error("Could not not login.");
+        }
     };
 
     return (
@@ -40,7 +43,7 @@ const AdminPage = () => {
             <div className="bg-transparent border rounded-lg shadow-lg p-8 m-2 flex flex-col justify-center items-center">
                 <h1 className="text-3xl font-bold">Login to Admin Portal</h1>
                 <form
-                    onSubmit={handleLogin}
+                    onSubmit={(e) => {console.log("something"); handleLogin(e)}}
                     className="flex flex-col gap-4 mt-10 w-full"
                 >
                     <input
@@ -59,6 +62,7 @@ const AdminPage = () => {
                     />
                     <Button
                         type="submit"
+                        onClick={(e) => {console.log("something"); handleLogin(e)}}
                         className="bg-blue-500 text-white rounded p-2 m-2"
                     >
                         Login

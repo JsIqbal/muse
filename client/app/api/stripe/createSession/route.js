@@ -31,7 +31,7 @@ export const POST = async (req) => {
 
         session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
-            success_url: `${process.env.CLIENT_URL}/payment-success`,
+            success_url: `${process.env.CLIENT_URL}/my-products`,
             cancel_url: `${process.env.CLIENT_URL}/cart`,
             customer_email: userEmail,
             mode: "payment",

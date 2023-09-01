@@ -22,7 +22,7 @@ const Product1 = () => {
     }
 
     return (
-        <div className="w-screen  bg-white flex flex-col" id="museContent">
+        <div className="w-screen  bg-white flex flex-col py-8 2xl:px-0 px-8" id="museContent">
             <div className="flex lg:flex-row flex-col justify-between items-center container">
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
                     <div className="flex flex-col gap-y-4">
@@ -141,7 +141,7 @@ const Product1 = () => {
                     </div>
                 </div>
 
-                <div className="lg:w-[50%] w-max md:p-[7%] p-[9%]">
+                <div className="lg:w-[50%] flex justify-end w-max md:py-[7%] py-[9%]">
                     <div className="relative rounded-md">
                         <Image
                             src="/images/dummy-pic-1.PNG"
