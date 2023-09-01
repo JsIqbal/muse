@@ -9,7 +9,7 @@ const ProdcutsPage = () => {
             <Product1 />
             <Separator className="h-1.5"/>
             <Product2 />
-            
+            <Separator className="h-1.5"/>
         </div>
     );
 };

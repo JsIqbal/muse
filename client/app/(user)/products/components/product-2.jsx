@@ -15,12 +15,13 @@ const Product2 = () => {
         id: "prod_OQqfX0s5HDDSZI",
         name: "JETPack",
         price: { id: "price_1NdyyYHyjaNCI3rE85pm3uK6", dollar: 20 },
-        images: ["https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfdjlFWkZaWmVBRU93b2VUTTN2dVNxRk0x00fWNkumMi"],
+        images: [
+            "https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfdjlFWkZaWmVBRU93b2VUTTN2dVNxRk0x00fWNkumMi",
+        ],
     };
     // Will be added to cart
     function onAddToCart() {
         cart.addItem(data);
-  
     }
 
     return (
@@ -180,7 +181,7 @@ const Product2 = () => {
                     </div>
                 </div>
             </div>
-            <Separator className="h-1.5"/>
+
             <div
                 id="jetPackMoreInfo"
                 className={cn(

@@ -15,7 +15,7 @@ const CartItem = ({ item }) => {
                 <div className="flex items-center gap-x-4">
                     <div className="relative h-16 w-16 aspect-square">
                         <Image
-                            src={`/icons/${item.name.toLowerCase()}-icon.png`}
+                            src={item.images[0]}
                             fill
                             alt={item.name}
                         />
