@@ -14,7 +14,7 @@ import { ClerkLoaded, ClerkLoading, UserButton, useAuth } from "@clerk/nextjs";
 import { Skeleton } from "./ui/skeleton";
 import Cart from "./cart";
 
-const montsserrat = Montserrat({
+const montserrat = Montserrat({
     weight: "700",
     subsets: ["latin"],
 });
@@ -35,7 +35,7 @@ const Navbar = () => {
                     <h1
                         className={cn(
                             "text-3xl text-blue-600",
-                            montsserrat.className
+                            montserrat.className
                         )}
                     >
                         Musesoft
@@ -44,14 +44,20 @@ const Navbar = () => {
 
                 <div className="flex gap-x-4 ">
                     <Link href="/products">
-                        <Button variant="outline" className="w-max font-semibold text-slate-900">
+                        <Button
+                            variant="outline"
+                            className="w-max font-semibold text-slate-900"
+                        >
                             Our Products
                         </Button>
                     </Link>
 
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button className="font-semibold text-slate-900" variant="outline">
+                            <Button
+                                className="font-semibold text-slate-900"
+                                variant="outline"
+                            >
                                 Contact us
                             </Button>
                         </DialogTrigger>

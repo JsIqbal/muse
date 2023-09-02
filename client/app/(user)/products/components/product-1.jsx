@@ -26,7 +26,7 @@ const Product1 = () => {
             <div className="flex lg:flex-row flex-col justify-between items-center container">
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
                     <div className="flex flex-col gap-y-4">
-                        <h1 className="text-3xl font-extrabold text-gray-900">
+                        <h1 className="text-3xl font-bold text-gray-900">
                             Muse: Middleware Universal <br /> Scripting idE
                         </h1>
                         <p className="text-lg">
