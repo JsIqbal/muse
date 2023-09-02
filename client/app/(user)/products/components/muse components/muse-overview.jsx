@@ -2,7 +2,7 @@ const Overview = () => {
     return (
         <div className="flex flex-wrap pb-8 pt-4 bg-gray-100 bg-opacity-93">
             <div className="w-full md:w-2/3 pr-0 md:pr-8 mb-6 md:mb-0">
-                <h1 className="text-4xl font-bold text-left text-slate-900 mb-6">
+                <h1 className="text-4xl font-bold text-left text-gray-800 mb-6">
                     Simplify | Aggregate | Automate | Simplify
                 </h1>
                 <ul className="list-disc pl-8 mb-6 text-gray-700">
