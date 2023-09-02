@@ -46,7 +46,7 @@ const Navbar = () => {
                     <Link href="/products">
                         <Button
                             variant="outline"
-                            className="w-max font-semibold text-slate-900"
+                            className="w-max font-semibold text-gray-800"
                         >
                             Our Products
                         </Button>
@@ -55,7 +55,7 @@ const Navbar = () => {
                     <Dialog>
                         <DialogTrigger asChild>
                             <Button
-                                className="font-semibold text-slate-900"
+                                className="font-semibold text-gray-800"
                                 variant="outline"
                             >
                                 Contact us

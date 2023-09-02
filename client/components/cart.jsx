@@ -15,7 +15,12 @@ const Cart = () => {
             className="space-x-2 relative"
         >
             <ShoppingBagIcon />
-            <span className=" h-max w-max font-semibold text-slate-900" onClick={() => {cart.setCartBlinking(false) }}>
+            <span
+                className=" h-max w-max font-semibold text-gray-800"
+                onClick={() => {
+                    cart.setCartBlinking(false);
+                }}
+            >
                 Go to cart{" "}
                 {cart.blink && (
                     <div className="absolute top-0 right-0">
