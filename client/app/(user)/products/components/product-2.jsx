@@ -39,7 +39,7 @@ const Product2 = () => {
                 </div>
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
                     <div className="flex flex-col gap-y-4">
-                        <h1 className="text-3xl font-extrabold text-gray-900">
+                        <h1 className="text-3xl font-bold text-gray-900">
                             JETPack - Empowering Java Development and
                             Diagnostics:
                         </h1>

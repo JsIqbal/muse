@@ -14,7 +14,6 @@ import Image from "next/image";
 const Page = () => {
     // Define the states for loading, error and data
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [data, setData] = useState([]);
 
     // Define the useEffect hook to fetch the data from the API
@@ -23,7 +22,7 @@ const Page = () => {
         const fetchData = async () => {
             try {
                 // // Use fetch with await to get the response
-                // const response = await fetch("https://api.example.com/api/users/products");
+                // const response = await fetch(`${process.env.SERVER_URL}/api/users/products`);
                 // // Check if the response is ok
                 // if (response.ok) {
                 //   // Convert the response to JSON and set the data state
@@ -60,7 +59,7 @@ const Page = () => {
                     // },
                 ]);
             } catch (error) {
-                setError(error.message);
+                console.log(error)
             } finally {
                 setLoading(false);
             }
@@ -78,7 +77,7 @@ const Page = () => {
                 ></span>
             )}
 
-            {!loading && !error && (
+            {!loading && (
                 <div className="grid grid-cols-3 gap-4">
                     {data.length === 0 ? (
                         <div className="col-span-3 gap-3 flex flex-col text-center">
