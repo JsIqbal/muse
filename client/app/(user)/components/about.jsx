@@ -6,7 +6,6 @@ import { ArrowDown, ArrowRight } from "@/node_modules/lucide-react";
 
 import { useState } from "react";
 
-
 import OurProducts from "./components/our-products";
 
 const About = () => {
@@ -15,10 +14,10 @@ const About = () => {
         <div className="curvey-top-bottom  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] pb-28 pt-20  2xl:px-0 md:px-10 px-4">
             <div
                 className={cn(
-                    " hidden xl:flex flex-col  gap-y-2 justify-center items-center animate-bounce",
+                    " hidden xl:flex flex-col  gap-y-2 justify-center items-center animate-pulse",
                     buttonCliked && "animate-none"
                 )}
-                style={{ animationDuration: "1s" }}
+                style={{ animationDuration: "2s" }}
             >
                 <Button
                     id="move"
@@ -30,9 +29,8 @@ const About = () => {
                     }}
                     className=" bg-blue-500 font-semibold shadow-xl text-center text-lg h-10"
                 >
-                    Products
+                    <ArrowDown className="text-white" />
                 </Button>
-                <ArrowDown className="text-white" />
             </div>
 
             {/* <div className="container flex-grow h-auto rounded-lg shadow-xl p-10 bg-white">
