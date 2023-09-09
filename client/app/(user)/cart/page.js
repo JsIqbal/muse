@@ -19,12 +19,13 @@ const CartPage = () => {
     const [loading, setLoading] = useState(false);
 
     async function checkout() {
-        if (cart.items.length === 0 || loading) return null;
-        if (user.isSignedIn) {
+        if (cart?.items?.length === 0 || loading) return null;
+        if (user?.isSignedIn) {
             if (sureCheckout && checkoutURL) {
                 router.push(checkoutURL);
             } else {
                 setLoading(true);
+                if (!user.user?.emailAddresses?.at(0)) return null;
                 // Create an options object with the method and body
                 const options = {
                     method: "POST",
@@ -102,7 +103,7 @@ const CartPage = () => {
 
                 <Button
                     onClick={checkout}
-                    variant={cart.items.length === 0 ? "disabled" : "default"}
+                    disabled={cart?.items?.length === 0 }
                     className="bg-blue-600 w-full mx-auto font-semibold text-xl text-white hover:bg-blue-700 shadow-lg"
                     size="lg"
                 >

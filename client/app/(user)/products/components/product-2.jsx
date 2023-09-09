@@ -9,7 +9,7 @@ import JETPackTabs from "./JETPack components/jetPackTabs";
 import { Separator } from "@/components/ui/separator";
 
 const Product2 = () => {
-    const [showMore, setShowMore] = useState(false);
+    const [showMore, setShowMore] = useState(true);
     const cart = useCart();
     const data = {
         id: "prod_OQqfX0s5HDDSZI",

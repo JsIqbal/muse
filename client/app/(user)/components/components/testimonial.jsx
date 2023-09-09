@@ -1,8 +1,19 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 
-const Testimonial = ({ testimonial }) => {
+const Testimonial = ({ testimonial, index }) => {
     return (
-        <li className="rounded-lg shadow min-w-[30%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between">
+        <motion.li
+            variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+            }}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.7, delay: 0.2*index }}
+            viewport={{ once: true }}
+            className="rounded-lg shadow min-w-[30%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between"
+        >
             <div className="-ml-4">
                 <svg
                     className="w-8 opacity-25 text-indigo-500"
@@ -38,7 +49,7 @@ const Testimonial = ({ testimonial }) => {
                     </div>
                 </div>
             </div>
-        </li>
+        </motion.li>
     );
 };
 

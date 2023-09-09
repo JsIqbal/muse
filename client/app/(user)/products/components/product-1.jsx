@@ -8,13 +8,15 @@ import { useState } from "react";
 import MuseTabs from "./muse components/museTabs";
 
 const Product1 = () => {
-    const [showMore, setShowMore] = useState(false);
+    const [showMore, setShowMore] = useState(true);
     const cart = useCart();
     const data = {
         id: "prod_OQqVfPPkSOgzHj",
         name: "Muse",
         price: { id: "price_1NdyopHyjaNCI3rEeEKN4r1L", dollar: 20 },
-        images: ["https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfNVR5THV6UWVQMG9zdUlkS3g5MW9JQ2FZ00NAoHmUpY"],
+        images: [
+            "https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfNVR5THV6UWVQMG9zdUlkS3g5MW9JQ2FZ00NAoHmUpY",
+        ],
     };
     // Will be added to cart
     function onAddToCart() {
@@ -22,7 +24,10 @@ const Product1 = () => {
     }
 
     return (
-        <div className="w-screen  bg-white flex flex-col py-8 2xl:px-0 px-8" id="museContent">
+        <div
+            className="w-screen  bg-white flex flex-col py-8 2xl:px-0 px-8"
+            id="museContent"
+        >
             <div className="flex lg:flex-row flex-col justify-between items-center container">
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
                     <div className="flex flex-col gap-y-4">
