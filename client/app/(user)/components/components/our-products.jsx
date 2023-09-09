@@ -1,4 +1,4 @@
-import {  ArrowRight } from "@/node_modules/lucide-react";
+import { ArrowRight } from "@/node_modules/lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -17,10 +17,10 @@ const OurProducts = () => {
                 }}
                 initial="hidden"
                 whileInView="visible"
-                transition={{ duration: 0.4, delay: 0.2 }}
+                transition={{ duration: 0.4, delay: 0.05 }}
                 viewport={{ once: true }}
                 href="/products"
-                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[100.6%] transition-all duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between"
+                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between"
             >
                 <div className="relative w-16 h-16">
                     <Image fill alt="Logo" src="/icons/muse-icon.png" />
@@ -39,10 +39,10 @@ const OurProducts = () => {
                 }}
                 initial="hidden"
                 whileInView="visible"
-                transition={{ duration: 0.4, delay: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.15 }}
                 viewport={{ once: true }}
                 href="/products"
-                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[100.6%] transition-all duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between"
+                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between"
             >
                 <div className="relative w-16 h-16">
                     <Image fill alt="Logo" src="/icons/jetpack-icon.png" />
