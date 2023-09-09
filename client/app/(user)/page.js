@@ -6,7 +6,7 @@ import Testimonials from "./components/testimonials";
 
 export default function Home() {
     return (
-        <div className="flex flex-col gap-y-10 w-screen">
+        <div className="flex flex-col gap-y-10 w-screen scroll-smooth">
             <Hero />
             <About />
             <Testimonials />

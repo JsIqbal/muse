@@ -24,7 +24,7 @@ const Navbar = () => {
 
     return (
         <div className="fixed top-0 left-0 right-0 z-50 bg-gray-100 bg-opacity-93 shadow-md border-b-[1] border-slate-500">
-            <div className="flex justify-between  p-4 container">
+            <div className="flex justify-between  p-4 container md:px-10  px:6">
                 <Link
                     href="/"
                     className="flex items-center justify-center gap-4"

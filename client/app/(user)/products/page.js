@@ -5,11 +5,9 @@ import Product2 from "./components/product-2";
 const ProdcutsPage = () => {
     return (
         <div className="flex flex-col ">
-            <Separator className="h-1.5"/>
             <Product1 />
-            <Separator className="h-1.5"/>
+            <Separator className="h-1.5" />
             <Product2 />
-            <Separator className="h-1.5"/>
         </div>
     );
 };
