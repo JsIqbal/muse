@@ -14,7 +14,7 @@ func NewDatabase(dsn string) *gorm.DB {
 		panic(err)
 	}
 
-	db.AutoMigrate( &svc.Dashboard{}, &svc.User{}, &svc.Admin{},  &svc.Purchase{}, &svc.ErrorModel{},&svc.Product{}, &svc.Feature{}, &svc.ProductFeature{})
+	db.AutoMigrate(&svc.Dashboard{}, &svc.User{}, &svc.Admin{}, &svc.Purchase{}, &svc.Contact{}, &svc.Review{}, &svc.ErrorModel{}, &svc.Product{}, &svc.Feature{}, &svc.ProductFeature{})
 
 	return db
 }

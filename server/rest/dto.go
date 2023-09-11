@@ -12,6 +12,17 @@ type PurchaseRequest struct {
 	ProductIDs []string `json:"product_ids"`
 }
 
+type ContactUsRequest struct {
+	Email   string `json:"email"`
+	Subject string `json:"subject"`
+	Content string `json:"content"`
+}
+type CreateReviewRequest struct {
+	Name   string `json:"name"`
+	Role   string `json:"role"`
+	Review string `json:"review"`
+}
+
 // Define the SuccessResponse struct
 type SuccessResponse struct {
 	Message string `json:"message"`

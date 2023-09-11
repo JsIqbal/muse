@@ -4,7 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"go-rest/svc"
+	"go-rest/util"
 
+	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
 
@@ -54,6 +56,77 @@ func (r *userRepo) GetUserByID(userID string) (*svc.User, error) {
 	return &user, nil
 }
 
+// func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error) {
+// 	// Check if the user exists
+// 	user, err := r.GetUserByID(userID)
+// 	if err != nil {
+// 		// Handle the error (e.g., user not found)
+// 		return nil, err
+// 	}
+
+// 	if user == nil {
+// 		// If user is not found, return an error
+// 		return nil, errors.New("User not found")
+// 	}
+
+// 	// Create a new review record
+// 	newReview := &svc.Review{
+// 		ID:     userID,
+// 		Name:   name,
+// 		Role:   role,
+// 		Review: review,
+// 	}
+
+// 	// Insert the new review into the database
+// 	if err := r.db.Create(newReview).Error; err != nil {
+// 		return nil, err
+// 	}
+
+// 	return newReview, nil
+// }
+
+func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error) {
+	// Check if the user exists
+	user, err := r.GetUserByID(userID)
+	if err != nil {
+		// Handle the error (e.g., user not found)
+		fmt.Printf("Error fetching user: %v\n", err)
+		return nil, err
+	}
+
+	if user == nil {
+		// If user is not found, return an error
+		fmt.Printf("User with ID %s not found\n", userID)
+		return nil, errors.New("User not found")
+	}
+
+	// Create a new review record
+	newReview := &svc.Review{
+		ID:     userID,
+		Name:   name,
+		Role:   role,
+		Review: review,
+	}
+
+	// Insert the new review into the database
+	if err := r.db.Create(newReview).Error; err != nil {
+		return nil, err
+	}
+
+	return newReview, nil
+
+}
+
+func (r *userRepo) Reviews() ([]*svc.Review, error) {
+	var reviews []*svc.Review
+
+	// Query the database to retrieve all review records
+	if err := r.db.Find(&reviews).Error; err != nil {
+		return nil, err
+	}
+
+	return reviews, nil
+}
 
 func (r *userRepo) Get() []*svc.User {
 	// Declare a slice of pointers to svc.User
@@ -68,4 +141,33 @@ func (r *userRepo) Get() []*svc.User {
 
 	// Return the slice of users
 	return users
+}
+
+func (r *userRepo) ContactUs(email, subject, content string) (*svc.Contact, error) {
+	// Generate a new UUID for the ID field
+	id := uuid.New().String()
+
+	// Create a new Contact instance
+	contact := &svc.Contact{
+		ID:        id, // Set the generated UUID as the ID
+		Email:     email,
+		Subject:   subject,
+		Content:   content,
+		CreatedAt: util.GetCurrentTimestamp(),
+	}
+
+	// Save the Contact instance to the database
+	if err := r.db.Create(contact).Error; err != nil {
+		return nil, err
+	}
+
+	return contact, nil
+}
+
+func (r *userRepo) Purchase(userID string) bool {
+	// Check if the user exists in the purchase table
+	var count int64
+	r.db.Model(&svc.Purchase{}).Where("user_id = ?", userID).Count(&count)
+
+	return count > 0
 }

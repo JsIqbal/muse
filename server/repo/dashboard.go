@@ -15,7 +15,7 @@ type dashboardRepo struct {
 	db *gorm.DB
 }
 
-func NewDashboardRepo(db *gorm.DB) DashboardRepo {
+func NewDashboardRepo(db *gorm.DB) svc.DashboardRepo {
 	return &dashboardRepo{
 		db: db,
 	}
@@ -30,4 +30,15 @@ func (r *dashboardRepo) Get() []*svc.Dashboard {
 	}
 
 	return dashboards
+}
+
+func (r *dashboardRepo) Downloads() (int, error) {
+	var count int64
+
+	// Execute a query to count the number of records in the "purchase" table
+	if err := r.db.Model(&svc.Purchase{}).Count(&count).Error; err != nil {
+		return 0, err
+	}
+
+	return int(count), nil
 }

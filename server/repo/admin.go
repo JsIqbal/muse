@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"errors"
 	"fmt"
 	"go-rest/svc"
 
@@ -52,7 +53,6 @@ func (r *adminRepo) Create(admin *svc.Admin) error {
 	return nil
 }
 
-
 func (r *adminRepo) Find(username string) (*svc.Admin, error) {
 	var admin svc.Admin
 	result := r.db.Where("username = ?", username).First(&admin)
@@ -65,3 +65,37 @@ func (r *adminRepo) Find(username string) (*svc.Admin, error) {
 	return &admin, nil
 }
 
+func (r *adminRepo) FindById(ID string) (*svc.Admin, error) {
+	var admin svc.Admin
+	result := r.db.Where("ID = ?", ID).First(&admin)
+
+	if result.Error != nil {
+		fmt.Println("Error while fetching admin:", result.Error)
+		return nil, result.Error
+	}
+
+	return &admin, nil
+}
+
+func (r *adminRepo) GetAllMails(ID string) ([]*svc.Contact, error) {
+	// Check if the admin (user) exists
+	admin, err := r.FindById(ID)
+	if err != nil {
+		// Handle the error (e.g., admin not found)
+		return nil, err
+	}
+
+	if admin == nil {
+		// If admin is not found, return an "Unauthorized" error
+		return nil, errors.New("Unauthorized")
+	}
+
+	var contacts []*svc.Contact
+
+	// Query the database to retrieve all contact records
+	if err := r.db.Find(&contacts).Error; err != nil {
+		return nil, err
+	}
+
+	return contacts, nil
+}

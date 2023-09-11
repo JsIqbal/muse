@@ -16,8 +16,8 @@ type service struct {
 	adminRepo     AdminRepo
 	productRepo   ProductRepo
 	purchaseRepo  PurchaseRepo
-	errRepo      ErrorRepo
-	cache        Cache
+	errRepo       ErrorRepo
+	cache         Cache
 }
 
 func NewService(dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminRepo, productRepo ProductRepo, purchaseRepo PurchaseRepo, errorRepo ErrorRepo, cache Cache) Service {
@@ -27,8 +27,8 @@ func NewService(dashboardRepo DashboardRepo, userRepo UserRepo, adminRepo AdminR
 		adminRepo:     adminRepo,
 		productRepo:   productRepo,
 		purchaseRepo:  purchaseRepo,
-		errRepo:      errorRepo,
-		cache:        cache,
+		errRepo:       errorRepo,
+		cache:         cache,
 	}
 }
 
@@ -36,8 +36,8 @@ func (s *service) GetDashboardImages() []*Dashboard {
 	return s.dashboardRepo.Get()
 }
 
-func (s *service) CreateUser(std *User)  {
-	 s.userRepo.CreateUser(std)
+func (s *service) CreateUser(std *User) {
+	s.userRepo.CreateUser(std)
 }
 
 func (s *service) LoginAdmin(std *Admin) *Admin {
@@ -48,9 +48,9 @@ func (s *service) CreateAdmin(std *Admin) error {
 	return s.adminRepo.Create(std)
 }
 
-// func (s *service) FindAdminByUsername(username string) (*Admin, error) {
-// 	return s.adminRepo.Find(username)
-// }
+//	func (s *service) FindAdminByUsername(username string) (*Admin, error) {
+//		return s.adminRepo.Find(username)
+//	}
 func (s *service) FindAdminByUsername(username string) (*Admin, error) {
 	admin, err := s.adminRepo.Find(username)
 	if err != nil {
@@ -62,20 +62,32 @@ func (s *service) FindAdminByUsername(username string) (*Admin, error) {
 	return admin, nil
 }
 
-
-
-
-
-func (s *service) GetUserByEmail(email string)(*User, error) {
+func (s *service) GetUserByEmail(email string) (*User, error) {
 	return s.userRepo.GetUserByEmail(email)
 }
 
-func (s *service) GetUserByID(userID string)(*User, error) {
+func (s *service) GetUserByID(userID string) (*User, error) {
 	return s.userRepo.GetUserByID(userID)
+}
+
+func (s *service) CreateReview(userID, name, role, review string) (*Review, error) {
+	return s.userRepo.Review(userID, name, role, review)
+}
+
+func (s *service) GetReviews() ([]*Review, error) {
+	return s.userRepo.Reviews()
+}
+
+func (s *service) UserContactUs(email, subject, content string) (*Contact, error) {
+	return s.userRepo.ContactUs(email, subject, content)
 }
 
 func (s *service) GetProducts() []*Product {
 	return s.productRepo.GetProducts()
+}
+
+func (s *service) GetEmails(ID string) ([]*Contact, error) {
+	return s.adminRepo.GetAllMails(ID)
 }
 
 func (s *service) CreatePurchase(userID string, productID string) error {
@@ -99,10 +111,17 @@ func (s *service) CreatePurchase(userID string, productID string) error {
 	return nil
 }
 
+func (s *service) CheckPurchase(userID string) bool {
+	return s.userRepo.Purchase(userID)
+}
+
 func (s *service) GetAllUsers() []*User {
 	return s.userRepo.Get()
 }
 
+func (s *service) TotalDownloads() (int, error) {
+	return s.dashboardRepo.Downloads()
+}
 
 func (s *service) Error(ctx context.Context, internalCode string, description string) *ErrorResponse {
 	var errDetail *ErrorDetail

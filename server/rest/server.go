@@ -41,16 +41,23 @@ func (s *Server) setupRouter() {
 
 	s.router.Static("/docs", "./docs")
 
-	
 	// healtch check
 	s.router.GET("/api/test", s.test)
-	
+
 	// public routes
-	
+
 	s.router.POST("/api/users/create", s.createUser)
 	s.router.GET("/api/users/products", s.getProducts)
 	s.router.POST("/api/users/purchase", s.purchase)
-	
+	s.router.POST("/api/users/contact-us", s.contactUs)
+	s.router.GET("/api/products/download", s.downloads)
+
+	///client-protected////
+
+	s.router.POST("/api/users/review/:id", s.createReview)  // => purchased users can do reviews
+	s.router.GET("/api/users/review", s.reviews)            // => public user slider
+	s.router.GET("/api/users/product/:id", s.checkPurchase) // => checking purchases for user
+
 	s.router.POST("/api/admins/login", s.loginAdmin)
 	s.router.POST("/api/admins/create", s.createAdmin)
 
@@ -58,8 +65,12 @@ func (s *Server) setupRouter() {
 	authRoutes := s.router.Group("/").Use(s.authMiddleware())
 	authRoutes.GET("/api/admins/users", s.users)
 	authRoutes.POST("/api/users/logout", s.logout)
+	authRoutes.GET("/api/admins/contact-us", s.getAllMails) // => Admin getting all mails
 
 	// dashboardGroup.GET("/images", getDashboardImages(service))
+	/*
+		authRoutes.GET("/api/users/download") => purchased items sent over in a zip file
+	*/
 
 }
 
