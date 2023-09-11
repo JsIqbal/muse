@@ -20,16 +20,20 @@ const OurProducts = () => {
                 transition={{ duration: 0.4, delay: 0.05 }}
                 viewport={{ once: true }}
                 href="/products"
-                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between"
+                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between "
             >
-                <div className="relative w-16 h-16">
-                    <Image fill alt="Logo" src="/icons/muse-icon.png" />
-                </div>
+                <Image
+                    alt="Logo"
+                    src="/icons/muse-icon.png"
+                    width={64}
+                    height={64}
+                />
 
                 <h1 className="md:text-3xl text-2xl font-semibold text-center">
                     Muse - Middleware Universal Scripting idE
                 </h1>
-                <ArrowRight className=" w-8 h-8 hover:text-blue-900" />
+
+                <ArrowRight className=" w-8 h-8" />
             </motion.a>
 
             <motion.a
@@ -42,16 +46,20 @@ const OurProducts = () => {
                 transition={{ duration: 0.4, delay: 0.15 }}
                 viewport={{ once: true }}
                 href="/products"
-                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between"
+                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between "
             >
-                <div className="relative w-16 h-16">
-                    <Image fill alt="Logo" src="/icons/jetpack-icon.png" />
-                </div>
+                <Image
+                    alt="Logo"
+                    src="/icons/jetpack-icon.png"
+                    width={64}
+                    height={64}
+                />
 
                 <h1 className="md:text-3xl text-2xl font-semibold text-center">
-                    JETPack - Empowering Java Development environment
+                    JETPack - Empowering JaButton Development environment
                 </h1>
-                <ArrowRight className=" w-8 h-8 hover:text-blue-900" />
+
+                <ArrowRight className=" w-8 h-8" />
             </motion.a>
         </div>
     );
