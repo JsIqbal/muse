@@ -1,66 +1,32 @@
 import { useEffect, useState } from "react";
 import InfiniteTestimonials from "./components/infinite-scroling-div";
+import TestimonialSkeletons from "./components/testimonial-skeletons";
 
 const Testimonials = () => {
     const [testimonials, setTesimonials] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchReviews = async () => {
             try {
-                // const response = await fetch(
-                //     `${process.env.SERVER_URL}/api/users/products`
-                // );
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/review`
+                );
 
-                // if (response.ok) {
-                //     const data = await response.json();
-                //     console.log(data);
-                //     setTesimonials(data);
-                // } else {
-                //     throw new Error(response.statusText);
-                // }
-                setTesimonials([
-                    {
-                        name: "John Doe",
-                        roles: "Software Engineer",
-                        pic: "https://avatars0.githubusercontent.com/u/810438?s=100",
-                        review: "I have been using these software products for a while now, and I must say they have significantly improved my development workflow.",
-                    },
-                    {
-                        name: "John Doe",
-                        roles: "Software Engineer",
-                        pic: "https://avatars0.githubusercontent.com/u/810438?s=100",
-                        review: "I have been using these software products for a while now, and I must say they have significantly improved my development workflow.",
-                    },
-                    {
-                        name: "John Doe",
-                        roles: "Software Engineer",
-                        pic: "https://avatars0.githubusercontent.com/u/810438?s=100",
-                        review: "I have been using these software products for a while now, and I must say they have significantly improved my development workflow.",
-                    },
-                    {
-                        name: "John Doe",
-                        roles: "Software Engineer",
-                        pic: "https://avatars0.githubusercontent.com/u/810438?s=100",
-                        review: "I have been using these software products for a while now, and I must say they have significantly improved my development workflow.",
-                    },
-                    {
-                        name: "John Doe",
-                        roles: "Software Engineer",
-                        pic: "https://avatars0.githubusercontent.com/u/810438?s=100",
-                        review: "I have been using these software products for a while now, and I must say they have significantly improved my development workflow.",
-                    },
-                ]);
+                if (response.ok) {
+                    const data = await response.json();
+                    setTesimonials(data.reviews);
+                } else {
+                    throw new Error(response.statusText);
+                }
             } catch (error) {
                 console.log(error);
-                setError(error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchData();
+        fetchReviews();
     }, []);
 
     return (
@@ -76,7 +42,11 @@ const Testimonials = () => {
                         ...
                     </div>
                 </div>
-                <InfiniteTestimonials testimonials={testimonials} loading={loading}/>
+                {loading || testimonials?.length < 8 ? (
+                    <TestimonialSkeletons />
+                ) : (
+                    <InfiniteTestimonials testimonials={testimonials} />
+                )}
             </div>
         </div>
     );

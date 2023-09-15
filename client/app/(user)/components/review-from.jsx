@@ -10,12 +10,12 @@ import { Label } from "@/components/ui/label";
 // Define the schema for the review form
 const reviewSchema = z.object({
     name: z.string().min(1),
-    roles: z.string().min(1),
+    role: z.string().min(1),
     review: z.string().min(50),
 });
 
 // Define the component for the review form
-const ReviewForm = () => {
+const ReviewForm = ({ setIsOpen }) => {
     // Use react-hook-form with zod resolver
     const {
         register,
@@ -30,28 +30,41 @@ const ReviewForm = () => {
 
     // Define the submit handler
     const onSubmit = async (data) => {
+        // Display a loading toast
+        toast.loading("Sending the review");
+
         try {
-            // // Send the data to the API endpoint
-            // const response = await fetch("/api/users/review", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json",
-            //     },
-            //     body: JSON.stringify(data),
-            // });
-            // // Check if the response is ok
-            // if (response.ok) {
-            //     // Close the sheet and display a success toast
-            //     setOpen(false);
-            //     toast.success("Thank you for the review");
-            // } else {
-            //     // Display an error toast
-            //     toast.error("Something went wrong");
-            // }
-            toast.success("Thank you for the review")
+            // Send the data to the API endpoint
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/review/${user?.user?.id}`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                }
+            );
+            toast.dismiss();
+
+            // Check if the response is ok
+            if (response.ok) {
+                // Close the sheet and display a success toast
+                setIsOpen(false);
+
+                toast.success("Thank you for the review");
+            } else if (response.status === 500) {
+                let data = await response.json();
+                toast.error(data.error);
+            } else {
+                // Display an error toast
+                toast.error("Theres was an error while submitting the review");
+            }
         } catch (error) {
             // Display an error toast
-            toast.error(error.message);
+            console.log(error);
+            toast.dismiss();
+            toast.error("Theres was an error while submitting the review");
         }
     };
 
@@ -61,34 +74,36 @@ const ReviewForm = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col space-y-6 py-8"
         >
-            <div className="grid w-full max-w-sm items-center gap-1.5">
+            <div
+                className="grid w-full max-w-sm items-center gap-1.5"
+                aria-disabled
+            >
                 <Label htmlFor="name">Name</Label>
                 <input
                     id="name"
                     type="text"
-                    value={user.fullName}
-                    placeholder="Full Name"
+                    value={user?.user.fullName}
                     {...register("name")}
                     className="border-2 rounded-md p-2"
                 />
                 {errors.name && (
                     <span className="text-xs text-red-500">
-                        {errors.name.message?.replace('String', 'Name')}
+                        {errors.name.message?.replace("String", "Name")}
                     </span>
                 )}
             </div>
             <div className="grid w-full max-w-sm items-center gap-1.5">
-                <Label htmlFor="roles">Role</Label>
+                <Label htmlFor="role">Role</Label>
                 <input
                     className="border-2 rounded-md p-2"
-                    id="roles"
+                    id="role"
                     type="text"
                     placeholder="e.g Software Engineer, Student"
-                    {...register("roles")}
+                    {...register("role")}
                 />
                 {errors.roles && (
                     <span className="text-xs text-red-500">
-                        {errors.roles.message?.replace('String', 'Role')}
+                        {errors.roles.message?.replace("String", "Role")}
                     </span>
                 )}
             </div>
@@ -103,7 +118,7 @@ const ReviewForm = () => {
                 />
                 {errors.review && (
                     <span className="text-xs text-red-500">
-                        {errors.review.message?.replace('String', 'Review')}
+                        {errors.review.message?.replace("String", "Review")}
                     </span>
                 )}
             </div>

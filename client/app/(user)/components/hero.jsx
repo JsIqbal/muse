@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 import DownloadCard from "./components/download-card";
 import Image from "next/image";
-import { motion } from "framer-motion";
+
 
 const montserrat = Montserrat({
     weight: "700",

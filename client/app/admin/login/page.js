@@ -18,7 +18,7 @@ const AdminPage = () => {
         if (!username || !password) return;
 
         const response = await fetch(
-            `${process.env.SERVER_URL}/api/admins/login`,
+            `${process.env.NEXTSERVER_URL}/api/admins/login`,
             {
                 method: "POST",
                 headers: {

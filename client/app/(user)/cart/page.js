@@ -95,7 +95,7 @@ const CartPage = () => {
                     <div>
                         <h1>Subtotal: </h1>
                         <p className="text-muted-foreground font-normal">
-                            *Shipping and taxes will be calculated at checkout.
+                            *Taxes will be calculated at checkout.
                         </p>
                     </div>
                     <h1>${cart.totalPrice()}</h1>

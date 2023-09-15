@@ -1,19 +1,8 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
 
-const Testimonial = ({ testimonial, index }) => {
+const Testimonial = ({ testimonial }) => {
     return (
-        <motion.li
-            variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            whileInView="visible"
-            transition={{ duration: 0.7, delay: 0.2*index }}
-            viewport={{ once: true }}
-            className="rounded-lg shadow min-w-[30%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between"
-        >
+        <li className="rounded-lg shadow min-w-[30%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between">
             <div className="-ml-4">
                 <svg
                     className="w-8 opacity-25 text-indigo-500"
@@ -37,19 +26,23 @@ const Testimonial = ({ testimonial, index }) => {
                         <Image
                             fill
                             alt="Image"
-                            src={testimonial.pic}
+                            src={
+                                testimonial.pic ||
+                                "https://imgv3.fotor.com/images/blog-richtext-image/10-profile-picture-ideas-to-make-you-stand-out.jpg"
+                            }
                             objectFit="cover"
+                            className="rounded-full border-2 border-indigo-400"
                         />
                     </div>
                     <div className="ml-4">
                         <div className="font-bold">{testimonial.name}</div>
                         <div className="text-sm text-gray-600 mt-1">
-                            {testimonial.roles}
+                            {testimonial.role}
                         </div>
                     </div>
                 </div>
             </div>
-        </motion.li>
+        </li>
     );
 };
 

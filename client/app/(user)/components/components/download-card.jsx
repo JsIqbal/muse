@@ -7,19 +7,26 @@ import Spinner from "@/components/spinner";
 const DownloadCard = () => {
     const [downloads, setDownloads] = useState("10.5k");
     useEffect(() => {
-        const fetch = async () => {
+        const fetchDownloads = async () => {
             try {
-                const { data } = await fetch(
-                    `${process.env.SERVER_URL}/api/downloads`
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/download`
                 );
-                setDownloads(data.downloads);
+                if (response.ok) {
+                    const data = await response.json();
+                    setDownloads(data.totalDownloads);
+                } else {
+                    console.error("Error fetching downloads:", response.status);
+                }
             } catch (error) {
+                console.log(error);
+                setDownloads("10.5k");
                 return;
             }
         };
-        // fetch()
-        setDownloads("10.5k");
+        fetchDownloads();
     }, []);
+
     return (
         <Card className="shadow-sm hover:none space-y-0 w-">
             <CardHeader>

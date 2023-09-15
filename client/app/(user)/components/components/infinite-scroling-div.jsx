@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import Testimonial from "./testimonial";
-import TestimonialSkeletons from "./testimonial-skeletons";
 
 function InfiniteTestimonials({ testimonials, loading }) {
     const testimonialsRef = useRef(null);
@@ -18,7 +17,11 @@ function InfiniteTestimonials({ testimonials, loading }) {
                 className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
             >
                 {testimonials.map((testimonial, index) => (
-                    <Testimonial testimonial={testimonial} key={index} index={index+1}/>
+                    <Testimonial
+                        testimonial={testimonial}
+                        key={index}
+                        index={index + 1}
+                    />
                 ))}
             </ul>
         </div>
