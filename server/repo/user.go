@@ -85,6 +85,55 @@ func (r *userRepo) GetUserByID(userID string) (*svc.User, error) {
 // 	return newReview, nil
 // }
 
+// func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error) {
+// 	// Check if the user exists
+// 	user, err := r.GetUserByID(userID)
+// 	if err != nil {
+// 		// Handle the error (e.g., user not found)
+// 		fmt.Printf("Error fetching user: %v\n", err)
+// 		return nil, err
+// 	}
+
+// 	if user == nil {
+// 		// If user is not found, return an error
+// 		fmt.Printf("User with ID %s not found\n", userID)
+// 		return nil, errors.New("User not found")
+// 	}
+
+// 	// Create a new review record
+// 	newReview := &svc.Review{
+// 		ID:     userID,
+// 		Name:   name,
+// 		Role:   role,
+// 		Review: review,
+// 	}
+
+// 	// Insert the new review into the database
+// 	if err := r.db.Create(newReview).Error; err != nil {
+// 		return nil, err
+// 	}
+
+// 	return newReview, nil
+
+// }
+
+func (r *userRepo) GetReviewByUserID(userID string) (*svc.Review, error) {
+	// Create a new Review object to store the result
+	var review svc.Review
+
+	// Query the database for a review with the given userID
+	if err := r.db.Where("ID = ?", userID).First(&review).Error; err != nil {
+		if err == gorm.ErrRecordNotFound {
+			// If no record is found, return nil and a specific error
+			return nil, nil
+		}
+		// Handle other database query errors
+		return nil, err
+	}
+
+	return &review, nil
+}
+
 func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error) {
 	// Check if the user exists
 	user, err := r.GetUserByID(userID)
@@ -98,6 +147,20 @@ func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error
 		// If user is not found, return an error
 		fmt.Printf("User with ID %s not found\n", userID)
 		return nil, errors.New("User not found")
+	}
+
+	// Check if a review with the same userID already exists
+	existingReview, err := r.GetReviewByUserID(userID)
+	if err != nil {
+		// Handle the error (e.g., database query error)
+		fmt.Printf("Error checking for existing review: %v\n", err)
+		return nil, err
+	}
+
+	if existingReview != nil {
+		// If a review with the same userID exists, return an error
+		fmt.Printf("user with ID %s has already submitted a review\n", userID)
+		return nil, errors.New("user has already submitted a review")
 	}
 
 	// Create a new review record
@@ -114,7 +177,6 @@ func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error
 	}
 
 	return newReview, nil
-
 }
 
 func (r *userRepo) Reviews() ([]*svc.Review, error) {

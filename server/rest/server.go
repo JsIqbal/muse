@@ -48,7 +48,9 @@ func (s *Server) setupRouter() {
 
 	s.router.POST("/api/users/create", s.createUser)
 	s.router.GET("/api/users/products", s.getProducts)
-	s.router.POST("/api/users/purchase", s.purchase)
+	// s.router.POST("/api/users/purchase", s.purchase)
+	s.router.POST("/api/users/purchase", stripeWebhookMiddleware(), s.purchase)
+
 	s.router.POST("/api/users/contact-us", s.contactUs)
 	s.router.GET("/api/products/download", s.downloads)
 
