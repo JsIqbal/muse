@@ -36,13 +36,14 @@ type ErrorResponse struct {
 // Define the eventData struct outside the controller
 type EventData struct {
 	Data struct {
-		ID             string `json:"id"`
+		ID             string `json:"id" binding:"required"`
 		EmailAddresses []struct {
-			EmailAddress string `json:"email_address"`
+			EmailAddress string `json:"email_address" binding:"required"`
 		} `json:"email_addresses"`
+		Image     string `json:"image_url" binding:"required"`
+		FirstName string `json:"first_name" binding:"required"`
+		LastName  string `json:"last_name" binding:"required"`
 	} `json:"data"`
-	// You can add more fields here based on the request body
-	// For example: birthday, created_at, etc.
 }
 
 type userResponse struct {

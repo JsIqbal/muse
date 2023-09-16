@@ -20,6 +20,7 @@ type Application struct {
 	DBPass string `mapstructure:"DB_PASS"`
 	DBHost string `mapstructure:"DB_HOST"`
 	DBPort string `mapstructure:"DB_PORT"`
+	STRIPE string `mapstructure:"STRIPE_SECRET_KEY"`
 }
 
 type Salt struct {
@@ -51,6 +52,7 @@ func loadApp() error {
 		DBPass: viper.GetString("DB_PASS"),
 		DBHost: viper.GetString("DB_HOST"),
 		DBPort: viper.GetString("DB_PORT"),
+		STRIPE: viper.GetString("STRIPE_SECRET_KEY"),
 	}
 
 	return nil

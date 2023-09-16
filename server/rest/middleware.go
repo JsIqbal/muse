@@ -12,6 +12,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/stripe/stripe-go/webhook"
 )
 
 const (
@@ -111,4 +112,37 @@ func corsMiddleware(c *gin.Context) {
 	}
 
 	c.Next()
+}
+
+func stripeWebhookMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Check if the request contains a valid Stripe signature header
+		// Replace 'YourSecretKey' with your actual Stripe secret key
+		secretKey := config.GetApp().STRIPE
+		stripeSignature := c.GetHeader("Stripe-Signature")
+
+		// Retrieve the request body for validation
+		body, err := c.GetRawData()
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to read request body"})
+			c.Abort()
+			return
+		}
+
+		// Verify the Stripe signature
+		event, err := webhook.ConstructEvent(body, stripeSignature, secretKey)
+		if err != nil {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Stripe signature"})
+			c.Abort()
+			return
+		}
+
+		fmt.Println("------------------------------------", event)
+
+		// You can access the Stripe event if needed
+		// stripeEvent := event.Data.Object
+
+		// Continue processing the request
+		c.Next()
+	}
 }

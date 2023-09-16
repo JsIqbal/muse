@@ -64,8 +64,11 @@ func (s *Server) createUser(ctx *gin.Context) {
 
 	// Create a new user
 	user := &svc.User{
-		ID:    userID,
-		Email: email,
+		ID:        userID,
+		Email:     email,
+		Image:     eventData.Data.Image,
+		FirstName: eventData.Data.FirstName,
+		LastName:  eventData.Data.LastName,
 	}
 
 	s.svc.CreateUser(user)
