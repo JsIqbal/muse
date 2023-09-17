@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import LoginForm from "./login-form";
 import { useEffect } from "react";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const AdminPage = () => {
     const router = useRouter();
@@ -19,6 +21,7 @@ const AdminPage = () => {
     }
 
     async function handleLogin(e, username, password) {
+        console.log("----------came here----------");
         e.preventDefault();
 
         if (!username || !password) return;
@@ -36,6 +39,7 @@ const AdminPage = () => {
             // Check if the response is successful (status 200)
             if (response.status === 200) {
                 // Display a success toast message
+                setResource(response);
                 toast.success("Successfully logged in");
 
                 // Redirect to the admin page
@@ -54,7 +58,7 @@ const AdminPage = () => {
     useEffect(() => {
         let token = Cookies.get("token");
         if (token) return router.push("/admin");
-        setLoaded(true);
+        // setLoaded(true);
     }, []);
 
     return (

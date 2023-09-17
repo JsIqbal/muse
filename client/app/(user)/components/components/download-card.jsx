@@ -17,7 +17,8 @@ const DownloadCard = () => {
                 if (response.status === 200) {
                     // Get the data from the response
                     const data = response.data;
-                    setDownloads(data.totalDownloads);
+
+                    setDownloads(2479 + data.totalDownloads);
                 } else {
                     console.error("Error fetching downloads:", response.status);
                 }
