@@ -6,6 +6,7 @@ import { useUser } from "@clerk/clerk-react";
 import { SheetClose, SheetFooter } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import axios from "axios";
 
 // Define the schema for the review form
 const reviewSchema = z.object({
@@ -35,36 +36,35 @@ const ReviewForm = ({ setIsOpen }) => {
 
         try {
             // Send the data to the API endpoint
-            const response = await fetch(
+            const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/review/${user?.user?.id}`,
+                data,
                 {
-                    method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify(data),
                 }
             );
             toast.dismiss();
 
-            // Check if the response is ok
-            if (response.ok) {
+            // Check if the response is successful
+            if (response.status === 200) {
                 // Close the sheet and display a success toast
                 setIsOpen(false);
 
                 toast.success("Thank you for the review");
             } else if (response.status === 500) {
-                let data = await response.json();
-                toast.error(data.error);
+                let responseData = response.data;
+                toast.error(responseData.error);
             } else {
                 // Display an error toast
-                toast.error("Theres was an error while submitting the review");
+                toast.error("There was an error while submitting the review");
             }
         } catch (error) {
             // Display an error toast
             console.log(error);
             toast.dismiss();
-            toast.error("Theres was an error while submitting the review");
+            toast.error("There was an error while submitting the review");
         }
     };
 

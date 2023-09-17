@@ -9,6 +9,7 @@ import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import useCart from "@/hooks/use-cart";
+import axios from "axios";
 
 const CartPage = () => {
     const user = useUser();
@@ -26,29 +27,28 @@ const CartPage = () => {
             } else {
                 setLoading(true);
                 if (!user.user?.emailAddresses?.at(0)) return null;
-                // Create an options object with the method and body
-                const options = {
-                    method: "POST",
-                    body: JSON.stringify({
-                        items: cart.items,
-                        userEmail: user.user.emailAddresses[0].emailAddress,
-                    }),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                };
 
-                // Use the fetch function to send the request and get the response
+                // Use Axios to send the request and handle the response
                 let data;
                 try {
-                    // Await for the response and check if it is ok
-                    let res = await fetch("/api/stripe/createSession", options);
-                    if (res.ok) {
-                        // Parse the response as json and return it
-                        data = await res.json();
+                    // Send the request and get the response
+                    let response = await axios.post(
+                        "/api/stripe/createSession",
+                        {
+                            items: cart.items,
+                            userEmail: user.user.emailAddresses[0].emailAddress,
+                        }
+                    );
+
+                    // Check if the response is successful
+                    if (response.status === 200) {
+                        // Get the data from the response
+                        data = response.data;
                     } else {
-                        // Throw an error with the status code and message
-                        throw new Error(`${res.status}: ${res.statusText}`);
+                        // Handle errors here, you can customize this part
+                        throw new Error(
+                            `Request failed with status ${response.status}`
+                        );
                     }
                 } catch (error) {
                     // Catch any errors and log them to the console
@@ -72,7 +72,7 @@ const CartPage = () => {
                 </h1>
                 <Separator className="my-6" />
                 <div className="flex flex-col w-full gap-y-4 overflow-auto">
-                    {cart?.items?.length !== 0  ? (
+                    {cart?.items?.length !== 0 ? (
                         cart.items.map((item) => {
                             return <CartItem item={item} key={item.id} />;
                         })
@@ -103,7 +103,7 @@ const CartPage = () => {
 
                 <Button
                     onClick={checkout}
-                    disabled={cart?.items?.length === 0 }
+                    disabled={cart?.items?.length === 0}
                     className="bg-blue-600 w-full mx-auto font-semibold text-xl text-white hover:bg-blue-700 shadow-lg"
                     size="lg"
                 >

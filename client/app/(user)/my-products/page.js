@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 
+import axios from "axios";
+
 const Page = () => {
     // Define the states for loading, error and data
     const [loading, setLoading] = useState(true);
@@ -21,17 +23,19 @@ const Page = () => {
         // Define an async function to fetch the data
         const fetchData = async () => {
             try {
-                // // Use fetch with await to get the response
-                // const response = await fetch(`${process.env.SERVER_URL}/api/users/products`);
-                // // Check if the response is ok
-                // if (response.ok) {
-                //   // Convert the response to JSON and set the data state
-                //   const data = await response.json();
-                //   setData(data);
+                // // Use Axios with await to get the response
+                // const response = await axios.get(`${process.env.SERVER_URL}/api/users/products`);
+                // // Check if the response is successful
+                // if (response.status === 200) {
+                //     // Get the data from the response and set the data state
+                //     const data = response.data;
+                //     setData(data);
                 // } else {
-                //   // Throw an error with the status text
-                //   throw new Error(response.statusText);
+                //     // Handle errors with the appropriate message
+                //     throw new Error(`Request failed with status ${response.status}`);
                 // }
+
+                // For demonstration purposes, we'll set some sample data here
                 setData([
                     // {
                     //     id: 1,
@@ -59,7 +63,7 @@ const Page = () => {
                     // },
                 ]);
             } catch (error) {
-                console.log(error)
+                console.log(error);
             } finally {
                 setLoading(false);
             }

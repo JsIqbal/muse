@@ -25,9 +25,9 @@ const Product2 = () => {
     }
 
     return (
-        <div className="w-screen py-8 2xl:px-0 px-8 bg-[#F2F6F9]">
+        <div className="w-screen py-8 2xl:px-0 px-8 bg-[#F2F6F9]  animate-fade-in-down">
             <div className="flex lg:flex-row flex-col justify-between items-center container">
-                <div className="lg:w-[50%] flex justify-start w-max md:py-[7%] py-[9%]">
+                <div className="lg:w-[50%] flex justify-start w-max md:py-[7%] py-[9%] animate-fade-in-down">
                     <div className="relative rounded-md">
                         <Image
                             src="/images/dummy-pic-1.PNG"
@@ -37,7 +37,7 @@ const Product2 = () => {
                         />
                     </div>
                 </div>
-                <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8">
+                <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8 animate-fade-in-right">
                     <div className="flex flex-col gap-y-4">
                         <h1 className="text-3xl font-bold text-gray-900">
                             JETPack - Empowering Java Development and

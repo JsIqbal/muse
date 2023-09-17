@@ -27,7 +27,7 @@ const JETPackTabs = () => {
     };
 
     return (
-        <div className="w-full my-10 bg-gray-100 bg-opacity-93">
+        <div className="w-full my-10 bg-gray-100 bg-opacity-93 animate-fade-in-down">
             <CommonTabs tabsData={tabsData} />
         </div>
     );

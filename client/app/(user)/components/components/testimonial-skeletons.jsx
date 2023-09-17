@@ -3,9 +3,12 @@ import { Skeleton } from "@/components/ui/skeleton"; // import the Skeleton comp
 
 const TestimonialSkeletons = () => {
     return (
-        <div className="w-full flex p-10 justify-between gap-8">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
-                <div key={index} className="rounded-lg shadow min-w-[30%] max-w-[30%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between">
+        <div className="w-full flex p-10 justify-between gap-8  flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+            {[1, 2, 3].map((index) => (
+                <div
+                    key={index}
+                    className=" animate-fade-in-down  rounded-lg shadow  w-max  max-w-[80%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between"
+                >
                     <div className="-ml-4">
                         <svg
                             className="w-8 opacity-25 text-indigo-500"

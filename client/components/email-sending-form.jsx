@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 // Define the schema for the form data
 const schema = z.object({
@@ -25,26 +26,19 @@ const EmailForm = () => {
     // Define the onSubmit function
     // Define the onSubmit function
     const onSubmit = async (data) => {
-        // Save or console.log the data
-
         // Display a loading toast
         toast.loading("Sending email");
+
         // Define the API URL
         const API_URL = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/contact-us`;
-        // Define the options for the fetch request
-        const options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        };
-        // Try to send the data to the API with fetch
+
+        // Try to send the data to the API with Axios
         try {
-            // Await for the response
-            const response = await fetch(API_URL, options);
-            // Check if the response is ok
-            if (response.ok) {
+            // Send a POST request with Axios and await for the response
+            const response = await axios.post(API_URL, data);
+
+            // Check if the response is successful (status 200)
+            if (response.status === 200) {
                 toast.dismiss();
                 // Display a success toast
                 toast.success("Your Email was sent successfully!");
@@ -55,8 +49,8 @@ const EmailForm = () => {
         } catch (error) {
             toast.dismiss();
             // Display an error toast
-            console.log(error);
-            toast.error(`An error occurred during sending the email`);
+            console.error(error);
+            toast.error("An error occurred during sending the email");
         }
     };
 
