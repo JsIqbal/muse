@@ -4,11 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const OurProducts = () => {
-
-    
-
     return (
-        <div className="flex flex-col gap-y-12 container items-center">
+        <div className="flex flex-col gap-y-12 container items-center ">
             <h1 className="text-gray-800 text-4xl lg:text-5xl font-bold">
                 Our Products
             </h1>
@@ -16,7 +13,7 @@ const OurProducts = () => {
 
             <Link
                 href="/products"
-                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg "
+                className="animate-fade-in-left rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg "
             >
                 <div className="flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between ">
                     <Image
@@ -36,7 +33,7 @@ const OurProducts = () => {
 
             <Link
                 href="/products"
-                className="rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg "
+                className="animate-fade-in-left rounded-lg py-6 px-8  lg:w-[80%] w-full bg-white hover:scale-[101%] transition-transform duration-150 shadow-lg "
             >
                 <div className="flex md:flex-row flex-col gap-y-6 gap-x-16 items-center justify-between ">
                     <Image

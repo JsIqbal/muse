@@ -3,17 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/spinner";
+import axios from "axios";
 
 const DownloadCard = () => {
     const [downloads, setDownloads] = useState("10.5k");
     useEffect(() => {
         const fetchDownloads = async () => {
             try {
-                const response = await fetch(
+                // Send a GET request to the API endpoint
+                const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/download`
                 );
-                if (response.ok) {
-                    const data = await response.json();
+                if (response.status === 200) {
+                    // Get the data from the response
+                    const data = response.data;
                     setDownloads(data.totalDownloads);
                 } else {
                     console.error("Error fetching downloads:", response.status);
@@ -24,6 +27,7 @@ const DownloadCard = () => {
                 return;
             }
         };
+
         fetchDownloads();
     }, []);
 

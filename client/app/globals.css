@@ -81,37 +81,66 @@ html {
 
 @keyframes fadeInLeft {
     from {
-      opacity: 0;
-      transform: translateX(-30px);
+        opacity: 0;
+        transform: translateX(-30px);
     }
     to {
-      opacity: 1;
-      transform: translateX(0);
+        opacity: 1;
+        transform: translateX(0);
     }
-  }
+}
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 @keyframes fadeInUp {
     from {
-      opacity: 0;
-      transform: translateY(-30px);
+        opacity: 0;
+        transform: translateY(-30px);
     }
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-
+}
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* For curvey edge in div */
-.curvey-top-bottom{
-    --mask:
-      radial-gradient(55.34px at 50% 76.50px,#000 99%,#0000 101%) calc(50% - 60px) 0/120px 51% repeat-x,
-      radial-gradient(55.34px at 50% -46.5px,#0000 99%,#000 101%) 50% 30px/120px calc(51% - 30px) repeat-x,
-      radial-gradient(55.34px at 50% calc(100% - 76.50px),#000 99%,#0000 101%) calc(50% - 60px) 100%/120px 51% repeat-x,
-      radial-gradient(55.34px at 50% calc(100% + 46.50px),#0000 99%,#000 101%) 50% calc(100% - 30px)/120px calc(51% - 30px) repeat-x;
+.curvey-top-bottom {
+    --mask: radial-gradient(55.34px at 50% 76.5px, #000 99%, #0000 101%)
+            calc(50% - 60px) 0/120px 51% repeat-x,
+        radial-gradient(55.34px at 50% -46.5px, #0000 99%, #000 101%) 50% 30px/120px
+            calc(51% - 30px) repeat-x,
+        radial-gradient(
+                55.34px at 50% calc(100% - 76.5px),
+                #000 99%,
+                #0000 101%
+            )
+            calc(50% - 60px) 100%/120px 51% repeat-x,
+        radial-gradient(
+                55.34px at 50% calc(100% + 46.5px),
+                #0000 99%,
+                #000 101%
+            )
+            50% calc(100% - 30px) / 120px calc(51% - 30px) repeat-x;
     -webkit-mask: var(--mask);
-            mask: var(--mask);
-  }
+    mask: var(--mask);
+}
 
 .custom-top {
     margin-top: 160px !important;
