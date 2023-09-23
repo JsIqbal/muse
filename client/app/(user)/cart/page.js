@@ -37,6 +37,7 @@ const CartPage = () => {
                         {
                             items: cart.items,
                             userEmail: user.user.emailAddresses[0].emailAddress,
+                            userId: user.user.id,
                         }
                     );
 

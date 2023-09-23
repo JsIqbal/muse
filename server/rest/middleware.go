@@ -1,6 +1,7 @@
 package rest
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -12,7 +13,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/stripe/stripe-go/webhook"
+	"github.com/stripe/stripe-go/v72/webhook"
 )
 
 const (
@@ -114,14 +115,145 @@ func corsMiddleware(c *gin.Context) {
 	c.Next()
 }
 
+// func stripeWebhookMiddleware() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		secretKey := config.GetApp().STRIPE
+// 		stripeSignature := c.GetHeader("Stripe-Signature")
+
+// 		body, err := c.GetRawData()
+// 		if err != nil {
+// 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to read request body"})
+// 			c.Abort()
+// 			return
+// 		}
+
+// 		// Print the request body for debugging
+// 		fmt.Println("Request Body:", string(body))
+
+// 		// Attempt to construct the Stripe event
+// 		event, err := webhook.ConstructEvent(body, stripeSignature, secretKey)
+// 		if err != nil {
+// 			fmt.Println("Error constructing Stripe event:", err.Error()) // Log the error
+// 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Stripe signature"})
+// 			c.Abort()
+// 			return
+// 		}
+
+// 		// If you reach this point, the Stripe signature is valid
+// 		fmt.Println("------------------event.Type------------------", event.Type)
+// 		// Check if the event type is "invoice"
+// 		if event.Type == "invoice.created" {
+// 			// Handle the "invoice" event here
+// 			fmt.Println("Handling invoice event")
+// 			// You can perform any desired logic for the "invoice" event
+// 		}
+
+// 		fmt.Println("------------------event------------------", event)
+// 		c.Next()
+// 	}
+// }
+
+// func stripeWebhookMiddleware() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		secretKey := config.GetApp().STRIPE
+// 		stripeSignature := c.GetHeader("Stripe-Signature")
+
+// 		body, err := c.GetRawData()
+// 		if err != nil {
+// 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to read request body"})
+// 			c.Abort()
+// 			return
+// 		}
+
+// 		// Print the request body for debugging
+// 		fmt.Println("Request Body:", string(body))
+
+// 		// Attempt to construct the Stripe event
+// 		event, err := webhook.ConstructEvent(body, stripeSignature, secretKey)
+// 		if err != nil {
+// 			fmt.Println("Error constructing Stripe event:", err.Error()) // Log the error
+// 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Stripe signature"})
+// 			c.Abort()
+// 			return
+// 		}
+
+// 		// If you reach this point, the Stripe signature is valid
+// 		fmt.Println("------------------event.Type------------------", event.Type)
+
+// 		// Check if the event type is "checkout.session.completed"
+// 		if event.Type == "checkout.session.completed" {
+// 			// Parse the JSON request body to extract metadata
+// 			var requestBody map[string]interface{}
+// 			if err := json.Unmarshal(body, &requestBody); err != nil {
+// 				fmt.Println("Error parsing JSON request body:", err.Error())
+// 				c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing request body"})
+// 				c.Abort()
+// 				return
+// 			}
+
+// 			// Extract and print the metadata field
+// 			metadata := requestBody["data"].(map[string]interface{})["object"].(map[string]interface{})["metadata"]
+// 			fmt.Println("------------------metadata------------------", metadata)
+// 		}
+
+// 		c.Next()
+// 	}
+// }
+
+// func stripeWebhookMiddleware() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		secretKey := config.GetApp().STRIPE
+// 		stripeSignature := c.GetHeader("Stripe-Signature")
+
+// 		body, err := c.GetRawData()
+// 		if err != nil {
+// 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to read request body"})
+// 			c.Abort()
+// 			return
+// 		}
+
+// 		// Print the request body for debugging
+// 		// fmt.Println("Request Body:", string(body))
+
+// 		// Attempt to construct the Stripe event
+// 		event, err := webhook.ConstructEvent(body, stripeSignature, secretKey)
+// 		if err != nil {
+// 			fmt.Println("Error constructing Stripe event:", err.Error()) // Log the error
+// 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Stripe signature"})
+// 			c.Abort()
+// 			return
+// 		}
+
+// 		// If you reach this point, the Stripe signature is valid
+// 		// fmt.Println("------------------event.Type------------------", event.Type)
+
+// 		// Check if the event type is "checkout.session.completed"
+// 		if event.Type == "checkout.session.completed" {
+// 			// Parse the JSON request body to extract metadata
+// 			var requestBody map[string]interface{}
+// 			if err := json.Unmarshal(body, &requestBody); err != nil {
+// 				fmt.Println("Error parsing JSON request body:", err.Error())
+// 				c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing request body"})
+// 				c.Abort()
+// 				return
+// 			}
+
+// 			// Extract the metadata field
+// 			metadata := requestBody["data"].(map[string]interface{})["object"].(map[string]interface{})["metadata"]
+
+// 			// Set the metadata as a context value
+// 			c.Set("metadata", metadata)
+// 		}
+
+// 		c.Next()
+// 	}
+// }
+
 func stripeWebhookMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Check if the request contains a valid Stripe signature header
-		// Replace 'YourSecretKey' with your actual Stripe secret key
 		secretKey := config.GetApp().STRIPE
 		stripeSignature := c.GetHeader("Stripe-Signature")
 
-		// Retrieve the request body for validation
 		body, err := c.GetRawData()
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to read request body"})
@@ -129,20 +261,34 @@ func stripeWebhookMiddleware() gin.HandlerFunc {
 			return
 		}
 
-		// Verify the Stripe signature
+		// Attempt to construct the Stripe event
 		event, err := webhook.ConstructEvent(body, stripeSignature, secretKey)
 		if err != nil {
+			fmt.Println("Error constructing Stripe event:", err.Error()) // Log the error
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid Stripe signature"})
 			c.Abort()
 			return
 		}
 
-		fmt.Println("------------------------------------", event)
+		// Check if the event type is "checkout.session.completed"
+		if event.Type == "checkout.session.completed" {
+			// Parse the JSON request body to extract metadata
+			var requestBody map[string]interface{}
+			if err := json.Unmarshal(body, &requestBody); err != nil {
+				fmt.Println("Error parsing JSON request body:", err.Error())
+				c.JSON(http.StatusInternalServerError, gin.H{"error": "Error parsing request body"})
+				c.Abort()
+				return
+			}
 
-		// You can access the Stripe event if needed
-		// stripeEvent := event.Data.Object
+			// Extract the metadata field
+			metadata := requestBody["data"].(map[string]interface{})["object"].(map[string]interface{})["metadata"]
 
-		// Continue processing the request
+			// Set the metadata as a context value
+			c.Set("metadata", metadata)
+		}
+
+		// Continue to the next middleware
 		c.Next()
 	}
 }

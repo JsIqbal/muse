@@ -11,9 +11,12 @@ const Product1 = () => {
     const [showMore, setShowMore] = useState(true);
     const cart = useCart();
     const data = {
-        id: "prod_OQqVfPPkSOgzHj",
+        id: `${process.env.NEXT_PUBLIC_PROD_ONE}`,
         name: "Muse",
-        price: { id: "price_1NdyopHyjaNCI3rEeEKN4r1L", dollar: 20 },
+        price: {
+            id: `${process.env.NEXT_PUBLIC_PROD_ONE_PRICE_ID}`,
+            dollar: 20,
+        },
         images: [
             "https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfNVR5THV6UWVQMG9zdUlkS3g5MW9JQ2FZ00NAoHmUpY",
         ],
@@ -24,9 +27,7 @@ const Product1 = () => {
     }
 
     return (
-        <div
-            className="w-screen  bg-white flex flex-col py-8 2xl:px-0 px-8"
-        >
+        <div className="w-screen  bg-white flex flex-col py-8 2xl:px-0 px-8">
             <div className="flex lg:flex-row flex-col justify-between items-center container">
                 <div className="lg:w-[50%] w-full flex flex-col justify-center items-start gap-y-8 animate-fade-in-left">
                     <div className="flex flex-col gap-y-4">
