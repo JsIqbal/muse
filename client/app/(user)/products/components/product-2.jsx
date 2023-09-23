@@ -12,9 +12,12 @@ const Product2 = () => {
     const [showMore, setShowMore] = useState(true);
     const cart = useCart();
     const data = {
-        id: "prod_OQqfX0s5HDDSZI",
+        id: `${process.env.NEXT_PUBLIC_PROD_TWO}`,
         name: "JETPack",
-        price: { id: "price_1NdyyYHyjaNCI3rE85pm3uK6", dollar: 20 },
+        price: {
+            id: `${process.env.NEXT_PUBLIC_PROD_TWO_PRICE_ID}`,
+            dollar: 12,
+        },
         images: [
             "https://files.stripe.com/links/MDB8YWNjdF8xTmR5ZGlIeWphTkNJM3JFfGZsX3Rlc3RfdjlFWkZaWmVBRU93b2VUTTN2dVNxRk0x00fWNkumMi",
         ],

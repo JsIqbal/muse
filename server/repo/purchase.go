@@ -1,7 +1,9 @@
 package repo
 
 import (
+	"fmt"
 	"go-rest/svc"
+
 	"gorm.io/gorm"
 )
 
@@ -15,8 +17,8 @@ func NewPurchaseRepo(db *gorm.DB) svc.PurchaseRepo {
 	}
 }
 
-
 func (r *purchaseRepo) CreatePurchase(purchase *svc.Purchase) error {
+	fmt.Println("-----------------------came here --------------------")
 	if err := r.db.Create(purchase).Error; err != nil {
 		return err
 	}

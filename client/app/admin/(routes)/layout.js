@@ -6,15 +6,18 @@ import Sidebar from "./components/sidebar";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import useLogout from "@/hooks/use-logout";
 
 const DashboardLayout = ({ children }) => {
     const router = useRouter();
     const [loaded, setLoaded] = useState(false);
 
-    function handleLogout() {
-        localStorage.removeItem("adminToken");
+    const logout = useLogout();
+
+    const handleLogout = async () => {
+        await logout();
         router.push("/");
-    }
+    };
 
     useEffect(() => {
         let token = Cookies.get("token");
