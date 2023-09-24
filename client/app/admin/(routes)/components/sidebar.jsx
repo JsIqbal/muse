@@ -25,7 +25,7 @@ const Sidebar = () => {
                     </div>
                     <h1
                         className={cn(
-                            "text-2xl font-bold",
+                            "text-xl font-bold",
                             montsserrat.className
                         )}
                     >

@@ -14,10 +14,11 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import LoadingSpinner from "../components/loading";
 import axios from "axios";
+import Image from "next/image";
 
-export function UsersTable() {
-    const [users, setUsers] = useState([]);
-    const [loadingUsers, setLoadingUsers] = useState(true);
+export function ReviewsTable() {
+    const [reviews, setReviews] = useState([]);
+    const [loadingReviews, setLoadingReviews] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -25,7 +26,7 @@ export function UsersTable() {
             try {
                 // Send a GET request to the API endpoint with Axios
                 const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/admins/users`,
+                    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/review`,
                     {
                         withCredentials: true,
                     }
@@ -39,8 +40,8 @@ export function UsersTable() {
                 // Check if the response is successful (status 200)
                 if (response.status === 200) {
                     // Get the data from the response
-                    const data = response.data;
-                    setUsers(data);
+                    const { reviews } = response.data;
+                    setReviews(reviews);
                 } else {
                     // Log and display an error message if the response is not OK
                     console.error(response.statusText);
@@ -53,40 +54,51 @@ export function UsersTable() {
         };
 
         fetchData();
-        setLoadingUsers(false);
+        setLoadingReviews(false);
     }, []);
 
-    return loadingUsers || !Array.isArray(users) ? (
+    return loadingReviews || !Array.isArray(reviews) ? (
         <LoadingSpinner />
     ) : (
-        <Table className="w-full">
+        <Table>
             <TableCaption>
-                {users.length === 0 && (
+                {reviews.length === 0 && (
                     <h1 className="py-6 text-muted-foreground">
-                        No Users found
+                        No reviews found
                     </h1>
                 )}
             </TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-[100px]">Email</TableHead>
-                    <TableHead className="w-[100px]">First Name</TableHead>
-                    <TableHead className="w-[100px]">Last Name</TableHead>
-                    <TableHead className="w-max text-right">
-                        UserId
-                    </TableHead>
+                    <TableHead className="w-min">Pic</TableHead>
+                    <TableHead className="w-min">Name</TableHead>
+                    <TableHead className="w-min">Role</TableHead>
+                    <TableHead className="w-max text-right ">Review</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {users.map((user) => (
-                    <TableRow key={user.user_id}>
-                        <TableCell className="font-medium">
-                            {user.email}
+                {reviews.map((review) => (
+                    <TableRow key={review.ID}>
+                        <TableCell className="font-medium relative w-12 h-12 ">
+                            <Image
+                                fill
+                                alt="Image"
+                                src={
+                                    review.pic ||
+                                    "https://imgv3.fotor.com/images/blog-richtext-image/10-profile-picture-ideas-to-make-you-stand-out.jpg"
+                                }
+                                objectFit="cover"
+                                className="rounded-full border border-indigo-400 m-1"
+                            />
                         </TableCell>
-                        <TableCell>{"Frist name"}</TableCell>
-                        <TableCell>{"last name"}</TableCell>
-                        <TableCell className="text-right">
-                            {user.user_id}
+                        <TableCell className="font-medium">
+                            {review.name}
+                        </TableCell>
+                        <TableCell className="w-max break-words">
+                            {review.role}
+                        </TableCell>
+                        <TableCell className="text-right break-all">
+                            {review.review}
                         </TableCell>
                     </TableRow>
                 ))}
@@ -95,4 +107,4 @@ export function UsersTable() {
     );
 }
 
-export default UsersTable;
+export default ReviewsTable;

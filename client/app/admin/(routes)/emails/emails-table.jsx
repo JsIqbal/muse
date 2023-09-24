@@ -69,7 +69,7 @@ export function EmailsTable() {
             </TableCaption>
             <TableHeader>
                 <TableRow>
-                    <TableHead className="w-max">Email</TableHead>
+                    <TableHead className="w-min">Email</TableHead>
                     <TableHead className="w-min">Subject</TableHead>
                     <TableHead className="w-max text-right ">
                         Message

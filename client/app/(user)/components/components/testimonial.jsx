@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Testimonial = ({ testimonial }) => {
     return (
-        <li className="rounded-lg shadow w-max  max-w-[80%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between animate-fade-in-down">
+        <li className="rounded-lg shadow w-[80%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between animate-fade-in-down">
             <div className="-ml-4">
                 <svg
                     className="w-8 opacity-25 text-indigo-500"
@@ -31,7 +31,7 @@ const Testimonial = ({ testimonial }) => {
                                 "https://imgv3.fotor.com/images/blog-richtext-image/10-profile-picture-ideas-to-make-you-stand-out.jpg"
                             }
                             objectFit="cover"
-                            className="rounded-full border-2 border-indigo-400"
+                            className="rounded-full border border-indigo-400"
                         />
                     </div>
                     <div className="ml-4">
