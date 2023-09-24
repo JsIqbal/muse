@@ -7,11 +7,12 @@ import { ArrowDown, ArrowRight } from "@/node_modules/lucide-react";
 import { useState } from "react";
 
 import OurProducts from "./components/our-products";
+import AboutSection from "./components/about-section";
 
 const About = () => {
     const [buttonCliked, setButtonCLicked] = useState(false);
     return (
-        <div className="curvey-top-bottom  flex flex-col gap-y-16 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] pb-28 pt-20  2xl:px-0 md:px-10 px-4">
+        <div className="curvey-top-bottom  flex flex-col gap-y-24 justify-center items-center w-screen h-auto flex-grow bg-[#F2F6F9] pb-28 pt-20  2xl:px-0 md:px-10 px-4">
             <div
                 className={cn(
                     " hidden xl:flex flex-col  gap-y-2 justify-center items-center animate-pulse",
@@ -32,30 +33,8 @@ const About = () => {
                     <ArrowDown className="text-white" />
                 </Button>
             </div>
-
-            {/* <div className="container flex-grow h-auto rounded-lg shadow-xl p-10 bg-white">
-                <h1 className="text-3xl font-semibold mb-4">About Us</h1>
-                <p className="text-gray-700">
-                    Welcome to Musesoft! We are a team of passionate and
-                    experienced developers who offer a diverse range of
-                    cutting-edge software solutions designed to enhance your
-                    development and automation experiences.
-                </p>
-                <p className="text-gray-700 mt-2">
-                    Whether you need a powerful scripting tool, a fast and
-                    reliable Java environment, or anything in between, we have
-                    the perfect software product for you. Our products are easy
-                    to use, highly customizable, and compatible with various
-                    platforms and frameworks.
-                </p>
-
-                <p className="text-gray-700 mt-4">
-                    Choose innovation and efficiency with our software products
-                    that redefine the way you develop, automate, and optimize
-                    your projects.
-                </p>
-            </div> */}
             <OurProducts />
+            <AboutSection />
         </div>
     );
 };

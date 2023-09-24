@@ -7,7 +7,7 @@ const TestimonialSkeletons = () => {
             {[1, 2, 3].map((index) => (
                 <div
                     key={index}
-                    className=" animate-fade-in-down  rounded-lg shadow  w-max  max-w-[80%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between"
+                    className=" animate-fade-in-down  rounded-lg shadow  w-full p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between"
                 >
                     <div className="-ml-4">
                         <svg

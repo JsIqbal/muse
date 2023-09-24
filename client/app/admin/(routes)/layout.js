@@ -11,7 +11,6 @@ import useLogout from "@/hooks/use-logout";
 const DashboardLayout = ({ children }) => {
     const router = useRouter();
     const [loaded, setLoaded] = useState(false);
-
     const logout = useLogout();
 
     const handleLogout = async () => {
