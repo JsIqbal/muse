@@ -38,7 +38,10 @@ const ReviewForm = ({ setIsOpen }) => {
             // Send the data to the API endpoint
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/review/${user?.user?.id}`,
-                data,
+                {
+                    ...data,
+                    pic: user.user.imageUrl,
+                },
                 {
                     headers: {
                         "Content-Type": "application/json",

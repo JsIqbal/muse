@@ -11,6 +11,7 @@ export default authMiddleware({
         "/admin/login",
         "/admin/users",
         "/admin/emails",
+        "/admin/reviews",
     ],
 });
 

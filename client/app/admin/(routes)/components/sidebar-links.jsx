@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import {
     LayoutDashboard,
     Mails,
+    MessagesSquareIcon,
     Users2Icon,
 } from "@/node_modules/lucide-react";
 
@@ -27,6 +28,12 @@ const SidebarLinks = () => {
             icon: Mails,
             href: "/admin/emails",
             color: "text-green-500",
+        },
+        {
+            label: "Reviews",
+            icon: MessagesSquareIcon,
+            href: "/admin/reviews",
+            color: "text-yellow-500"
         },
     ];
 
