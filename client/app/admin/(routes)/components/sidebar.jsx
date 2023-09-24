@@ -17,7 +17,7 @@ const Sidebar = () => {
         <div className="space-y-4 py-2 flex flex-col h-full bg-[#111827] text-white">
             <div className="px-2 flex flex-col justify-start items-start flex-1">
                 <Link
-                    href="/dashboard"
+                    href="/admin"
                     className="flex w-full items-center justify-center gap-4 mb-16 mt-6"
                 >
                     <div className="relative w-16 h-8 ">

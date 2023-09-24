@@ -8,8 +8,9 @@ export default authMiddleware({
         "/",
         "/products",
         "/admin",
+        "/admin/login",
         "/admin/users",
-        "/admin/purchases",
+        "/admin/emails",
     ],
 });
 
