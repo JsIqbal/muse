@@ -23,6 +23,8 @@ func serveRest() {
 	tokenConfig := config.GetToken()
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", appConfig.DBUser, appConfig.DBPass, appConfig.DBHost, appConfig.DBPort, appConfig.DBName)
+	// dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", "root", "123456", "db", "3306", "muse")
+
 	db := database.NewDatabase(dsn)
 	userRepo := repo.NewUserRepo(db)
 	dashRepo := repo.NewDashboardRepo(db)

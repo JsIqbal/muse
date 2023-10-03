@@ -10,17 +10,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// @Summary Create a new user
-// @Description Create a new user with user ID and email address
-// @Tags user
-// @Accept json
-// @Produce json
-// @Param eventData body EventData true "Event data"
-// @Success 200 {object} SuccessResponse
-// @Failure 400 {object} ErrorResponse
-// @Failure 401 {object} ErrorResponse
-// @Failure 409 {object} ErrorResponse
-// @Router /api/users/create [post]
 func (s *Server) createUser(ctx *gin.Context) {
 	var eventData EventData
 
@@ -78,12 +67,6 @@ func (s *Server) createUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "User created successfully"})
 }
 
-// @Summary Get products
-// @Description Get a list of all products
-// @Tags user
-// @Produce json
-// @Success 200 {array} Product
-// @Router /api/users/products [get]
 func (s *Server) getProducts(ctx *gin.Context) {
 	// Get all products from the service
 	products := s.svc.GetProducts()
@@ -91,80 +74,6 @@ func (s *Server) getProducts(ctx *gin.Context) {
 	// Return the products as JSON response
 	ctx.JSON(http.StatusOK, products)
 }
-
-// @Summary Create a purchase
-// @Description Create a purchase record for a user
-// @Tags user
-// @Accept json
-// @Produce json
-// @Param request body PurchaseRequest true "Purchase Request Body"
-// @Success 200 {object} SuccessResponse
-// @Failure 400 {object} ErrorResponse
-// @Router /api/users/purchase [post]
-// func (s *Server) purchase(ctx *gin.Context) {
-// 	var request PurchaseRequest
-// 	if err := ctx.ShouldBindJSON(&request); err != nil {
-// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
-// 		return
-// 	}
-
-// 	for _, productID := range request.ProductIDs {
-// 		err := s.svc.CreatePurchase(request.UserID, productID)
-// 		if err != nil {
-// 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create purchase"})
-// 			return
-// 		}
-// 	}
-
-// 	ctx.JSON(http.StatusOK, gin.H{"message": "Purchases successfully created"})
-// }
-
-// func (s *Server) purchase(ctx *gin.Context) {
-// 	// Retrieve metadata from the context
-// 	metadata, exists := ctx.Get("metadata")
-// 	if !exists {
-// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Metadata not found in context"})
-// 		return
-// 	}
-
-// 	// Check if metadata is a map
-// 	metadataMap, ok := metadata.(map[string]interface{})
-// 	if !ok {
-// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid metadata format"})
-// 		return
-// 	}
-
-// 	// Extract and convert the "line_items" value to JSON
-// 	lineItems, lineItemsExists := metadataMap["line_items"]
-// 	if !lineItemsExists {
-// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "line_items not found in metadata"})
-// 		return
-// 	}
-
-// 	lineItemsJSON, err := json.Marshal(lineItems)
-// 	if err != nil {
-// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to marshal line_items to JSON"})
-// 		return
-// 	}
-
-// 	fmt.Println("------------------------metadata in rest", string(lineItemsJSON))
-
-// 	var request PurchaseRequest
-// 	if err := ctx.ShouldBindJSON(&request); err != nil {
-// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
-// 		return
-// 	}
-
-// 	for _, productID := range request.ProductIDs {
-// 		err := s.svc.CreatePurchase(request.UserID, productID)
-// 		if err != nil {
-// 			ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create purchase"})
-// 			return
-// 		}
-// 	}
-
-// 	ctx.JSON(http.StatusOK, gin.H{"message": "Purchases successfully created"})
-// }
 
 func (s *Server) purchase(ctx *gin.Context) {
 	// Retrieve metadata from the context
@@ -207,23 +116,10 @@ func (s *Server) purchase(ctx *gin.Context) {
 
 	fmt.Println("-------------------------------tempRequest----------------", tempRequest)
 
-	// Bind the tempRequest with the request
 	request := PurchaseRequest{
 		UserID:     tempRequest.UserID,
 		ProductIDs: tempRequest.ProductIDs,
 	}
-
-	// Ensure that the request body is still readable before calling ShouldBindJSON
-	// if ctx.Request.Body == nil || ctx.Request.Body == http.NoBody {
-	// 	ctx.JSON(http.StatusBadRequest, gin.H{"error": "Request body is empty or closed"})
-	// 	return
-	// }
-
-	// if err := ctx.ShouldBindJSON(&request); err != nil {
-	// 	fmt.Println("-------------------------------problem in ShouldBindJSON----------------", err)
-	// 	ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request"})
-	// 	return
-	// }
 
 	for _, productID := range request.ProductIDs {
 		err := s.svc.CreatePurchase(request.UserID, productID)
@@ -236,14 +132,6 @@ func (s *Server) purchase(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"message": "Purchases successfully created"})
 }
 
-// logout godoc
-// @Summary Log out the admin
-// @Description Log out the user by removing the token cookie from the browser
-// @Tags admin
-// @Accept json
-// @Produce json
-// @Success 200 {object} SuccessResponse
-// @Router /api/users/logout [post]
 func (s *Server) logout(ctx *gin.Context) {
 	ctx.SetCookie("token", "", -1, "/", "", false, true)
 	ctx.JSON(http.StatusOK, gin.H{"message": "Logged out successfully"})
