@@ -39,8 +39,6 @@ func (s *Server) setupRouter() {
 	// log middleware
 	s.router.Use(logger.ModifyContext)
 
-	s.router.Static("/docs", "./docs")
-
 	// healtch check
 	s.router.GET("/api/test", s.test)
 
@@ -73,9 +71,12 @@ func (s *Server) setupRouter() {
 	/*
 		authRoutes.GET("/api/users/download") => purchased items sent over in a zip file
 	*/
-
+	authRoutes.POST("/api/products/upload/:id", s.uploadZipFile)
+	authRoutes.DELETE("/api/products/delete/:id", s.deleteFile)
+	authRoutes.PUT("/api/products/update/:id", s.updateFile)
 }
 
 func (s *Server) Start() error {
 	return s.router.Run(fmt.Sprintf("%s:%s", s.appConfig.Host, s.appConfig.Port))
+	// return s.router.Run(fmt.Sprintf("%s:%s", "0.0.0.0", "3005"))
 }

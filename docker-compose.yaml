@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+    server:
+        build:
+            context: ./server
+            dockerfile: Dockerfile.server
+        container_name: muse_server
+        ports:
+            - "3005:3005"
+        volumes:
+            - ./server:/app
+        depends_on:
+            - db # If your server depends on a database (adjust this as needed)
+
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile.client
+        container_name: muse_client
+        ports:
+            - "3001:3001"
+        volumes:
+            - ./client:/app
+
+    db:
+        container_name: muse_db
+        image: mysql
+        restart: unless-stopped
+        environment:
+            - MYSQL_DATABASE=muse
+            - MYSQL_ROOT_PASSWORD=123456
+        ports:
+            - "3031:3306"
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+volumes:
+    mysql_data:
