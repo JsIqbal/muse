@@ -114,6 +114,9 @@ func (s *service) CreatePurchase(userID string, productID string) error {
 func (s *service) CheckPurchase(userID string) bool {
 	return s.userRepo.Purchase(userID)
 }
+func (s *service) GetProductIDsByUserID(userID string) ([]string, error) {
+	return s.purchaseRepo.GetProductIDsByUserID(userID)
+}
 
 func (s *service) GetAllUsers() []*User {
 	return s.userRepo.Get()

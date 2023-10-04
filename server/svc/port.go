@@ -24,6 +24,7 @@ type ProductRepo interface {
 
 type PurchaseRepo interface {
 	CreatePurchase(purchase *Purchase) error
+	GetProductIDsByUserID(userID string) ([]string, error)
 }
 
 type Service interface {
@@ -49,6 +50,7 @@ type Service interface {
 	FindAdminByUsername(username string) (*Admin, error)
 	GetEmails(ID string) ([]*Contact, error)
 	GetAllUsers() []*User
+	GetProductIDsByUserID(userID string) ([]string, error)
 }
 
 type AdminRepo interface {
