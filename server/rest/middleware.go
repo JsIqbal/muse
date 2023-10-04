@@ -292,3 +292,14 @@ func stripeWebhookMiddleware() gin.HandlerFunc {
 		c.Next()
 	}
 }
+
+func PrintProductIDs(ctx *gin.Context) {
+	// Retrieve the ProductIDs from the context
+	productIDs, _ := ctx.Get("productIDs")
+
+	// Print the ProductIDs for debugging
+	fmt.Println("ProductIDs:", productIDs)
+
+	// Continue to the next middleware or handler
+	ctx.Next()
+}
