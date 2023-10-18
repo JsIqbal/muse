@@ -57,16 +57,17 @@ export function ReviewsTable() {
         setLoadingReviews(false);
     }, []);
 
-    return loadingReviews || !Array.isArray(reviews) ? (
+    return loadingReviews ? (
         <LoadingSpinner />
     ) : (
         <Table>
             <TableCaption>
-                {reviews.length === 0 && (
-                    <h1 className="py-6 text-muted-foreground">
-                        No reviews found
-                    </h1>
-                )}
+                {!Array.isArray(reviews) ||
+                    (reviews.length === 0 && (
+                        <h1 className="py-6 text-muted-foreground">
+                            No reviews found
+                        </h1>
+                    ))}
             </TableCaption>
             <TableHeader>
                 <TableRow>

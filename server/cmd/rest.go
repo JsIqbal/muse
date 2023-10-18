@@ -72,7 +72,7 @@ func createDefaultProducts(db *gorm.DB) {
 	}
 
 	product1 := svc.Product{
-		ProductID:    "prod_OgYx4oNsmeRyaX",
+		ProductID:    "prod_OQqVfPPkSOgzHj",
 		ProductName:  "Muse",
 		ProductDesc:  "Muse empowers you to automate WebSphere, WebLogic, JBoss, Glassfish, and Tomcat Middleware Estates over JMX using Python / Jython. With its user-friendly Eclipse-based Jython Development IDE, you can streamline your workflow and simplify server management.",
 		ProductPrice: 19.99,
@@ -80,7 +80,7 @@ func createDefaultProducts(db *gorm.DB) {
 	}
 
 	product2 := svc.Product{
-		ProductID:    "prod_OgYmezTEK4fZ8Z",
+		ProductID:    "prod_OQqfX0s5HDDSZI",
 		ProductName:  "JETPack",
 		ProductDesc:  "JET Pack offers essential tools for Java developers, encompassing OpenSource JDKs from Java 13 to 19. It includes Visual VM, JConsole, and MissionControl, providing powerful diagnostic capabilities to profile and optimize your code.",
 		ProductPrice: 20.99,

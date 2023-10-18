@@ -11,7 +11,7 @@ const CartItem = ({ item }) => {
 
     return (
         <div className="flex flex-col items-center w-full gap-y-4">
-            <Link href="/products" className="flex w-full justify-between items-center p-4  transition-all duration-150 rounded-md hover:shadow-lg border">
+            <Link href="/products" className="flex w-full justify-between items-center p-4  transition-all duration-150 rounded-md hover:bg-slate-50 border">
                 <div className="flex items-center gap-x-4">
                     <div className="relative h-16 w-16 aspect-square">
                         <Image
@@ -36,7 +36,6 @@ const CartItem = ({ item }) => {
                     </Button>
                 </div>
             </Link>
-            <Separator />
         </div>
     );
 };

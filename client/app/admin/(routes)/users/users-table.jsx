@@ -41,6 +41,7 @@ export function UsersTable() {
                     // Get the data from the response
                     const data = response.data;
                     setUsers(data);
+                    console.log("users------------", data);
                 } else {
                     // Log and display an error message if the response is not OK
                     console.error(response.statusText);
@@ -56,12 +57,12 @@ export function UsersTable() {
         setLoadingUsers(false);
     }, []);
 
-    return loadingUsers || !Array.isArray(users) ? (
+    return loadingUsers ? (
         <LoadingSpinner />
     ) : (
         <Table className="w-full">
             <TableCaption>
-                {users.length === 0 && (
+                {(!Array.isArray(users) || users.length === 0) && (
                     <h1 className="py-6 text-muted-foreground">
                         No Users found
                     </h1>
@@ -72,24 +73,23 @@ export function UsersTable() {
                     <TableHead className="w-[100px]">Email</TableHead>
                     <TableHead className="w-[100px]">First Name</TableHead>
                     <TableHead className="w-[100px]">Last Name</TableHead>
-                    <TableHead className="w-max text-right">
-                        UserId
-                    </TableHead>
+                    <TableHead className="w-max text-right">UserId</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {users.map((user) => (
-                    <TableRow key={user.user_id}>
-                        <TableCell className="font-medium">
-                            {user.email}
-                        </TableCell>
-                        <TableCell>{"Frist name"}</TableCell>
-                        <TableCell>{"last name"}</TableCell>
-                        <TableCell className="text-right">
-                            {user.user_id}
-                        </TableCell>
-                    </TableRow>
-                ))}
+                {Array.isArray(users) &&
+                    users.map((user) => (
+                        <TableRow key={user.user_id}>
+                            <TableCell className="font-medium">
+                                {user.email}
+                            </TableCell>
+                            <TableCell>{"Frist name"}</TableCell>
+                            <TableCell>{"last name"}</TableCell>
+                            <TableCell className="text-right">
+                                {user.user_id}
+                            </TableCell>
+                        </TableRow>
+                    ))}
             </TableBody>
         </Table>
     );
