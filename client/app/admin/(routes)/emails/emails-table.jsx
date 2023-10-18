@@ -56,12 +56,12 @@ export function EmailsTable() {
         setLoadingEmails(false);
     }, []);
 
-    return loadingEmails || !Array.isArray(emails) ? (
+    return loadingEmails ? (
         <LoadingSpinner />
     ) : (
         <Table>
             <TableCaption>
-                {emails.length === 0 && (
+                {!Array.isArray(emails) || emails.length === 0 && (
                     <h1 className="py-6 text-muted-foreground">
                         No Emails found
                     </h1>
