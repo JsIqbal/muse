@@ -13,14 +13,16 @@ var saltOnce = sync.Once{}
 var tokenOnce = sync.Once{}
 
 type Application struct {
-	Host   string `mapstructure:"HOST"`
-	Port   string `mapstructure:"PORT"`
-	DBUser string `mapstructure:"DB_USER"`
-	DBName string `mapstructure:"DB_NAME"`
-	DBPass string `mapstructure:"DB_PASS"`
-	DBHost string `mapstructure:"DB_HOST"`
-	DBPort string `mapstructure:"DB_PORT"`
-	STRIPE string `mapstructure:"STRIPE_SECRET_KEY"`
+	Host    string `mapstructure:"HOST"`
+	Port    string `mapstructure:"PORT"`
+	DBUser  string `mapstructure:"DB_USER"`
+	DBName  string `mapstructure:"DB_NAME"`
+	DBPass  string `mapstructure:"DB_PASS"`
+	DBHost  string `mapstructure:"DB_HOST"`
+	DBPort  string `mapstructure:"DB_PORT"`
+	STRIPE  string `mapstructure:"STRIPE_SECRET_KEY"`
+	ProdOne string `mapstructure:"PROD_ONE"`
+	ProdTwo string `mapstructure:"PROD_TWO"`
 }
 
 type Salt struct {
@@ -45,14 +47,16 @@ func loadApp() error {
 	viper.AutomaticEnv()
 
 	appConfig = &Application{
-		Host:   viper.GetString("HOST"),
-		Port:   viper.GetString("PORT"),
-		DBUser: viper.GetString("DB_USER"),
-		DBName: viper.GetString("DB_NAME"),
-		DBPass: viper.GetString("DB_PASS"),
-		DBHost: viper.GetString("DB_HOST"),
-		DBPort: viper.GetString("DB_PORT"),
-		STRIPE: viper.GetString("STRIPE_SECRET_KEY"),
+		Host:    viper.GetString("HOST"),
+		Port:    viper.GetString("PORT"),
+		DBUser:  viper.GetString("DB_USER"),
+		DBName:  viper.GetString("DB_NAME"),
+		DBPass:  viper.GetString("DB_PASS"),
+		DBHost:  viper.GetString("DB_HOST"),
+		DBPort:  viper.GetString("DB_PORT"),
+		STRIPE:  viper.GetString("STRIPE_SECRET_KEY"),
+		ProdOne: viper.GetString("PROD_ONE"),
+		ProdTwo: viper.GetString("PROD_TWO"),
 	}
 
 	return nil
