@@ -81,7 +81,7 @@ const CartPage = () => {
                         <div className="text-2xl text-center my-6">
                             No items in cart{" "}
                             <Link
-                                href="/"
+                                href="/products"
                                 className="hover:underline text-blue-700 font-medium"
                             >
                                 By products
