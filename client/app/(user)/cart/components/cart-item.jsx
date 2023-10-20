@@ -11,8 +11,8 @@ const CartItem = ({ item }) => {
 
     return (
         <div className="flex flex-col items-center w-full gap-y-4">
-            <Link href="/products" className="flex w-full justify-between items-center p-4  transition-all duration-150 rounded-md hover:bg-slate-50 border">
-                <div className="flex items-center gap-x-4">
+            <div className="flex w-full justify-between items-center p-4  transition-all duration-150 rounded-md hover:bg-slate-50 border">
+                <Link href={"/products"} className="flex items-center gap-x-4">
                     <div className="relative h-16 w-16 aspect-square">
                         <Image
                             src={item.images[0]}
@@ -21,8 +21,8 @@ const CartItem = ({ item }) => {
                         />
                     </div>
 
-                    <p className="text-xl font-semibold">{item.name}</p>
-                </div>
+                    <p className="text-xl font-semibold hover:underline">{item.name}</p>
+                </Link>
                 <div className="flex flex-col justify-between itmes-start font-semibold h-full gap-y-6">
                     <p className="text-end">${item.price.dollar}</p>
                     <Button
@@ -35,7 +35,7 @@ const CartItem = ({ item }) => {
                         Remove
                     </Button>
                 </div>
-            </Link>
+            </div>
         </div>
     );
 };
