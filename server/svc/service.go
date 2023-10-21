@@ -73,6 +73,9 @@ func (s *service) GetUserByID(userID string) (*User, error) {
 func (s *service) CreateReview(userID, name, role, review string) (*Review, error) {
 	return s.userRepo.Review(userID, name, role, review)
 }
+func (s *service) EditReview(userID, name, role, review string) (*Review, error) {
+	return s.userRepo.EditReview(userID, name, role, review)
+}
 
 func (s *service) GetReviews() ([]*Review, error) {
 	return s.userRepo.Reviews()

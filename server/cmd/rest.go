@@ -41,6 +41,7 @@ func serveRest() {
 
 	createDefaultProducts(db)
 	createDefaultAdmin(db)
+	createDefaultReviews(db)
 
 	server, err := rest.NewServer(svc, appConfig, saltConfig, tokenConfig)
 
@@ -134,4 +135,39 @@ func createDefaultAdmin(db *gorm.DB) {
 	}
 
 	log.Println("Default admin created successfully")
+}
+
+func createDefaultReviews(db *gorm.DB) {
+	reviews := []struct {
+		name   string
+		role   string
+		review string
+	}{
+		{"John will", "Manager", "Great employee, highly recommended."},
+		{"Jane Smith", "Supervisor", "Exemplary work ethic and team player."},
+		{"Michael Johnson", "Developer", "Innovative problem solver, asset to the team."},
+		{"Emily Brown", "Designer", "Creative thinker with a keen eye for detail."},
+		{"Chris Davis", "Analyst", "Analytical mind, valuable insights for the business."},
+	}
+
+	for _, r := range reviews {
+		// Generate a random UUID for the user ID
+		userID := uuid.New().String()
+
+		// Create a review with the generated UUID and the specified content
+		review := svc.Review{
+			ID:        userID,
+			Name:      r.name,
+			Role:      r.role,
+			Review:    r.review,
+			CreatedAt: time.Now().Unix(),
+		}
+
+		if err := db.Create(&review).Error; err != nil {
+			log.Printf("Error creating default review: %v", err)
+			continue
+		}
+
+		fmt.Printf("Default review with userID %s created successfully\n", userID)
+	}
 }

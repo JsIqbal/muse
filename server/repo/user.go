@@ -179,6 +179,34 @@ func (r *userRepo) Review(userID, name, role, review string) (*svc.Review, error
 	return newReview, nil
 }
 
+func (r *userRepo) EditReview(userID, name, role, review string) (*svc.Review, error) {
+	// Check if the review exists
+	existingReview, err := r.GetReviewByUserID(userID)
+	if err != nil {
+		// Handle the error (e.g., database query error)
+		fmt.Printf("Error fetching review: %v\n", err)
+		return nil, err
+	}
+
+	if existingReview == nil {
+		// If the review is not found, return an error
+		fmt.Printf("Review with userID %s not found\n", userID)
+		return nil, errors.New("Review not found")
+	}
+
+	// Update the existing review fields
+	existingReview.Name = name
+	existingReview.Role = role
+	existingReview.Review = review
+
+	// Save the changes to the database
+	if err := r.db.Save(existingReview).Error; err != nil {
+		return nil, err
+	}
+
+	return existingReview, nil
+}
+
 func (r *userRepo) Reviews() ([]*svc.Review, error) {
 	var reviews []*svc.Review
 
