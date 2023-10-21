@@ -11,6 +11,7 @@ type UserRepo interface {
 	GetUserByEmail(email string) (*User, error)
 	ContactUs(email, subject, content string) (*Contact, error)
 	Review(userID, name, role, review string) (*Review, error)
+	EditReview(userID, name, role, review string) (*Review, error)
 	Reviews() ([]*Review, error)
 	Purchase(userID string) bool
 
@@ -38,6 +39,7 @@ type Service interface {
 	GetUserByEmail(email string) (*User, error)
 	UserContactUs(email, subject, content string) (*Contact, error)
 	CreateReview(userID, name, role, review string) (*Review, error)
+	EditReview(userID, name, role, review string) (*Review, error)
 	GetReviews() ([]*Review, error)
 	CheckPurchase(userID string) bool
 	TotalDownloads() (int, error)

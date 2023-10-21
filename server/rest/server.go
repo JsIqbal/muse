@@ -65,6 +65,7 @@ func (s *Server) setupRouter() {
 	authRoutes := s.router.Group("/").Use(s.authMiddleware())
 	authRoutes.GET("/api/admins/users", s.users)
 	authRoutes.POST("/api/users/logout", s.logout)
+	authRoutes.PUT("/api/users/review/:id", s.editReview)
 	authRoutes.GET("/api/admins/contact-us", s.getAllMails) // => Admin getting all mails
 
 	// dashboardGroup.GET("/images", getDashboardImages(service))
@@ -78,5 +79,4 @@ func (s *Server) setupRouter() {
 
 func (s *Server) Start() error {
 	return s.router.Run(fmt.Sprintf("%s:%s", s.appConfig.Host, s.appConfig.Port))
-	// return s.router.Run(fmt.Sprintf("%s:%s", "0.0.0.0", "3005"))
 }
