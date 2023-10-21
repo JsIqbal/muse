@@ -4,88 +4,66 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useUser } from "@clerk/clerk-react";
 import { saveAs } from "file-saver";
-import Image from "next/image";
 import Link from "next/link";
 import Spinner from "@/components/spinner";
+import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 
 const BASE = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3004";
 
 export default function Purchases() {
     const { user } = useUser();
-    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
+    const [productData, setProductData] = useState();
 
     useEffect(() => {
-        // check if the user is defined
         if (!user?.id) return;
 
-        // use async/await and try/catch to fetch the products from the API
         const fetchProducts = async () => {
             try {
                 const response = await axios.get(
-                    `${BASE}/api/purchases/product/${user.id}`
+                    `${BASE}/api/purchases/product/${user.id}`,
+                    { responseType: "blob" }
                 );
-                console.log("-------res data", response.data);
-                setProducts(response.data);
+
+                if (response.status === 404) {
+                    setNotFound(true);
+                }
+
+                setProductData(response.data);
             } catch (error) {
                 console.error(error);
             } finally {
-                // set the loading state to false
                 setLoading(false);
             }
         };
 
-        // call the fetchProducts function
         fetchProducts();
     }, [user]);
 
-    // a function to handle the download button click
-    const handleDownload = (product) => {
-        // download the product using file-saver
-        saveAs(product.downloadUrl, product.fileName);
+    const handleDownload = () => {
+        toast.loading("Your tools are being downloaded...");
+
+        try {
+            saveAs(productData, "Test Download 1");
+            toast.dismiss();
+
+            toast.success("Tools downloaded successfully!");
+        } catch (err) {
+            toast.dismiss();
+            toast.error(err);
+        }
     };
 
     return (
-        <div className="container mx-auto p-4">
-            {loading ? (
-                // show a loader while fetching the products
+        <div className="h-max w-full flex justify-center items-center">
+            {loading && (
                 <div className="flex justify-center items-center">
                     <Spinner size={16} />
                 </div>
-            ) : products.length > 0 ? (
-                // show the products in a grid
-                <>
-                    <h1 className="text-2xl font-bold mb-4">Your purchases</h1>
-                    <div className="grid grid-cols-3 gap-4">
-                        {products.map((product) => (
-                            <div
-                                key={product.id}
-                                className="shadow-lg rounded-lg overflow-hidden"
-                            >
-                                <Image
-                                    src={product.imageUrl}
-                                    alt={product.title}
-                                />
-                                <div className="p-4">
-                                    <h2 className="text-xl font-semibold">
-                                        {product.title}
-                                    </h2>
-                                    <p className="text-gray-600">
-                                        {product.description}
-                                    </p>
-                                    <button
-                                        onClick={() => handleDownload(product)}
-                                        className="mt-2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-                                    >
-                                        Download
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </>
-            ) : (
-                // show a message when no product is found
+            )}
+            {notFound && (
                 <div className="col-span-3 gap-3 flex flex-col text-center">
                     <p className="md:text-4xl text-3xl font-bold">
                         No software downloaded
@@ -96,6 +74,20 @@ export default function Purchases() {
                     >
                         Go to cart
                     </Link>
+                </div>
+            )}{" "}
+            {!loading && !notFound && (
+                <div className="flex flex-col gap-6 justify-center items-center px-12 py-8 rounded-lg shadow-lg sm:mx-0 mx-2 border">
+                    <h1 className="md:text-4xl text-3xl font-semibold text-gray-800">
+                        Your tools are ready!
+                    </h1>
+                    <Button
+                        onClick={handleDownload}
+                        className="bg-indigo-600 hover:bg-indigo-800 md:text-2xl text-xl md:p-6 p-4 font-semibold shadow-lg"
+                    >
+                        Download
+                    </Button>
+                    {/* <p className=" text-muted">Thanks for purchasing :)</p> */}
                 </div>
             )}
         </div>

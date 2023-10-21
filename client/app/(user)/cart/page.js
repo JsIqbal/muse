@@ -88,6 +88,14 @@ const CartPage = () => {
                             </Link>
                         </div>
                     )}
+                    {cart?.items?.length !== 0 && (
+                        <Link
+                            href={"/products"}
+                            className="md:text-2xl text-xl text-blue-900 font-medium hover:underline text-center mt-8"
+                        >
+                            Add more to cart
+                        </Link>
+                    )}
                 </div>
             </div>
 
