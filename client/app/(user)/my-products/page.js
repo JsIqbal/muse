@@ -30,7 +30,7 @@ export default function Purchases() {
                 if (response.status === 404) {
                     setNotFound(true);
                 }
-
+                console.log("------------response", response);
                 setProductData(response.data);
             } catch (error) {
                 console.error(error);
