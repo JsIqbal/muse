@@ -194,6 +194,69 @@ func (s *Server) users(ctx *gin.Context) {
 // 	ctx.JSON(http.StatusOK, gin.H{"message": "File uploaded successfully"})
 // }
 
+// func (s *Server) uploadZipFile(ctx *gin.Context) {
+// 	// Set the maximum request size for file uploads to 1 GB (1048576 KB)
+// 	ctx.Request.Body = http.MaxBytesReader(ctx.Writer, ctx.Request.Body, 1048576*1024)
+
+// 	productID := ctx.Param("id")
+
+// 	cwd, err := os.Getwd()
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get current working directory"})
+// 		return
+// 	}
+
+// 	uploadDir := filepath.Join(cwd, "uploads")
+
+// 	err = os.MkdirAll(uploadDir, os.ModePerm)
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create upload directory"})
+// 		return
+// 	}
+
+// 	err = ctx.Request.ParseMultipartForm(10 << 20) // You can increase this value if needed
+// 	if err != nil {
+// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Unable to parse form"})
+// 		return
+// 	}
+
+// 	file, _, err := ctx.Request.FormFile("zip_file")
+// 	if err != nil {
+// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Unable to retrieve file"})
+// 		return
+// 	}
+// 	defer file.Close()
+
+// 	filename := fmt.Sprintf("%s.zip", productID)
+
+// 	filepath := filepath.Join(uploadDir, filename)
+
+// 	// Check if the file already exists
+// 	if _, err := os.Stat(filepath); err == nil {
+// 		// File already exists, handle the error as needed
+// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "File already exists"})
+// 		return
+// 	}
+
+// 	out, err := os.Create(filepath)
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create file on server"})
+// 		return
+// 	}
+// 	defer out.Close()
+
+// 	_, err = io.Copy(out, file)
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to save file on server"})
+// 		return
+// 	}
+
+// 	// You can save the filepath to a database or use it as needed
+// 	// For example, you can associate it with the product ID in your database
+
+// 	ctx.JSON(http.StatusOK, gin.H{"message": "File uploaded successfully"})
+// }
+
 func (s *Server) uploadZipFile(ctx *gin.Context) {
 	// Set the maximum request size for file uploads to 1 GB (1048576 KB)
 	ctx.Request.Body = http.MaxBytesReader(ctx.Writer, ctx.Request.Body, 1048576*1024)
@@ -231,16 +294,9 @@ func (s *Server) uploadZipFile(ctx *gin.Context) {
 
 	filepath := filepath.Join(uploadDir, filename)
 
-	// Check if the file already exists
-	if _, err := os.Stat(filepath); err == nil {
-		// File already exists, handle the error as needed
-		ctx.JSON(http.StatusBadRequest, gin.H{"error": "File already exists"})
-		return
-	}
-
 	out, err := os.Create(filepath)
 	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create file on server"})
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create or open file on server"})
 		return
 	}
 	defer out.Close()
