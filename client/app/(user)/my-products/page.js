@@ -46,7 +46,7 @@ export default function Purchases() {
         toast.loading("Your tools are being downloaded...");
 
         try {
-            saveAs(productData, "Test Download 1");
+            saveAs(productData, "musesoft-downloads");
             toast.dismiss();
 
             toast.success("Tools downloaded successfully!");
