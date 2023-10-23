@@ -16,7 +16,7 @@ const RouteHeading = ({ route }) => {
             <div className={cn("p-2 w-fit rounded-md", route.bgColor)}>
                 <Icon className={cn("w-8 h-8", route.color)} />
             </div>
-            <h1 className="font-bold text-gray-800 md:text-3xl text-2xl ">{route.label}</h1>
+            <h1 className="font-bold text-gray-800 md:text-3xl text-2xl w-max">{route.label}</h1>
         </div>
     );
 };

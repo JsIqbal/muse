@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import useLogout from "@/hooks/use-logout";
+import { ToastProvider } from "@/providers/toast-provider";
 
 const DashboardLayout = ({ children }) => {
     const router = useRouter();
@@ -32,6 +33,7 @@ const DashboardLayout = ({ children }) => {
                         <Sidebar />
                     </div>
                     <div className="flex flex-col h-full w-full lg:ps-72">
+                        <ToastProvider />
                         <div className="w-full flex justify-between items-center shadow-md border-b p-4">
                             <MobileSidebar />
                             <Button

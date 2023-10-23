@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Testimonial = ({ testimonial }) => {
     return (
-        <li className="rounded-lg shadow w-[80%] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between animate-fade-in-down">
+        <div className="rounded-lg shadow max-w-[24rem] w-[90%] h-[18rem] p-10 bg-white text-gray-700 leading-snug flex flex-col justify-between animate-fade-in-down">
             <div className="-ml-4">
                 <svg
                     className="w-8 opacity-25 text-indigo-500"
@@ -42,7 +42,7 @@ const Testimonial = ({ testimonial }) => {
                     </div>
                 </div>
             </div>
-        </li>
+        </div>
     );
 };
 
