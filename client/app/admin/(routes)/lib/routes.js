@@ -1,4 +1,10 @@
-import { LayoutDashboard, Mails, MessagesSquareIcon, Users2Icon } from "@/node_modules/lucide-react";
+import {
+    LayoutDashboard,
+    Mails,
+    MessagesSquareIcon,
+    Upload,
+    Users2Icon,
+} from "@/node_modules/lucide-react";
 
 const routes = [
     {
@@ -29,6 +35,13 @@ const routes = [
         color: "text-yellow-900",
         bgColor: "bg-yellow-300",
     },
+    {
+        label: "Upload Products",
+        icon: Upload,
+        href: "/admin/upload",
+        color: "text-orange-900",
+        bgColor: "bg-orange-300",
+    },
 ];
 
-export default routes
+export default routes;

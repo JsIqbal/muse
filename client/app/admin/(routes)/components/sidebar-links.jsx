@@ -6,6 +6,7 @@ import {
     LayoutDashboard,
     Mails,
     MessagesSquareIcon,
+    Upload,
     Users2Icon,
 } from "@/node_modules/lucide-react";
 
@@ -34,6 +35,12 @@ const SidebarLinks = () => {
             icon: MessagesSquareIcon,
             href: "/admin/reviews",
             color: "text-yellow-500"
+        },
+        {
+            label: "Upload",
+            icon: Upload,
+            href: "/admin/upload",
+            color: "text-orange-500"
         },
     ];
 
