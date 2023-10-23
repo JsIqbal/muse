@@ -1,8 +1,11 @@
 package rest
 
 import (
+	"archive/zip"
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -331,6 +334,59 @@ func (s *Server) purchase(ctx *gin.Context) {
 // 	ctx.JSON(http.StatusNotFound, gin.H{"error": "ZIP file not found"})
 // }
 
+// func (s *Server) getFiles(ctx *gin.Context) {
+// 	// Retrieve the user ID from the route parameters
+// 	userID := ctx.Param("id")
+
+// 	// Call the Purchase method to check if the user exists in the purchase table
+// 	exists := s.svc.CheckPurchase(userID)
+
+// 	// Check if the user exists
+// 	if !exists {
+// 		ctx.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+// 		return
+// 	}
+
+// 	// Retrieve the product IDs from the purchase table for the user
+// 	productIDs, err := s.svc.GetProductIDsByUserID(userID)
+
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve product IDs"})
+// 		return
+// 	}
+// 	fmt.Printf("---------------------------ids: ", productIDs)
+// 	// Check if there are product IDs
+// 	if len(productIDs) == 0 {
+// 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "No product IDs found"})
+// 		return
+// 	}
+
+// 	// Construct the directory path for the uploaded files
+// 	cwd, err := os.Getwd()
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get current working directory"})
+// 		return
+// 	}
+
+// 	uploadDir := filepath.Join(cwd, "uploads")
+
+// 	// Serve the ZIP files to the client
+// 	for _, productID := range productIDs {
+// 		filename := fmt.Sprintf("%s.zip", productID)
+// 		filepath := filepath.Join(uploadDir, filename)
+
+// 		// Check if the file exists
+// 		if _, err := os.Stat(filepath); err == nil {
+// 			// Serve the file to the client
+// 			ctx.File(filepath)
+// 			return
+// 		}
+// 	}
+
+// 	// If no file is found, return an error
+// 	ctx.JSON(http.StatusNotFound, gin.H{"error": "ZIP file not found"})
+// }
+
 func (s *Server) getFiles(ctx *gin.Context) {
 	// Retrieve the user ID from the route parameters
 	userID := ctx.Param("id")
@@ -346,6 +402,7 @@ func (s *Server) getFiles(ctx *gin.Context) {
 
 	// Retrieve the product IDs from the purchase table for the user
 	productIDs, err := s.svc.GetProductIDsByUserID(userID)
+
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve product IDs"})
 		return
@@ -357,6 +414,12 @@ func (s *Server) getFiles(ctx *gin.Context) {
 		return
 	}
 
+	// Create an in-memory buffer to store the ZIP file
+	buf := new(bytes.Buffer)
+
+	// Create a new ZIP archive
+	zipWriter := zip.NewWriter(buf)
+
 	// Construct the directory path for the uploaded files
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -366,21 +429,61 @@ func (s *Server) getFiles(ctx *gin.Context) {
 
 	uploadDir := filepath.Join(cwd, "uploads")
 
-	// Serve the ZIP files to the client
+	// Add each file to the ZIP archive
 	for _, productID := range productIDs {
 		filename := fmt.Sprintf("%s.zip", productID)
 		filepath := filepath.Join(uploadDir, filename)
 
 		// Check if the file exists
 		if _, err := os.Stat(filepath); err == nil {
-			// Serve the file to the client
-			ctx.File(filepath)
-			return
+			file, err := os.Open(filepath)
+			if err != nil {
+				ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to open file"})
+				return
+			}
+			defer file.Close()
+
+			info, err := file.Stat()
+			if err != nil {
+				ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get file info"})
+				return
+			}
+
+			header, err := zip.FileInfoHeader(info)
+			if err != nil {
+				ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create header"})
+				return
+			}
+
+			header.Method = zip.Deflate
+
+			writer, err := zipWriter.CreateHeader(header)
+			if err != nil {
+				ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create ZIP entry"})
+				return
+			}
+
+			_, err = io.Copy(writer, file)
+			if err != nil {
+				ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to copy file to ZIP"})
+				return
+			}
 		}
 	}
 
-	// If no file is found, return an error
-	ctx.JSON(http.StatusNotFound, gin.H{"error": "ZIP file not found"})
+	// Close the ZIP archive
+	err = zipWriter.Close()
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to close ZIP archive"})
+		return
+	}
+
+	// Set the appropriate headers for the response
+	ctx.Header("Content-Type", "application/zip")
+	ctx.Header("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s.zip\"", userID))
+
+	// Write the contents of the buffer to the response writer
+	ctx.Data(http.StatusOK, "application/zip", buf.Bytes())
 }
 
 func (s *Server) logout(ctx *gin.Context) {
