@@ -7,11 +7,11 @@ services:
             dockerfile: Dockerfile.server
         container_name: muse_server
         ports:
-            - "3005:3005"
+            - "3004:3004"
         volumes:
             - ./server:/app
         depends_on:
-            - db # If your server depends on a database (adjust this as needed)
+            - db
 
     client:
         build:
