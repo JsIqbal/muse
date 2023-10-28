@@ -149,7 +149,7 @@ const Product1 = () => {
                 <div className="lg:w-[50%] flex justify-end w-max md:py-[7%] py-[9%] animate-fade-in-down">
                     <div className="relative rounded-md">
                         <Image
-                            src="/images/dummy-pic-1.PNG"
+                            src="/images/muse.png"
                             width={450}
                             height={450}
                             alt="demo picture"

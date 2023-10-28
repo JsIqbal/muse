@@ -10,22 +10,7 @@ const Footer = ({className}) => {
                     Musesoft
                 </Link>
             </div>
-            <div className="flex gap-x-2 justify-center items-center">
-                <p>Developed by:</p>
-                <Link
-                    className="hover:underline"
-                    href="https://github.com/jsiqbal"
-                >
-                    Md. Iqbal Hossain
-                </Link>
-                &
-                <Link
-                    className="hover:underline"
-                    href="https://github.com/ahmad-munab"
-                >
-                    Ahmad Munab
-                </Link>
-            </div>
+            {/*  */}
         </footer>
     );
 };
