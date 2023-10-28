@@ -65,7 +65,7 @@ func (s *Server) setupRouter() {
 	authRoutes := s.router.Group("/").Use(s.authMiddleware())
 	authRoutes.GET("/api/admins/users", s.users)
 	authRoutes.POST("/api/users/logout", s.logout)
-	authRoutes.PUT("/api/users/review/:id", s.editReview)
+	authRoutes.PATCH("/api/users/edit-review/:id", s.editReview)
 	authRoutes.GET("/api/admins/contact-us", s.getAllMails) // => Admin getting all mails
 
 	// dashboardGroup.GET("/images", getDashboardImages(service))

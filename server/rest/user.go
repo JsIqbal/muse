@@ -583,7 +583,8 @@ func (s *Server) createReview(ctx *gin.Context) {
 
 func (s *Server) editReview(ctx *gin.Context) {
 	// Get the user ID from the route parameter
-	userID := ctx.Param("id")
+	id := ctx.Param("id")
+	fmt.Println("-----------------------reviewID--------------------", id)
 
 	// Parse the request body to get review details
 	var req CreateReviewRequest
@@ -591,14 +592,14 @@ func (s *Server) editReview(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
+	fmt.Println("-----------------------review  req--------------------", req)
 	// Call the service method to create a review
-	review, err := s.svc.EditReview(userID, req.Name, req.Role, req.Review)
+	review, err := s.svc.EditReview(id, req.Name, req.Role, req.Review)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
-
+	fmt.Println("-----------------------modified review--------------------", review)
 	// Respond with the created review
 	ctx.JSON(http.StatusOK, gin.H{"review": review})
 }
