@@ -33,8 +33,8 @@ const Product2 = () => {
                 <div className="lg:w-[50%] flex justify-start w-max md:py-[7%] py-[9%] animate-fade-in-down">
                     <div className="relative rounded-md">
                         <Image
-                            src="/images/dummy-pic-1.PNG"
-                            width={450}
+                            src="/images/jetpack.png"
+                            width={600}
                             height={450}
                             alt="demo picture"
                         />

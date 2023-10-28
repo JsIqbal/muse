@@ -6,153 +6,128 @@ const Benefit = () => {
                 <div className="w-full md:w-1/2">
                     <ul className="list-disc pl-6 text-gray-700">
                         <li>
-                            Open Source - <strong>GPL3/EPL licensed.</strong>
+                            JET Pack -OpenJDK 13 / 14 / 16 / 18 / 19
+                            Java Essential Tools, JDK13-19 , JConsole, VisualVM, MissionControl
                         </li>
                         <li>
-                            Effortless <strong>Automation:</strong>
+                            Includes:
                         </li>
                         <ul className="list-disc pl-6 mt-2">
                             <li>
-                                Automate{" "}
-                                <strong>
-                                    WebSphere, WebLogic, JBoss, Glassfish, and
-                                    Tomcat Middleware Estates
-                                </strong>{" "}
-                                over JMX (SSL/non-SSL).
+                                Java JDK 13 or
+                                Java JDK 14 or
+                                Java JDK 16 or
+                                Java JDK 18 or
+                                Java JDK 19
+                                OpenSource JDK. Dev/Run-time
                             </li>
                             <li>
-                                Streamline <strong>Linux SSH</strong> without
-                                requiring agents.
+                                Visual VM
+                            </li>
+                            <li>
+                                JConsole
+                            </li>
+                            <li>
+                                MissionControl
                             </li>
                         </ul>
                         <li>
-                            Unified <strong>Workspace:</strong>
+                            Features
                         </li>
                         <ul className="list-disc pl-6 mt-2">
                             <li>
-                                Target all <strong>5 servers</strong> and{" "}
-                                <strong>Linux</strong> from a single workspace.
+                                Java 13 / 14 / 16 / 18 / 19 OpenSource JDK.
                             </li>
                             <li>
-                                Benefit from a familiar{" "}
-                                <strong>
-                                    Eclipse-based Jython Development IDE.
-                                </strong>
+                                Visual VM
+                            </li>
+                            <li>
+                                JConsole
+                            </li>
+                            <li>
+                                MissionControl
+                            </li>
+                            <li>
+                                All supplied working out of the box.
+                            </li>
+                            <li>
+                                Compatible with Muse : https://sourceforge.net/projects/museproject/
+                            </li>
+                            <li>
+                                Take and Diagnose Heap Dumps
+                            </li>
+                            <li>
+                                CPU and Memory Profile your code
+                            </li>
+                            <li>
+                                Graph Heap and CPU usage over time -setting thresholds and triggers
+                            </li>
+                            <li>
+                                Diagnose Out of Memory Errors
+                            </li>
+                            <li>
+                                Diagnose Memory Leaks, down to method and object
                             </li>
                         </ul>
-                        <li>
-                            Quick and Easy <strong>Setup:</strong>
-                        </li>
-                        <ul className="list-disc pl-6 mt-2">
-                            <li>
-                                Install effortlessly with a{" "}
-                                <strong>4-click installer.</strong>
-                            </li>
-                            <li>
-                                Compatibility with{" "}
-                                <strong>
-                                    Java 8/9/10, Amazon Corretto,
-                                    JETPack13/14/16, IBM SDK.
-                                </strong>
-                            </li>
-                        </ul>
-                        <li>
-                            Enhanced <strong>Auditing & Compliance:</strong>
-                        </li>
-                        <ul className="list-disc pl-6 mt-2">
-                            <li>
-                                Utilize powerful{" "}
-                                <strong>
-                                    JBoss/GlassFish/Tomcat/Linux Active Auditing
-                                    Framework.
-                                </strong>
-                            </li>
-                            <li>
-                                Deploy <strong>Pega and Informatica</strong>{" "}
-                                with preset server compliance profiles.
-                            </li>
-                        </ul>
-                        {/* ...and more benefits */}
                     </ul>
                 </div>
                 <div className="w-full md:w-1/2">
                     <ul className="list-disc pl-6 text-gray-700">
                         <li>
-                            <strong>
-                                Python-based Configuration Snapshots
-                            </strong>{" "}
-                            for <strong>Tomcat and Glassfish.</strong>
-                        </li>
-                        <li>
-                            <strong>Infrastructure-as-Code:</strong>
+                            Python-based Configuration Snapshots
                         </li>
                         <ul className="list-disc pl-6 mt-2">
                             <li>
-                                Transform infrastructure into{" "}
-                                <strong>code.</strong>
-                            </li>
-                            <li>
-                                Automate the{" "}
-                                <strong>automation process.</strong>
+                                for Tomcat and Glassfish.
                             </li>
                         </ul>
                         <li>
-                            <strong>Automation-as-a-Service:</strong>
+                            Infrastructure-as-Code:
                         </li>
                         <ul className="list-disc pl-6 mt-2">
                             <li>
-                                Embrace the concept of{" "}
-                                <strong>Automation as-a Service.</strong>
+                                Transform infrastructure into code.
                             </li>
                             <li>
-                                Designed to run on the{" "}
-                                <strong>JETPack platform.</strong>
+                                Automate the automation process.
                             </li>
                         </ul>
                         <li>
-                            <strong>Streamlined Management:</strong>
+                            Automation-as-a-Service:
                         </li>
                         <ul className="list-disc pl-6 mt-2">
                             <li>
-                                Reduce complexity of{" "}
-                                <strong>deployments and change control.</strong>
+                                Embrace the concept of Automation as-a Service.
                             </li>
                             <li>
-                                Unified administration point for{" "}
-                                <strong>
-                                    server farms with multiple vendors.
-                                </strong>
+                                Designed to run on the JETPack platform.
                             </li>
                         </ul>
                         <li>
-                            <strong>Vendor Support:</strong>
+                            Streamlined Management:
                         </li>
                         <ul className="list-disc pl-6 mt-2">
                             <li>
-                                Develop{" "}
-                                <strong>
-                                    Jython Scriptlets and access the Dynatrace
-                                    API
-                                </strong>{" "}
-                                with <strong>Dynatrace support.</strong>
+                                Reduce complexity of deployments and change control.
                             </li>
                             <li>
-                                Work efficiently with{" "}
-                                <strong>
-                                    complex JEE Infrastructure and Software.
-                                </strong>
-                            </li>
-                            <li>
-                                Vendor support for{" "}
-                                <strong>
-                                    RedHat (JBoss), Oracle (SOA Suite,
-                                    WebLogic), IBM (WebSphere), Pega Systems,
-                                    Informatica,
-                                </strong>{" "}
-                                and more.
+                                Unified administration point for server farms with multiple vendors.
                             </li>
                         </ul>
-                        {/* ...and more benefits */}
+                        <li>
+                            Vendor Support:
+                        </li>
+                        <ul className="list-disc pl-6 mt-2">
+                            <li>
+                                Develop Jython Scriptlets and access the Dynatrace API with Dynatrace support.
+                            </li>
+                            <li>
+                                Work efficiently with complex JEE Infrastructure and Software.
+                            </li>
+                            <li>
+                                Vendor support for RedHat (JBoss), Oracle (SOA Suite, WebLogic), IBM (WebSphere), Pega Systems, Informatica, and more.
+                            </li>
+                        </ul>
                     </ul>
                 </div>
             </div>
