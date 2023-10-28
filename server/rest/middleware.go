@@ -101,7 +101,8 @@ func corsMiddleware(c *gin.Context) {
 	c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token")
 
 	// Allow all methods
-	c.Writer.Header().Set("Access-Control-Allow-Methods", "*")
+	// Allow all methods
+	c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
 
 	// Allow credentials
 	c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
