@@ -1,0 +1,3 @@
+# Ignore common build files and directories
+.git
+node_modules
