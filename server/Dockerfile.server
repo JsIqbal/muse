@@ -11,7 +11,7 @@ COPY . .
 # RUN go build -o main .
 
 # Expose the port that the server will listen on
-EXPOSE 3004
+EXPOSE 3005
 
 # Define the command to start the Go server
 CMD ["go", "run", "main.go"]
